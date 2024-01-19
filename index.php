@@ -24,11 +24,17 @@ unset($_SESSION['login_error']);
      <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
      <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
      <link rel="stylesheet" href="assets/css/style.css" />
+     <link rel="stylesheet" href="assets/css/preloader.css" />
 
      <title>Login | PT. Mayasari Bakti</title>
 </head>
 
 <body style="background-color: white;">
+
+     <div class="preloader-container">
+          <div class="preloader">
+          </div>
+     </div>
      <?php
     if (!empty($loginError)) {
         $teks = "Anda gagal login, cek kembali!";

@@ -6,7 +6,7 @@ include('../views/layout/header.php');
 
 <div class="content-wrapper">
      <div class="container-xxl flex-grow-1 container-p-y">
-          <h5 class="py-2 mb-2" style="margin-left: 20px;"><span class="text-muted fw-light">App /</span> Dashboard</h5>
+          <h5 class="py-2 mb-2"><span class="text-muted fw-light">App /</span> Dashboard</h5>
           <div class="row">
 
                <div class="col-lg-12 mb-4 order-0">
@@ -29,10 +29,10 @@ include('../views/layout/header.php');
                               </div>
                               <div class="col-sm-5 text-center text-sm-left">
                                    <div class="card-body pb-0 px-0 px-md-4">
-                                        <img src="../assets/dasbor/assets/img/illustrations/man-with-laptop-light.png"
-                                             height="140" alt="View Badge User"
+                                        <img src="../assets/dasbor/assets/img/illustrations/girl-doing-yoga-light.png"
+                                             height="180" alt="View Badge User"
                                              data-app-dark-img="illustrations/man-with-laptop-dark.png"
-                                             data-app-light-img="illustrations/man-with-laptop-light.png" />
+                                             data-app-light-img="illustrations/girl-doing-yoga-light.png" />
                                    </div>
                               </div>
                          </div>

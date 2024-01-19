@@ -121,10 +121,10 @@ if (isset($_POST['logout'])) {
                               <span class="menu-header-text">Primary Pages</span>
                          </li>
 
-                         <li class="menu-item active open">
+                         <li class="menu-item">
                               <a href="../views/dasbor.php" class="menu-link">
                                    <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                                   <div data-i18n="Dashboards">Dashboards</div>
+                                   <div data-i18n="Dashboards">Dashboard</div>
                               </a>
                          </li>
 
@@ -144,12 +144,13 @@ if (isset($_POST['logout'])) {
                                    <div data-i18n="Rampcheck">Rampcheck</div>
                               </a>
                          </li>
-                         <li class="menu-header small text-uppercase"><span class="menu-header-text">Users</span></li>
-                         <li class="menu-item">
-                              <a href="../views/data-users.php" class="menu-link">
-                                   <i class="menu-icon tf-icons bx bx-user"></i>
-                                   <div data-i18n="Tables">Data Users</div>
+                         <!-- <li class="menu-item">
+                              <a href="../views/data-pramudi.php" class="menu-link">
+                                   <i class="menu-icon tf-icons bx bx-car"></i>
+                                   <div data-i18n="Tables">Data Pramudi</div>
                               </a>
+                         </li> -->
+                         <li class="menu-header small text-uppercase"><span class="menu-header-text">Users Admin</span>
                          </li>
                          <li class="menu-item">
                               <a href="../views/add-users.php" class="menu-link">
@@ -158,6 +159,12 @@ if (isset($_POST['logout'])) {
                               </a>
                          </li>
 
+                         <li class="menu-item">
+                              <a href="../views/data-users.php" class="menu-link">
+                                   <i class="menu-icon tf-icons bx bx-user"></i>
+                                   <div data-i18n="Tables">Data Users</div>
+                              </a>
+                         </li>
                     </ul>
                </aside>
                <div class="layout-page">
@@ -184,8 +191,9 @@ if (isset($_POST['logout'])) {
                                              class="bx bx-search fs-4 lh-0"></i></span>
 
                                    <span class="fw-medium d-block">
-                                        <button class="btn btn-sm"
+                                        <button class="btn btn-sm "
                                              style="border-radius: 50px;height: 35px;background-color: #31374C;color: white;margin-right: 5px;"><?php echo $_SESSION['username']; ?></button></span>
+
                                    <li class="nav-item navbar-dropdown dropdown-user dropdown">
                                         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
                                              data-bs-toggle="dropdown">
@@ -227,8 +235,9 @@ if (isset($_POST['logout'])) {
                                              <li>
                                                   <form action="" method="post" class="dropdown-item">
                                                        <i class="bx bx-power-off me-2"></i>
-                                                       <button class="btn btn-sm " name="logout"
-                                                            style="border-radius: 50px;height: 35px;background-color: #31374C;color: white;margin-right: 5px;">Logout</button>
+                                                       <button class="btn btn-sm" name="logout"
+                                                            style="border-radius: 50px;height: 35px;background-color: #31374C;color: white;margin-right: 5px;"
+                                                            onclick="if (confirm('Yakin ingin logout?')) window.location.href='../index.php';">Logout</button>
                                                   </form>
                                              </li>
                                         </ul>
