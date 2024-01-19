@@ -28,7 +28,7 @@ unset($_SESSION['login_error']);
      <title>Login | PT. Mayasari Bakti</title>
 </head>
 
-<body>
+<body style="background-color: white;">
      <?php
     if (!empty($loginError)) {
         $teks = "Anda gagal login, cek kembali!";
@@ -48,19 +48,20 @@ unset($_SESSION['login_error']);
                                    <div class="mb-4">
                                         <h3> <strong>PT. Mayasari Bakti</strong></h3>
                                         <p class="mb-4">
-                                             Login to Website Fit To Work with Bootstrap
+                                             Login to Website Fit To Work dan Rampcheck
                                         </p>
                                    </div>
                                    <br />
                                    <form action="controllers/ProsesLogin.php" method="post">
                                         <div class="form-group first">
                                              <label for="username">Username</label>
-                                             <input type="text" class="form-control" name="username" required />
+                                             <input style="font-size: 15px;" type="text" class="form-control"
+                                                  name="username" required />
                                         </div>
-                                        <div class="form-group last mb-4">
+                                        <div class="form-group last mb-4" style="margin-top: 10px;">
                                              <label for="password">Password</label>
-                                             <input type="password" class="form-control" name="password" id="password"
-                                                  required />
+                                             <input style="font-size: 15px;" type="password" class="form-control"
+                                                  name="password" id="password" required />
                                         </div>
 
                                         <div class="d-flex mb-5 align-items-center">
