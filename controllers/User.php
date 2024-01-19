@@ -1,6 +1,6 @@
 <?php
 
-require_once '../models/LoginModel.php';
+require_once '../models/UserModel.php';
 
 class LoginController {
     private $loginModel;

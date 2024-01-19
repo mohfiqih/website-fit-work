@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['username'])) {
+    header("Location: http://localhost/website-fit-work/index.php");
+    exit();
+}
+
 if (isset($_POST['logout'])) {
     session_destroy();
     header("Location: http://localhost/website-fit-work/index.php");
@@ -39,15 +46,20 @@ if (isset($_POST['logout'])) {
 
      <script src="../assets/dasbor/assets/vendor/js/helpers.js"></script>
      <script src="../assets/dasbor/assets/js/config.js"></script>
+     <link rel="stylesheet" href="../assets/css/preloader.css" />
 </head>
 
 <body>
+     <div class="preloader-container">
+          <div class="preloader">
+          </div>
+     </div>
      <!-- Layout wrapper -->
      <div class="layout-wrapper layout-content-navbar">
           <div class="layout-container">
                <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     <div class="app-brand demo">
-                         <a href="index.html" class="app-brand-link">
+                         <a href="../views/dasbor.php" class="app-brand-link">
                               <span class="app-brand-logo demo">
                                    <svg width="25" viewBox="0 0 25 42" version="1.1" xmlns="http://www.w3.org/2000/svg"
                                         xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -92,11 +104,12 @@ if (isset($_POST['logout'])) {
                                         </g>
                                    </svg>
                               </span>
-                              <span class="app-brand-text demo menu-text fw-bold ms-2">Sneat</span>
+                              <span class="demo menu-text fw-bold ms-2" style="margin-top: 10px;font-size: 15px;">
+                                   Fit Work & Rampcheck
+                              </span>
                          </a>
 
-                         <a href="javascript:void(0);"
-                              class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+                         <a href="#" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
                               <i class="bx bx-chevron-left bx-sm align-middle"></i>
                          </a>
                     </div>
@@ -104,9 +117,12 @@ if (isset($_POST['logout'])) {
                     <div class="menu-inner-shadow"></div>
 
                     <ul class="menu-inner py-1">
-                         <!-- Dashboards -->
+                         <li class="menu-header small text-uppercase">
+                              <span class="menu-header-text">Primary Pages</span>
+                         </li>
+
                          <li class="menu-item active open">
-                              <a href="javascript:void(0);" class="menu-link ">
+                              <a href="../views/dasbor.php" class="menu-link">
                                    <i class="menu-icon tf-icons bx bx-home-circle"></i>
                                    <div data-i18n="Dashboards">Dashboards</div>
                               </a>
@@ -117,37 +133,106 @@ if (isset($_POST['logout'])) {
                          </li>
                          <!-- Apps -->
                          <li class="menu-item">
-                              <a href="#" target="_blank" class="menu-link">
-                                   <i class="menu-icon tf-icons bx bx-envelope"></i>
+                              <a href="../views/fit-work.php" class="menu-link">
+                                   <i class="menu-icon tf-icons bx bx-book"></i>
                                    <div data-i18n="Fit to Work">Fit to Work</div>
                               </a>
                          </li>
                          <li class="menu-item">
-                              <a href="#" target="_blank" class="menu-link">
-                                   <i class="menu-icon tf-icons bx bx-chat"></i>
+                              <a href="#" class="menu-link">
+                                   <i class="menu-icon tf-icons bx bx-chart"></i>
                                    <div data-i18n="Rampcheck">Rampcheck</div>
                               </a>
                          </li>
-                         <!-- <li class="menu-item">
-                              <a href="#" target="_blank" class="menu-link">
-                                   <i class="menu-icon tf-icons bx bx-calendar"></i>
-                                   <div data-i18n="Calendar">Export</div>
-                              </a>
-                         </li>
+                         <li class="menu-header small text-uppercase"><span class="menu-header-text">Users</span></li>
                          <li class="menu-item">
-                              <a href="#" target="_blank" class="menu-link">
-                                   <i class="menu-icon tf-icons bx bx-grid"></i>
-                                   <div data-i18n="Kanban">Kanban</div>
-                              </a>
-                         </li> -->
-                         <li class="menu-header small text-uppercase"><span class="menu-header-text">Forms &amp;
-                                   Tables</span></li>
-                         <li class="menu-item">
-                              <a href="tables-basic.html" class="menu-link">
+                              <a href="../views/data-users.php" class="menu-link">
                                    <i class="menu-icon tf-icons bx bx-user"></i>
                                    <div data-i18n="Tables">Data Users</div>
                               </a>
                          </li>
+                         <li class="menu-item">
+                              <a href="../views/add-users.php" class="menu-link">
+                                   <i class="menu-icon tf-icons bx bx-plus"></i>
+                                   <div data-i18n="Tables">Add Users</div>
+                              </a>
+                         </li>
+
                     </ul>
                </aside>
                <div class="layout-page">
+                    <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+                         id="layout-navbar">
+                         <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+                              <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                                   <i class="bx bx-menu bx-sm"></i>
+                              </a>
+
+                         </div>
+                         <a href="../views/dasbor.php">
+                              <span class="fw-medium d-block" style="margin-right: 5px;">
+                                   <i class="menu-icon tf-icons bx bx-arrow-back" style="color: #31374C;"></i></span>
+                         </a>
+
+
+                         <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+
+                              <ul class="navbar-nav flex-row align-items-center ms-auto">
+                                   <span class="fw-medium d-block" style="margin-right: 5px;"> <i
+                                             class="menu-icon tf-icons bx bx-bell"></i></span>
+                                   <span class="fw-medium d-block" style="margin-right: 10px;"><i
+                                             class="bx bx-search fs-4 lh-0"></i></span>
+
+                                   <span class="fw-medium d-block">
+                                        <button class="btn btn-sm"
+                                             style="border-radius: 50px;height: 35px;background-color: #31374C;color: white;margin-right: 5px;"><?php echo $_SESSION['username']; ?></button></span>
+                                   <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                                        <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
+                                             data-bs-toggle="dropdown">
+                                             <div class="avatar avatar-online">
+                                                  <img src="../assets/dasbor/assets/img/avatars/1.png" alt
+                                                       class="w-px-40 h-auto rounded-circle" />
+                                             </div>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-end">
+                                             <li>
+                                                  <a class="dropdown-item" href="#">
+                                                       <div class="d-flex">
+                                                            <div class="flex-shrink-0 me-3">
+                                                                 <div class="avatar avatar-online">
+                                                                      <img src="../assets/dasbor/assets/img/avatars/1.png"
+                                                                           alt class="w-px-40 h-auto rounded-circle" />
+                                                                 </div>
+                                                            </div>
+                                                            <div class="flex-grow-1">
+                                                                 <span
+                                                                      class="fw-medium d-block"><?php echo $_SESSION['username']; ?></span>
+                                                                 <small class="text-muted">Admin</small>
+                                                            </div>
+                                                       </div>
+                                                  </a>
+                                             </li>
+                                             <li>
+                                                  <div class="dropdown-divider"></div>
+                                             </li>
+                                             <li>
+                                                  <a class="dropdown-item" href="../views/profil.php">
+                                                       <i class="bx bx-user me-2"></i>
+                                                       <span class="align-middle">My Profile</span>
+                                                  </a>
+                                             </li>
+                                             <li>
+                                                  <div class="dropdown-divider"></div>
+                                             </li>
+                                             <li>
+                                                  <form action="" method="post" class="dropdown-item">
+                                                       <i class="bx bx-power-off me-2"></i>
+                                                       <button class="btn btn-sm " name="logout"
+                                                            style="border-radius: 50px;height: 35px;background-color: #31374C;color: white;margin-right: 5px;">Logout</button>
+                                                  </form>
+                                             </li>
+                                        </ul>
+                                   </li>
+                              </ul>
+                         </div>
+                    </nav>

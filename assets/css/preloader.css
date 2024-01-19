@@ -1,0 +1,67 @@
+.preloader-container {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     z-index: 1000;
+     opacity: 1;
+     animation: fadeOut 1s ease-in-out 1s forwards, blur 1s ease-in-out;
+     pointer-events: none;
+}
+
+/* Efek blur */
+@keyframes blur {
+     0% {
+          backdrop-filter: blur(10px);
+     }
+
+     100% {
+          backdrop-filter: blur(0);
+     }
+}
+
+/* Gaya preloader */
+.preloader-container .preloader-wrapper {
+     width: 500px;
+     height: 350px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+
+.preloader {
+     width: 80px;
+     /* Ubah lebar dan tinggi sesuai kebutuhan */
+     height: 80px;
+     border: 8px solid #fff;
+     border-top: 8px solid #90827B;
+     /* Warna sesuai kebutuhan */
+     border-radius: 50%;
+     animation: spin 1s linear infinite, fadeOut 1s ease 1s forwards;
+}
+
+/* Gaya animasi fadeOut */
+@keyframes fadeOut {
+     from {
+          opacity: 1;
+     }
+
+     to {
+          opacity: 0;
+     }
+}
+
+/* Gaya animasi putar */
+@keyframes spin {
+     0% {
+          transform: rotate(0deg);
+     }
+
+     100% {
+          transform: rotate(360deg);
+     }
+}
