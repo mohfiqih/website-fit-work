@@ -153,13 +153,6 @@ if (isset($_POST['logout'])) {
                          <li class="menu-header small text-uppercase"><span class="menu-header-text">Users Admin</span>
                          </li>
                          <li class="menu-item">
-                              <a href="../views/add-users.php" class="menu-link">
-                                   <i class="menu-icon tf-icons bx bx-plus"></i>
-                                   <div data-i18n="Tables">Add Users</div>
-                              </a>
-                         </li>
-
-                         <li class="menu-item">
                               <a href="../views/data-users.php" class="menu-link">
                                    <i class="menu-icon tf-icons bx bx-user"></i>
                                    <div data-i18n="Tables">Data Users</div>
@@ -227,6 +220,18 @@ if (isset($_POST['logout'])) {
                                                   <a class="dropdown-item" href="../views/profil.php">
                                                        <i class="bx bx-user me-2"></i>
                                                        <span class="align-middle">My Profile</span>
+                                                  </a>
+                                             </li>
+                                             <li>
+                                                  <a class="dropdown-item" href="../views/edit-profil.php">
+                                                       <i class="bx bx-book me-2"></i>
+                                                       <span class="align-middle">Update Profil</span>
+                                                  </a>
+                                             </li>
+                                             <li>
+                                                  <a class="dropdown-item" href="#">
+                                                       <i class="bx bx-key me-2"></i>
+                                                       <span class="align-middle">Update Password</span>
                                                   </a>
                                              </li>
                                              <li>

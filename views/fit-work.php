@@ -186,13 +186,13 @@ include('../views/layout/header.php');
                                                        Jas
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox" name="jas"
+                                                       <input class="form-check-input" type="radio" name="jas"
                                                             value="Ya" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
 
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox" name="jas"
+                                                       <input class="form-check-input" type="radio" name="jas"
                                                             value="Tidak" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
@@ -205,12 +205,12 @@ include('../views/layout/header.php');
                                                        Dasi
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox" name="dasi"
+                                                       <input class="form-check-input" type="radio" name="dasi"
                                                             value="Ya" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox" name="dasi"
+                                                       <input class="form-check-input" type="radio" name="dasi"
                                                             value="Tidak" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
@@ -223,12 +223,12 @@ include('../views/layout/header.php');
                                                        Peci
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox" name="peci"
+                                                       <input class="form-check-input" type="radio" name="peci"
                                                             value="Ya" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox" name="peci"
+                                                       <input class="form-check-input" type="radio" name="peci"
                                                             value="Tidak" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
@@ -241,12 +241,12 @@ include('../views/layout/header.php');
                                                        Sepatu Pantofel
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox" name="pantofel"
+                                                       <input class="form-check-input" type="radio" name="pantofel"
                                                             value="Ya" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox" name="pantofel"
+                                                       <input class="form-check-input" type="radio" name="pantofel"
                                                             value="Tidak" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
@@ -259,14 +259,14 @@ include('../views/layout/header.php');
                                                        Seragam Sesuai Hari Kerja
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox"
-                                                            name="seragam_kerja" value="Ya" id="defaultCheck1"
+                                                       <input class="form-check-input" type="radio" name="seragam_kerja"
+                                                            value="Ya" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
 
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox"
-                                                            name="seragam_kerja" value="Tidak" id="defaultCheck1"
+                                                       <input class="form-check-input" type="radio" name="seragam_kerja"
+                                                            value="Tidak" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
                                              </tr>
@@ -278,12 +278,12 @@ include('../views/layout/header.php');
                                                        ID Card
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox" name="id_card"
+                                                       <input class="form-check-input" type="radio" name="id_card"
                                                             value="Ya" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox" name="id_card"
+                                                       <input class="form-check-input" type="radio" name="id_card"
                                                             value="Tidak" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
@@ -296,12 +296,12 @@ include('../views/layout/header.php');
                                                        KTP (Kartu Tanda Penduduk)
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox" name="ktp"
+                                                       <input class="form-check-input" type="radio" name="ktp"
                                                             value="Ya" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox" name="ktp"
+                                                       <input class="form-check-input" type="radio" name="ktp"
                                                             value="Tidak" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
@@ -331,12 +331,12 @@ include('../views/layout/header.php');
                                                        SIM
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox" name="sim"
+                                                       <input class="form-check-input" type="radio" name="sim"
                                                             value="Ya" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox" name="sim"
+                                                       <input class="form-check-input" type="radio" name="sim"
                                                             value="Tidak" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
@@ -349,12 +349,12 @@ include('../views/layout/header.php');
                                                        STNK
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox" name="stnk"
+                                                       <input class="form-check-input" type="radio" name="stnk"
                                                             value="Ya" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox" name="stnk"
+                                                       <input class="form-check-input" type="radio" name="stnk"
                                                             value="Tidak" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
@@ -367,12 +367,12 @@ include('../views/layout/header.php');
                                                        KIR
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox" name="kir"
+                                                       <input class="form-check-input" type="radio" name="kir"
                                                             value="Ya" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox" name="kir"
+                                                       <input class="form-check-input" type="radio" name="kir"
                                                             value="Tidak" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
@@ -385,12 +385,11 @@ include('../views/layout/header.php');
                                                        KTP (Kartu Tanda Penduduk)
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox" name="kp"
-                                                            value="Ya" id="defaultCheck1"
-                                                            style="border-color: #000000;">
+                                                       <input class="form-check-input" type="radio" name="kp" value="Ya"
+                                                            id="defaultCheck1" style="border-color: #000000;">
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox" name="kp"
+                                                       <input class="form-check-input" type="radio" name="kp"
                                                             value="Tidak" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
@@ -420,12 +419,12 @@ include('../views/layout/header.php');
                                                        Kartu Flazz
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox" name="flazz"
+                                                       <input class="form-check-input" type="radio" name="flazz"
                                                             value="Ya" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox" name="flazz"
+                                                       <input class="form-check-input" type="radio" name="flazz"
                                                             value="Tidak" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
@@ -439,12 +438,12 @@ include('../views/layout/header.php');
                                                        P3K
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox" name="p3k"
+                                                       <input class="form-check-input" type="radio" name="p3k"
                                                             value="Ya" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox" name="p3k"
+                                                       <input class="form-check-input" type="radio" name="p3k"
                                                             value="Tidak" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
@@ -458,13 +457,13 @@ include('../views/layout/header.php');
                                                        Handsanitizer
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox"
-                                                            name="handsanitizer" value="Ya" id="defaultCheck1"
+                                                       <input class="form-check-input" type="radio" name="handsanitizer"
+                                                            value="Ya" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox"
-                                                            name="handsanitizer" value="Tidak" id="defaultCheck1"
+                                                       <input class="form-check-input" type="radio" name="handsanitizer"
+                                                            value="Tidak" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
                                              </tr>
@@ -477,12 +476,12 @@ include('../views/layout/header.php');
                                                        Senter
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox" name="senter"
+                                                       <input class="form-check-input" type="radio" name="senter"
                                                             value="Ya" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="checkbox" name="senter"
+                                                       <input class="form-check-input" type="radio" name="senter"
                                                             value="Tidak" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
