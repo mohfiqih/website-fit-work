@@ -1,5 +1,11 @@
 <?php
 include('../views/layout/header.php');
+
+if (isset($_SESSION['success_add_user'])) {
+     echo '<script>alert("' . $_SESSION['success_add_user'] . '");</script>';
+     unset($_SESSION['success_add_user']);
+}
+
 ?>
 
 <div class="content-wrapper">
@@ -19,10 +25,13 @@ include('../views/layout/header.php');
                                              <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle"
                                                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                                   style="background-color: #31374C;color: white;">
-                                                  Print
+                                                  <i class="tf-icons bx bx-printer" title="Print"
+                                                       style="margin-right: 10px;"></i> Print
                                              </button>
                                              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                  <a class="dropdown-item" href="javascript:void(0);">Print to PDF</a>
+                                                  <a class="dropdown-item" href="javascript:void(0);">
+                                                       <i class="tf-icons bx bx-book" title="Print"
+                                                            style="margin-right: 10px;"></i>Print to PDF</a>
                                              </div>
                                         </div>
                                    </div>
@@ -31,57 +40,93 @@ include('../views/layout/header.php');
                          <br />
 
                          <div class="table-responsive text-nowrap">
-                              <table class="table">
+                              <table class="table" id="example" style="padding: 20px;">
                                    <thead>
                                         <tr>
                                              <th>No</th>
-                                             <th>Pramudi</th>
-                                             <th>No Induk</th>
                                              <th>Hari</th>
                                              <th>Tanggal</th>
+                                             <th>No Body</th>
+                                             <th>Pramudi</th>
+                                             <th>No Induk</th>
+                                             <th>Masuk</th>
+                                             <th>Keluar</th>
                                              <th>Actions</th>
                                         </tr>
                                    </thead>
+                                   <?php
+                                        include '../controllers/Fitwork.php';
+                                                  
+                                        $connection = new User();
+                                        $hasil = $connection->getFitwork();
+
+                                        $no = 1;
+
+                                   ?>
                                    <tbody class="table-border-bottom-0">
+                                        <?php foreach ($hasil as $userData) { ?>
                                         <tr>
                                              <td>
-
+                                                  <?php echo $no++; ?>
                                              </td>
                                              <td>
-                                                  <span class="fw-medium"></span>
+                                                  <?= $userData['hari'] ?>
                                              </td>
-                                             <td></td>
                                              <td>
-
+                                                  <?= $userData['tanggal'] ?>
                                              </td>
-                                             <td><span class="badge bg-label-primary me-1"></span></td>
+                                             <td>
+                                                  <?= $userData['no_body'] ?>
+                                             </td>
+                                             <td>
+                                                  <?= $userData['pramudi'] ?>
+                                             </td>
+                                             <td>
+                                                  <?= $userData['no_induk'] ?>
+                                             </td>
+                                             <td>
+                                                  <?= $userData['jam_masuk'] ?>
+                                             </td>
+                                             <td>
+                                                  <?= $userData['jam_keluar'] ?>
+                                             </td>
                                              <td>
                                                   <div class="dropdown">
                                                        <div class="col-md-6 col-lg-4">
-                                                            <button type="button" class="btn btn-icon btn-primary"
-                                                                 style="height: 30px;">
-                                                                 <span class="tf-icons bx bx-detail"
-                                                                      title="Detail"></span>
-                                                            </button>
-                                                            <button type="button" class="btn btn-icon btn-success"
-                                                                 style="height: 30px;">
-                                                                 <span class="tf-icons bx bx-printer"
-                                                                      title="Print"></span>
-                                                            </button>
-                                                            <button type="button" class="btn btn-icon btn-warning"
-                                                                 style="height: 30px;">
-                                                                 <span class="tf-icons bx bx-pencil"
-                                                                      title="Edit"></span>
-                                                            </button>
-                                                            <button type="button" class="btn btn-icon btn-danger"
-                                                                 style="height: 30px;">
-                                                                 <span class="tf-icons bx bx-trash"
-                                                                      title="Hapus"></span>
-                                                            </button>
+                                                            <div>
+                                                                 <a
+                                                                      href="../views/fit-work-detail.php?id=<?= $userData['id'] ?>&&pramudi=<?= $userData['pramudi'] ?>">
+                                                                      <button type="button"
+                                                                           class="btn btn-icon btn-primary"
+                                                                           style="height: 30px;">
+                                                                           <span class="tf-icons bx bx-zoom-in"
+                                                                                title="Detail"></span>
+                                                                      </button>
+                                                                 </a>
+                                                                 <button type="button" class="btn btn-icon btn-success"
+                                                                      style="height: 30px;">
+                                                                      <span class="tf-icons bx bx-printer"
+                                                                           title="Print"></span>
+                                                                 </button>
+                                                            </div>
+                                                            <div style="margin-top: 10px;">
+                                                                 <button type="button" class="btn btn-icon btn-warning"
+                                                                      style="height: 30px;">
+                                                                      <span class="tf-icons bx bx-pencil"
+                                                                           title="Edit"></span>
+                                                                 </button>
+                                                                 <button type="button" class="btn btn-icon btn-danger"
+                                                                      style="height: 30px;"
+                                                                      onclick="if (confirm('Yakin ingin hapus data?')) window.location.href='../controllers/FitworkDelete.php?id=<?= $userData['id'] ?>';">
+                                                                      <span class="tf-icons bx bx-trash"
+                                                                           title="Hapus"></span>
+                                                                 </button>
+                                                            </div>
                                                        </div>
                                                   </div>
                                              </td>
                                         </tr>
+                                        <?php } ?>
                                    </tbody>
                               </table>
                          </div>
@@ -100,16 +145,16 @@ include('../views/layout/header.php');
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Fit to Work</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                </div>
-               <form action="#" method="POST">
+               <form action="../controllers/FitworkAdd.php" method="POST">
                     <div class="modal-body">
                          <div class="card-body">
                               <div class="row mb-3">
                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Hari</label>
                                    <div class="col-sm-10">
                                         <div class="input-group input-group-merge">
-                                             <span class="input-group-text"><i class="bx bx-buildings"></i></span>
-                                             <input type="text" class="form-control" name="" placeholder="Masukan Hari"
-                                                  required />
+                                             <span class="input-group-text"><i class="bx bx-calendar"></i></span>
+                                             <input type="text" class="form-control" name="hari"
+                                                  placeholder="Masukan Hari" required />
                                         </div>
                                    </div>
                               </div>
@@ -119,8 +164,8 @@ include('../views/layout/header.php');
                                         for="basic-icon-default-company">Tanggal</label>
                                    <div class="col-sm-10">
                                         <div class="input-group input-group-merge">
-                                             <span class="input-group-text"><i class="bx bx-buildings"></i></span>
-                                             <input type="date" class="form-control" name=""
+                                             <span class="input-group-text"><i class="bx bx-calendar"></i></span>
+                                             <input type="date" class="form-control" name="tanggal"
                                                   placeholder="Masukan Tanggal" required />
                                         </div>
                                    </div>
@@ -132,8 +177,8 @@ include('../views/layout/header.php');
                                    <div class="col-sm-10">
                                         <div class="input-group input-group-merge">
                                              <span id="basic-icon-default-company2" class="input-group-text"><i
-                                                       class="bx bx-buildings"></i></span>
-                                             <input type="text" class="form-control" name=""
+                                                       class="bx bx-id-card"></i></span>
+                                             <input type="text" class="form-control" name="no_body"
                                                   placeholder="Masukan No Induk" required />
                                         </div>
                                    </div>
@@ -146,7 +191,7 @@ include('../views/layout/header.php');
                                         <div class="input-group input-group-merge">
                                              <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                                        class="bx bx-user"></i></span>
-                                             <input type="text" class="form-control" name=""
+                                             <input type="text" class="form-control" name="pramudi"
                                                   placeholder="Masukan Pramudi" required />
                                         </div>
                                    </div>
@@ -158,13 +203,37 @@ include('../views/layout/header.php');
                                    <div class="col-sm-10">
                                         <div class="input-group input-group-merge">
                                              <span id="basic-icon-default-company2" class="input-group-text"><i
-                                                       class="bx bx-buildings"></i></span>
-                                             <input type="text" class="form-control" name=""
+                                                       class="bx bx-id-card"></i></span>
+                                             <input type="text" class="form-control" name="no_induk"
                                                   placeholder="Masukan No Induk" required />
                                         </div>
                                    </div>
                               </div>
 
+                              <div class="row mb-3">
+                                   <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Jam
+                                        Masuk</label>
+                                   <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                             <span id="basic-icon-default-company2" class="input-group-text"><i
+                                                       class="bx bx-time"></i></span>
+                                             <input type="text" class="form-control" name="jam_masuk"
+                                                  placeholder="Jam Masuk" required />
+                                        </div>
+                                   </div>
+                              </div>
+                              <div class="row mb-3">
+                                   <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Jam
+                                        Keluar</label>
+                                   <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                             <span id="basic-icon-default-company2" class="input-group-text"><i
+                                                       class="bx bx-time"></i></span>
+                                             <input type="text" class="form-control" name="jam_keluar"
+                                                  placeholder="Jam Keluar" value="-" />
+                                        </div>
+                                   </div>
+                              </div>
                               <!-- KELENGKAPAN SERAGAM -->
                               <label class="col-sm-8 col-form-label"><strong>A. Kelengkapan Seragam</strong></label>
                               <div class="table-responsive text-nowrap">
@@ -293,15 +362,15 @@ include('../views/layout/header.php');
                                                        7.
                                                   </td>
                                                   <td>
-                                                       KTP (Kartu Tanda Penduduk)
+                                                       KIP (Kartu Identitas Pramudi)
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="radio" name="ktp"
+                                                       <input class="form-check-input" type="radio" name="kip"
                                                             value="Ya" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="radio" name="ktp"
+                                                       <input class="form-check-input" type="radio" name="kip"
                                                             value="Tidak" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
@@ -382,7 +451,7 @@ include('../views/layout/header.php');
                                                        4.
                                                   </td>
                                                   <td>
-                                                       KTP (Kartu Tanda Penduduk)
+                                                       KP
                                                   </td>
                                                   <td>
                                                        <input class="form-check-input" type="radio" name="kp" value="Ya"
@@ -500,6 +569,17 @@ include('../views/layout/header.php');
           </div>
      </div>
 </div>
+
+<script>
+$(document).ready(function() {
+     $('#example').DataTable({
+          info: false,
+          ordering: true,
+          paging: false
+     });
+});
+</script>
+
 
 <?php
 include('../views/layout/footer.php');

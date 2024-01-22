@@ -17,8 +17,7 @@ if ($userData) {
                     <div class="card mb-4">
                          <div class="card-header d-flex align-items-center justify-content-between">
                               <small class="text-muted float-end">Your Profile</small>
-                              <small class="text-muted float-end">Website Fit to Work & RampcheckFit to Work &
-                                   Rampcheck</small>
+                              <small class="text-muted float-end">Website Fit to Work & Rampcheck</small>
                          </div>
                          <div class="card-body">
                               <form>

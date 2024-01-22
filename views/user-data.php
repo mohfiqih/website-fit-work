@@ -1,19 +1,13 @@
 <?php
 include('../views/layout/header.php');
-include('../controllers/User.php');
 
-$userController = new User();
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $full_name = $_POST['full_name'];
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $status = $_POST['status'];
-    $password = $_POST['password'];
-
-    $userController->addUser($full_name, $username, $email, $status, $password);
+if (isset($_SESSION['success_add_user'])) {
+     echo '<script>alert("' . $_SESSION['success_add_user'] . '");</script>';
+     unset($_SESSION['success_add_user']);
 }
+
 ?>
+
 
 <div class="content-wrapper">
      <div class="row">
@@ -26,15 +20,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                              data-bs-target="#exampleModal">
-                                             <i class="tf-icons bx bx-plus" title="Fit to Work"></i> Tambah Data User
+                                             <i class="tf-icons bx bx-plus" title="Fit to Work"
+                                                  style="margin-right: 10px;"></i> Add User
                                         </button>
+                                        <div class="btn-group" role="group">
+                                             <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle"
+                                                  data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                  style="background-color: #31374C;color: white;">
+                                                  <i class="tf-icons bx bx-printer" title="Print"
+                                                       style="margin-right: 10px;"></i> Print
+                                             </button>
+                                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                  <a class="dropdown-item" href="javascript:void(0);">
+                                                       <i class="tf-icons bx bx-book" title="Print"
+                                                            style="margin-right: 10px;"></i>Print to PDF</a>
+                                             </div>
+                                        </div>
                                    </div>
                               </div>
                          </div>
                          <br />
 
-                         <div class="table-responsive text-nowrap" id="pagination">
-                              <table class="table">
+                         <div class="table-responsive text-nowrap" style="width:100%">
+                              <table class="table" id="example" style="padding: 20px;">
                                    <thead>
                                         <tr>
                                              <th>No</th>
@@ -46,12 +54,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         </tr>
                                    </thead>
                                    <?php
-                                   $connection = new User();
-                                   $hasil = $connection->getUserData();
+                                                  include '../controllers/User.php';
+                                                  
+                                                  $connection = new User();
+                                                  $hasil = $connection->getUserData();
 
-                                   $no = 1;
+                                                  $no = 1;
 
-                                   ?>
+                                                  ?>
                                    <tbody class="table-border-bottom-0">
                                         <?php foreach ($hasil as $userData) { ?>
                                         <tr>
@@ -75,17 +85,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                              <td>
                                                   <div class="dropdown">
                                                        <div class="col-md-6 col-lg-4">
-                                                            <button type="button" class="btn btn-icon btn-warning"
-                                                                 style="height: 30px;">
-                                                                 <span class="tf-icons bx bx-pencil"></span>
-                                                            </button>
                                                             <a
-                                                                 href="../controllers/delete_users.php?<?= $userData['id'] ?>">
-                                                                 <button type="button" class="btn btn-icon btn-danger"
+                                                                 href="../views/update-user.php?id=<?= $userData['id'] ?>&&username=<?= $userData['username'] ?>">
+                                                                 <button type="button" class="btn btn-icon btn-warning"
                                                                       style="height: 30px;">
-                                                                      <span class="tf-icons bx bx-trash"></span>
+                                                                      <span class="tf-icons bx bx-pencil"></span>
                                                                  </button>
                                                             </a>
+                                                            <button type="submit" class="btn btn-icon btn-danger"
+                                                                 style="height: 30px;"
+                                                                 onclick="if (confirm('Yakin ingin hapus data?')) window.location.href='../controllers/UserDelete.php?id=<?= $userData['id'] ?>';">
+                                                                 <span class="tf-icons bx bx-trash"></span>
+                                                            </button>
                                                        </div>
                                                   </div>
                                              </td>
@@ -101,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      </div>
 </div>
 
-
+<!-- TAMBAH DATA USER -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
      <div class="modal-dialog">
           <div class="modal-content">
@@ -109,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Add User</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                </div>
-               <form action="#" method="POST">
+               <form action="../controllers/UserAdd.php" method="POST">
                     <div class="modal-body">
                          <div class="card-body">
 
@@ -144,7 +155,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                              <span class="input-group-text"><i class="bx bx-envelope"></i></span>
                                              <input type="text" class="form-control" name="email"
                                                   placeholder="Masukan Email" required />
-                                             <span class="input-group-text">@example.com</span>
                                         </div>
                                    </div>
                               </div>
@@ -183,16 +193,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      </div>
 </div>
 
+<!-- <script>
+$(document).ready(function() {
+     $('#example').DataTable();
+});
+</script> -->
 
-<!-- JS Hapus Data -->
 <script>
-function confirmDelete(userId) {
-     var result = confirm("Apakah Anda yakin ingin menghapus data user?");
-     if (result) {
-          window.location = "../controllers/delete_user.php?id=" + userId;
-     }
-}
+$(document).ready(function() {
+     $('#example').DataTable({
+          info: false,
+          ordering: true,
+          paging: false
+     });
+});
 </script>
+
 
 <?php
 include('../views/layout/footer.php');

@@ -17,30 +17,26 @@ unset($_SESSION['login_error']);
      <meta charset="utf-8" />
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
      <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet" />
-
      <link rel="icon" type="image/png" href="assets/images/mayasari.png" />
-
      <link rel="stylesheet" href="assets/fonts/icomoon/style.css" />
      <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
      <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
      <link rel="stylesheet" href="assets/css/style.css" />
      <link rel="stylesheet" href="assets/css/preloader.css" />
-
      <title>Login | PT. Mayasari Bakti</title>
 </head>
 
 <body style="background-color: white;">
-
      <div class="preloader-container">
           <div class="preloader">
           </div>
      </div>
      <?php
-    if (!empty($loginError)) {
-        $teks = "Anda gagal login, cek kembali!";
-        echo '<script>alert("' . $teks . '");</script>';
-    }
-    ?>
+          if (!empty($loginError)) {
+               $teks = "Anda gagal login, cek kembali!";
+               echo '<script>alert("' . $teks . '");</script>';
+          }
+     ?>
      <div class="content" style="padding: 30px;margin-top: 50px;">
           <div class="container">
                <div class="row">

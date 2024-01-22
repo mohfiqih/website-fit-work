@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../database/Database.php';
+include('../database/Database.php');
 
 $connection = new Database();
 
@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($connection->getConnection()->query($sql) === TRUE) {
         $_SESSION['success_message'] = "Profil berhasil diperbarui.";
-        header("Location: ../views/edit-profil.php");
+        header("Location: ../views/update-profil.php");
     } else {
         $_SESSION['error_message'] = "Error: " . $sql . "<br>" . $connection->error;
     }

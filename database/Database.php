@@ -13,7 +13,7 @@ class Database {
         if ($this->connection->connect_error) {
             die("Connection failed: " . $this->connection->connect_error);
         }
-        
+
         $this->connection->set_charset("utf8");
     }
 
@@ -21,8 +21,16 @@ class Database {
         return $this->connection;
     }
 
+    public function query($sql) {
+        return $this->connection->query($sql);
+    }
+
     public function escapeString($string) {
         return $this->connection->real_escape_string($string);
+    }
+
+    public function getError() {
+        return $this->connection->error;
     }
 }
 ?>

@@ -36,7 +36,7 @@ class User {
 
     // ---------------- GET data users (akses untuk menampilkan data user) ----------------- //
     public function getUserData() {
-        $query = "SELECT full_name, username, email, password, timestamp, status FROM users";
+        $query = "SELECT id, full_name, username, email, password, timestamp, status FROM users";
         $result = $this->connection->getConnection()->query($query);
         
         if (!$result) {
@@ -62,58 +62,59 @@ class User {
     
 
     // ----------------  POST Data User ----------------- //
-    public function addUser($full_name, $username, $email, $status, $password) {
-        $full_name = $this->connection->escapeString($full_name);
-        $username = $this->connection->escapeString($username);
-        $email = $this->connection->escapeString($email);
-        $status = $this->connection->escapeString($status);
-        $existingUserQuery = "SELECT * FROM users WHERE username='$username'";
-        $existingUserResult = $this->connection->getConnection()->query($existingUserQuery);
+    // public function addUser($full_name, $username, $email, $status, $password) {
+    //     $full_name = $this->connection->escapeString($full_name);
+    //     $username = $this->connection->escapeString($username);
+    //     $email = $this->connection->escapeString($email);
+    //     $status = $this->connection->escapeString($status);
+    //     $existingUserQuery = "SELECT * FROM users WHERE username='$username'";
+    //     $existingUserResult = $this->connection->getConnection()->query($existingUserQuery);
     
-        if ($existingUserResult->num_rows > 0) {
-            echo "<script>alert('Username \"$username\" sudah ada, buat username yang berbeda!.');</script>";
-            return;
-        }
+    //     if ($existingUserResult->num_rows > 0) {
+    //         echo "<script>alert('Username \"$username\" sudah ada, buat username yang berbeda!.');</script>";
+    //         return;
+    //     }
 
-        $hashedPassword = md5($password);
+    //     $hashedPassword = md5($password);
     
-        $sql = "INSERT INTO users (full_name, username, email, status, password, timestamp) 
-                VALUES ('$full_name', '$username', '$email', '$status', '$hashedPassword', NOW())";
+    //     $sql = "INSERT INTO users (full_name, username, email, status, password, timestamp) 
+    //             VALUES ('$full_name', '$username', '$email', '$status', '$hashedPassword', NOW())";
     
-        if ($this->connection->getConnection()->query($sql) === TRUE) {
-            $_SESSION['data_users'] = [
-                'full_name' => $full_name,
-                'username'  => $username,
-                'email'     => $email,
-                'status'    => $status,
-                'password'  => $hashedPassword,
-            ];
-            header("Location: ../views/data-users.php");
+    //     if ($this->connection->getConnection()->query($sql) === TRUE) {
+    //         $_SESSION['data_users'] = [
+    //             'full_name' => $full_name,
+    //             'username'  => $username,
+    //             'email'     => $email,
+    //             'status'    => $status,
+    //             'password'  => $hashedPassword,
+    //         ];
+    //         header("Location: ../views/data-users.php");
             
-            exit();
-        } else {
-            echo "Error: " . $sql . "<br>" . $this->connection->getConnection()->error;
-        }
-    }
+    //         exit();
+    //     } else {
+    //         echo "Error: " . $sql . "<br>" . $this->connection->getConnection()->error;
+    //     }
+    // }
+    
 
-    public function updateUser($full_name, $username, $email) {
-        $full_name = $this->connection->escapeString($full_name);
-        $username = $this->connection->escapeString($username);
-        $email = $this->connection->escapeString($email);
+    // public function updateUser($full_name, $username, $email) {
+    //     $full_name = $this->connection->escapeString($full_name);
+    //     $username = $this->connection->escapeString($username);
+    //     $email = $this->connection->escapeString($email);
     
-        $sql = "UPDATE users SET full_name='$full_name', email='$email' WHERE username='$username'";
+    //     $sql = "UPDATE users SET full_name='$full_name', email='$email' WHERE username='$username'";
     
-        echo "SQL Query: $sql<br>";
+    //     echo "SQL Query: $sql<br>";
     
-        if ($this->connection->getConnection()->query($sql) === TRUE) {
-            $_SESSION['data_users']['full_name'] = $full_name;
-            $_SESSION['data_users']['email'] = $email;
-            header("Location: ../views/data-users.php");
-            exit();
-        } else {
-            return "Error updating user: " . $this->connection->getConnection()->error;
-        }
-    }
+    //     if ($this->connection->getConnection()->query($sql) === TRUE) {
+    //         $_SESSION['data_users']['full_name'] = $full_name;
+    //         $_SESSION['data_users']['email'] = $email;
+    //         header("Location: ../views/data-users.php");
+    //         exit();
+    //     } else {
+    //         return "Error updating user: " . $this->connection->getConnection()->error;
+    //     }
+    // }
     
 }
 ?>

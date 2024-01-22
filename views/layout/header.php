@@ -47,7 +47,31 @@ if (isset($_POST['logout'])) {
      <script src="../assets/dasbor/assets/vendor/js/helpers.js"></script>
      <script src="../assets/dasbor/assets/js/config.js"></script>
      <link rel="stylesheet" href="../assets/css/preloader.css" />
+
+     <!--  -->
+     <!-- Data Table CSS JQuery -->
+     <link rel="stylesheet"
+          href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css" />
+     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.semanticui.min.css" />
+
+     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.semanticui.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.2/semantic.min.js"></script>
+
+     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable@11.4.0/dist/handsontable.full.min.css">
+     <script src="https://cdn.jsdelivr.net/npm/handsontable@11.4.0/dist/handsontable.full.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/handsontable@11.4.0/dist/languages/all.min.js"></script> -->
+
+
 </head>
+<style>
+/* Add margin to the right of the DataTable */
+#example_wrapper {
+     margin-right: 20px;
+     margin-left: 20px;
+}
+</style>
 
 <body>
      <div class="preloader-container">
@@ -153,7 +177,7 @@ if (isset($_POST['logout'])) {
                          <li class="menu-header small text-uppercase"><span class="menu-header-text">Users Admin</span>
                          </li>
                          <li class="menu-item">
-                              <a href="../views/data-users.php" class="menu-link">
+                              <a href="../views/user-data.php" class="menu-link">
                                    <i class="menu-icon tf-icons bx bx-user"></i>
                                    <div data-i18n="Tables">Data Users</div>
                               </a>
@@ -217,19 +241,19 @@ if (isset($_POST['logout'])) {
                                                   <div class="dropdown-divider"></div>
                                              </li>
                                              <li>
-                                                  <a class="dropdown-item" href="../views/profil.php">
+                                                  <a class="dropdown-item" href="../views/user-profil.php">
                                                        <i class="bx bx-user me-2"></i>
                                                        <span class="align-middle">My Profile</span>
                                                   </a>
                                              </li>
                                              <li>
-                                                  <a class="dropdown-item" href="../views/edit-profil.php">
+                                                  <a class="dropdown-item" href="../views/update-profil.php">
                                                        <i class="bx bx-book me-2"></i>
                                                        <span class="align-middle">Update Profil</span>
                                                   </a>
                                              </li>
                                              <li>
-                                                  <a class="dropdown-item" href="#">
+                                                  <a class="dropdown-item" href="../views/update-password.php">
                                                        <i class="bx bx-key me-2"></i>
                                                        <span class="align-middle">Update Password</span>
                                                   </a>

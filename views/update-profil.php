@@ -17,8 +17,7 @@ include('../views/layout/header.php');
                     <div class="card mb-4">
                          <div class="card-header d-flex align-items-center justify-content-between">
                               <small class="text-muted float-end">Your Profile</small>
-                              <small class="text-muted float-end">Website Fit to Work & RampcheckFit to Work &
-                                   Rampcheck</small>
+                              <small class="text-muted float-end">Website Fit to Work & Rampcheck</small>
                          </div>
                          <div class="card-body">
                               <?php
@@ -30,7 +29,7 @@ include('../views/layout/header.php');
                                    
                                    if ($userData) {
                               ?>
-                              <form action="../controllers/EditProfil.php?id=<?= $userData['id']; ?>" method="POST">
+                              <form action="../controllers/UpdateProfil.php?id=<?= $userData['id']; ?>" method="POST">
                                    <input type="hidden" name="id" value="<?= $userData['id']; ?>">
 
                                    <div class="row mb-3">

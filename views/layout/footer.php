@@ -1,4 +1,4 @@
-<footer class="content-footer footer bg-footer-theme">
+<!-- <footer class="content-footer footer bg-footer-theme">
      <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
           <div class="mb-2 mb-md-0">
                ©
@@ -8,7 +8,7 @@
                PT. Mayasari Bakti - Website Fit To Work dan Rampcheck
           </div>
      </div>
-</footer>
+</footer> -->
 
 <script src="../assets/dasbor/assets/vendor/libs/jquery/jquery.js"></script>
 <script src="../assets/dasbor/assets/vendor/libs/popper/popper.js"></script>
@@ -20,6 +20,11 @@
 <script src="../assets/dasbor/assets/js/main.js"></script>
 <script src="../assets/dasbor/assets/js/dashboards-analytics.js"></script>
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<!-- Data Table JQuery -->
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 </body>
 
 </html>
