@@ -39,17 +39,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'tekanan_darah'  => $_POST['tekanan_darah'],
         'suhu_badan'     => $_POST['suhu_badan'],
     );
+    
+    $id = $_GET['id'];
 
-    $columns = implode(", ", array_keys($data));
-    $values = "'" . implode("', '", $data) . "'";
-    $sql = "INSERT INTO fit_work ($columns) VALUES ($values)";
+    $update_data = "";
+    foreach ($data as $key => $value) {
+        $update_data .= "$key = '$value', ";
+    }
+    $update_data = rtrim($update_data, ", ");
+
+    $sql = "UPDATE fit_work SET $update_data WHERE id = $id";
 
     if ($connection->getConnection()->query($sql) === TRUE) {
-        $_SESSION['success_add_user'] = "Data fit work berhasil ditambahkan!";
-        header("Location: ../views/fit-work.php");
-    } else {
-        $_SESSION['error_message'] = "Error: " . $sql . "<br>" . $connection->error;
-    }
+          $_SESSION['success_update'] = "Data fit work berhasil diupdate!";
+          header("Location: ../views/fit-work-detail.php?id='$id'");
+     } else {
+          $_SESSION['error_message'] = "Error: " . $sql . "<br>" . mysqli_error($connection->getConnection());
+     }
 }
 
 ?>

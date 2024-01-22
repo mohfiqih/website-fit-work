@@ -13,6 +13,37 @@ if (isset($_SESSION['success_add_user'])) {
           <div class="content-wrapper">
                <div class="container-xxl flex-grow-1 container-p-y">
                     <h5 class="py-2 mb-2"><span class="text-muted fw-light">App /</span> Fit to Work</h5>
+                    <div class="row">
+                         <div class="col-lg-12 mb-4 order-0">
+                              <div class="card">
+                                   <div class="d-flex align-items-end row">
+                                        <div class="col-sm-7">
+                                             <div class="card-body">
+                                                  <h5 class="card-title" style="color: #31374C;">Welcome to fitur Fit
+                                                       Work,
+                                                       Kak <?php echo $_SESSION['username']; ?> 🎉</h5>
+                                                  <p class="mb-4">
+                                                       Hi min, ini form untuk Fit to Work ya silahkan sudah bisa
+                                                       digunakan
+                                                       by sistem, Jadi satu Fit Work Pramudi sudah terintegrasi dengan
+                                                       Rampcheck
+                                                       ya min!
+                                                       Terimakasih! ^_^
+                                                  </p>
+                                             </div>
+                                        </div>
+                                        <div class="col-sm-5 text-center text-sm-left">
+                                             <div class="card-body pb-0 px-0 px-md-4">
+                                                  <img src="../assets/images/undraw_add_tasks_re_s5yj.svg" height="180"
+                                                       alt="View Badge User"
+                                                       data-app-dark-img="../assets/images/undraw_add_tasks_re_s5yj.svg"
+                                                       data-app-light-img="../assets/images/undraw_add_tasks_re_s5yj.svg" />
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
                     <div class="card">
                          <div class="col-xl-6" style="margin-left: 20px;">
                               <div class="mt-3">
@@ -37,8 +68,6 @@ if (isset($_SESSION['success_add_user'])) {
                                    </div>
                               </div>
                          </div>
-                         <br />
-
                          <div class="table-responsive text-nowrap">
                               <table class="table" id="example" style="padding: 20px;">
                                    <thead>
@@ -103,18 +132,26 @@ if (isset($_SESSION['success_add_user'])) {
                                                                                 title="Detail"></span>
                                                                       </button>
                                                                  </a>
-                                                                 <button type="button" class="btn btn-icon btn-success"
-                                                                      style="height: 30px;">
-                                                                      <span class="tf-icons bx bx-printer"
-                                                                           title="Print"></span>
-                                                                 </button>
+                                                                 <a
+                                                                      href="../views/fit-work-print.php?id=<?= $userData['id'] ?>&&pramudi=<?= $userData['pramudi'] ?>">
+                                                                      <button type="button"
+                                                                           class="btn btn-icon btn-success"
+                                                                           style="height: 30px;">
+                                                                           <span class="tf-icons bx bx-printer"
+                                                                                title="Print"></span>
+                                                                      </button>
+                                                                 </a>
                                                             </div>
                                                             <div style="margin-top: 10px;">
-                                                                 <button type="button" class="btn btn-icon btn-warning"
-                                                                      style="height: 30px;">
-                                                                      <span class="tf-icons bx bx-pencil"
-                                                                           title="Edit"></span>
-                                                                 </button>
+                                                                 <a
+                                                                      href="../views/fit-work-detail.php?id=<?= $userData['id'] ?>&&pramudi=<?= $userData['pramudi'] ?>">
+                                                                      <button type="button"
+                                                                           class="btn btn-icon btn-warning"
+                                                                           style="height: 30px;">
+                                                                           <span class="tf-icons bx bx-pencil"
+                                                                                title="Edit"></span>
+                                                                      </button>
+                                                                 </a>
                                                                  <button type="button" class="btn btn-icon btn-danger"
                                                                       style="height: 30px;"
                                                                       onclick="if (confirm('Yakin ingin hapus data?')) window.location.href='../controllers/FitworkDelete.php?id=<?= $userData['id'] ?>';">
@@ -153,9 +190,31 @@ if (isset($_SESSION['success_add_user'])) {
                                    <div class="col-sm-10">
                                         <div class="input-group input-group-merge">
                                              <span class="input-group-text"><i class="bx bx-calendar"></i></span>
-                                             <input type="text" class="form-control" name="hari"
-                                                  placeholder="Masukan Hari" required />
+                                             <!-- <input type="text" class="form-control" name="hari"
+                                                  placeholder="Masukan Hari" required /> -->
+                                             <select class="form-select" id="exampleFormControlSelect1"
+                                                  aria-label="Default select example" name="hari">
+                                                  <option selected>Pilih Hari</option>
+                                                  <option value="Senin">Senin</option>
+                                                  <option value="Selasa">Selasa</option>
+                                                  <option value="Rabu">Rabu</option>
+                                                  <option value="Kamis">Kamis</option>
+                                                  <option value="Jum'at">Jum'at</option>
+                                                  <option value="Sabtu">Sabtu</option>
+                                                  <option value="Minggu">Minggu</option>
+                                             </select>
                                         </div>
+                                        <!-- <div class="mb-3">
+                                             <label for="exampleFormControlSelect1" class="form-label">Example
+                                                  select</label>
+                                             <select class="form-select" id="exampleFormControlSelect1"
+                                                  aria-label="Default select example">
+                                                  <option selected>Open this select menu</option>
+                                                  <option value="1">One</option>
+                                                  <option value="2">Two</option>
+                                                  <option value="3">Three</option>
+                                             </select>
+                                        </div> -->
                                    </div>
                               </div>
 
@@ -217,7 +276,7 @@ if (isset($_SESSION['success_add_user'])) {
                                         <div class="input-group input-group-merge">
                                              <span id="basic-icon-default-company2" class="input-group-text"><i
                                                        class="bx bx-time"></i></span>
-                                             <input type="text" class="form-control" name="jam_masuk"
+                                             <input type="time" class="form-control" name="jam_masuk"
                                                   placeholder="Jam Masuk" required />
                                         </div>
                                    </div>
@@ -229,8 +288,8 @@ if (isset($_SESSION['success_add_user'])) {
                                         <div class="input-group input-group-merge">
                                              <span id="basic-icon-default-company2" class="input-group-text"><i
                                                        class="bx bx-time"></i></span>
-                                             <input type="text" class="form-control" name="jam_keluar"
-                                                  placeholder="Jam Keluar" value="-" />
+                                             <input type="time" class="form-control" name="jam_keluar"
+                                                  placeholder="Jam Keluar" value="" />
                                         </div>
                                    </div>
                               </div>
@@ -553,6 +612,47 @@ if (isset($_SESSION['success_add_user'])) {
                                                        <input class="form-check-input" type="radio" name="senter"
                                                             value="Tidak" id="defaultCheck1"
                                                             style="border-color: #000000;">
+                                                  </td>
+                                             </tr>
+                                        </tbody>
+                                   </table>
+                              </div>
+
+                              <!-- DATA KESEHATAN -->
+                              <label class="col-sm-8 col-form-label"><strong>D. Data Kesehatan</strong></label>
+                              <div class="table-responsive text-nowrap">
+                                   <table class="table">
+                                        <thead>
+                                             <tr>
+                                                  <th width="5px;">No</th>
+                                                  <th>Data Kesehatan</th>
+                                                  <th width="5px;">Check</th>
+                                             </tr>
+                                        </thead>
+                                        <tbody class="table-border-bottom-0">
+                                             <tr>
+                                                  <td>
+                                                       1.
+                                                  </td>
+                                                  <td>
+                                                       Tekanan Darah
+                                                  </td>
+                                                  <td>
+                                                       <input style="width: 150px;" type="text" class="form-control"
+                                                            name="tekanan_darah" placeholder="Tekanan Darah" required />
+                                                  </td>
+                                             </tr>
+
+                                             <tr>
+                                                  <td>
+                                                       2.
+                                                  </td>
+                                                  <td>
+                                                       Suhu Badan
+                                                  </td>
+                                                  <td>
+                                                       <input style="width: 150px;" type="text" class="form-control"
+                                                            name="suhu_badan" placeholder="Suhu Badan" required />
                                                   </td>
                                              </tr>
                                         </tbody>

@@ -13,6 +13,35 @@ if ($userData) {
      <div class="container-xxl flex-grow-1 container-p-y">
           <h5 class="py-2 mb-2"><span class="text-muted fw-light">App /</span> Your Profile</h5>
           <div class="row">
+               <div class="col-lg-12 mb-4 order-0">
+                    <div class="card">
+                         <div class="d-flex align-items-end row">
+                              <div class="col-sm-7">
+                                   <div class="card-body">
+                                        <h5 class="card-title" style="color: #31374C;">Welcome to Preview Profil,
+                                             Kak <?php echo $_SESSION['username']; ?> 🎉</h5>
+                                        <p class="mb-4">
+                                             Hi min, jika anda ingin mengubah profil anda, silahkan klik fitur <a
+                                                  href="../views/update-profil.php">Update
+                                                  Profil.</a> Jika anda ingin mengubah password anda dapat membuka
+                                             fitur <a href="../views/update-password.php">Update
+                                                  Password.</a> Terimakasih! ^_^
+                                        </p>
+                                   </div>
+                              </div>
+                              <div class="col-sm-5 text-center text-sm-left">
+                                   <div class="card-body pb-0 px-0 px-md-4">
+                                        <img src="../assets/dasbor/assets/img/illustrations/man-with-laptop-light.png"
+                                             height="180" alt="View Badge User"
+                                             data-app-dark-img="illustrations/man-with-laptop-light.png"
+                                             data-app-light-img="illustrations/man-with-laptop-light.png" />
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+          <div class="row">
                <div class="col-xxl">
                     <div class="card mb-4">
                          <div class="card-header d-flex align-items-center justify-content-between">

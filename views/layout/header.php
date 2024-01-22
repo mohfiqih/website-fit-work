@@ -129,7 +129,7 @@ if (isset($_POST['logout'])) {
                                    </svg>
                               </span>
                               <span class="demo menu-text fw-bold ms-2" style="margin-top: 10px;font-size: 15px;">
-                                   Fit Work & Rampcheck
+                                   PT. Mayasari Bakti
                               </span>
                          </a>
 
@@ -195,7 +195,7 @@ if (isset($_POST['logout'])) {
                          </div>
                          <a href="../views/dasbor.php">
                               <span class="fw-medium d-block" style="margin-right: 5px;">
-                                   <i class="menu-icon tf-icons bx bx-arrow-back" style="color: #31374C;"></i></span>
+                                   <i class="menu-icon tf-icons bx bx-refresh" style="color: #31374C;"></i></span>
                          </a>
 
 

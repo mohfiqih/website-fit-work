@@ -9,7 +9,13 @@ class User {
     }
 
     public function getFitwork() {
-     $query = "SELECT id, hari, tanggal, no_body, pramudi, no_induk, jam_masuk, jam_keluar FROM fit_work";
+     $query = "SELECT id, hari, tanggal, no_body, pramudi, no_induk, jam_masuk, jam_keluar, 
+               jas, dasi, peci, pantofel, seragam_kerja, id_card, kip,
+               sim, stnk, kir, kp,
+               flazz, p3k, handsanitizer, senter,
+               tekanan_darah, suhu_badan
+               FROM fit_work";
+               
      $result = $this->connection->getConnection()->query($query);
      
      if (!$result) {
