@@ -9,11 +9,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $loginController = new User();
 
     if ($loginController->processLogin($username, $password)) {
+     // Login berhasil
+     session_start();
      $_SESSION['username'] = $username;
      header("Location: ../views/dasbor.php");
      exit();
  } else {
-    session_start();
+     // Login gagal
+     session_start();
      $_SESSION['login_error'] = 'Login gagal. Periksa kembali username dan password.';
      header("Location: ../index.php");
      exit();
