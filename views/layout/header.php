@@ -163,7 +163,7 @@ if (isset($_POST['logout'])) {
                               </a>
                          </li>
                          <li class="menu-item">
-                              <a href="#" class="menu-link">
+                              <a href="../views/rampcheck.php" class="menu-link">
                                    <i class="menu-icon tf-icons bx bx-chart"></i>
                                    <div data-i18n="Rampcheck">Rampcheck</div>
                               </a>
@@ -193,10 +193,16 @@ if (isset($_POST['logout'])) {
                               </a>
 
                          </div>
-                         <a href="../views/dasbor.php">
+                         <a href="#" onclick="refreshPage()">
                               <span class="fw-medium d-block" style="margin-right: 5px;">
                                    <i class="menu-icon tf-icons bx bx-refresh" style="color: #31374C;"></i></span>
                          </a>
+
+                         <script>
+                         function refreshPage() {
+                              location.reload();
+                         }
+                         </script>
 
 
                          <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">

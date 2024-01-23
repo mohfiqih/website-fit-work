@@ -34,25 +34,22 @@ if (isset($_SESSION['success_update'])) {
                                         <div class="mt-3" style="margin-left: 20px;">
                                              <div class="btn-group" role="group"
                                                   aria-label="Button group with nested dropdown">
-                                                  <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                       data-bs-target="#rampcheckModal">
-                                                       <i class="tf-icons bx bx-plus" title="Fit to Work"></i> Rampcheck
-                                                  </button>
-                                                  <div class="btn-group" role="group">
-                                                       <button id="btnGroupDrop1" type="button"
-                                                            class="btn dropdown-toggle" data-bs-toggle="dropdown"
-                                                            aria-haspopup="true" aria-expanded="false"
-                                                            style="background-color: #31374C;color: white;">
-                                                            <i class="tf-icons bx bx-printer" title="Print"
-                                                                 style="margin-right: 10px;"></i> Print
+                                                  <a href="../views/fit-work.php">
+                                                       <button type="button" class="btn btn-primary"
+                                                            data-bs-toggle="modal" data-bs-target="#editFit">
+                                                            <i class="tf-icons bx bx-arrow-back" title="Edit Data"
+                                                                 style="margin-right: 10px;"></i> Back
                                                        </button>
-                                                       <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                            <a class="dropdown-item"
-                                                                 href="../views/fit-work-print.php?id=<?= $userData['id'] ?>&&pramudi=<?= $userData['pramudi'] ?>">
-                                                                 <i class="tf-icons bx bx-book" title="Print"
-                                                                      style="margin-right: 10px;"></i>Print to PDF</a>
-                                                       </div>
-                                                  </div>
+                                                  </a>
+
+                                                  <a href="../views/rampcheck-add.php?id=<?= $userData['id'] ?>"
+                                                       style="margin-left: 10px;">
+                                                       <button type="button" class="btn btn-primary"
+                                                            data-bs-toggle="modal" data-bs-target="#rampcheckModal">
+                                                            <i class="tf-icons bx bx-plus" title="Fit to Work"></i>
+                                                            Rampcheck
+                                                       </button>
+                                                  </a>
                                              </div>
                                         </div>
                                         <div class="card-header d-flex justify-content-between align-items-center">
@@ -111,14 +108,7 @@ if (isset($_SESSION['success_update'])) {
                                                                  value="<?= $userData['jam_keluar'] ?>" required />
                                                        </div>
 
-                                                       <a href="../views/fit-work.php">
-                                                            <button type="button" class="btn btn-primary"
-                                                                 data-bs-toggle="modal" data-bs-target="#editFit"
-                                                                 style="margin-top: 10px;">
-                                                                 <i class="tf-icons bx bx-arrow-back" title="Edit Data"
-                                                                      style="margin-right: 10px;"></i> Back
-                                                            </button>
-                                                       </a>
+
                                                        <button type="button" class="btn btn-warning"
                                                             style="margin-left: 10px;margin-top: 10px;"
                                                             data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -176,135 +166,44 @@ if (isset($_SESSION['success_update'])) {
                                                                  </tr>
                                                             </thead>
                                                             <tbody class="table-border-bottom-0">
-                                                                 <tr>
-                                                                      <td>
-                                                                           1.
-                                                                      </td>
-                                                                      <td>
-                                                                           Jas
-                                                                      </td>
-                                                                      <td>
-                                                                           <input type="text"
-                                                                                class="badge bg-label-primary me-1"
-                                                                                name="jas"
-                                                                                value="<?= $userData['jas'] ?>"
-                                                                                readonly>
+                                                                 <?php
+                                                                 $kelengkapanSeragam = [
+                                                                      'jas'               => 'Jas',
+                                                                      'dasi'              => 'Dasi',
+                                                                      'peci'              => 'Peci',
+                                                                      'pantofel'          => 'Sepatu Pantofel',
+                                                                      'seragam_kerja'     => 'Seragam Sesuai Hari Kerja',
+                                                                      'id_card'           => 'ID Card',
+                                                                      'kip'               => 'KIP (Kartu Identitas Pramudi)',
+                                                                 ];
 
-                                                                           <span class="badge bg-label-primary me-1"
-                                                                                name="jas"
-                                                                                value="<?= $userData['pantofel'] ?>"><?= $userData['jas'] ?></span>
-                                                                      </td>
-                                                                 </tr>
+                                                                 // Urutkan array berdasarkan kodenya
+                                                                 ksort($kelengkapanSeragam);
+                                                                 $no = 1;
+
+                                                                 foreach ($kelengkapanSeragam as $itemCode => $itemDescription) :
+                                                                 ?>
                                                                  <tr>
-                                                                      <td>
-                                                                           2.
-                                                                      </td>
-                                                                      <td>
-                                                                           Dasi
-                                                                      </td>
+                                                                      <td><?= $no++ ?></td>
+                                                                      <td><?= $itemDescription ?></td>
                                                                       <td>
                                                                            <input type="text"
                                                                                 class="badge bg-label-primary me-1"
-                                                                                name="dasi"
-                                                                                value="<?= $userData['dasi'] ?>"
+                                                                                name="<?= $itemCode ?>"
+                                                                                value="<?= $userData[$itemCode] ?>"
                                                                                 readonly>
                                                                            <span class="badge bg-label-primary me-1"
-                                                                                name="dasi"
-                                                                                value="<?= $userData['dasi'] ?>"><?= $userData['dasi'] ?></span>
+                                                                                name="<?= $itemCode ?>"
+                                                                                value="<?= $userData[$itemCode] ?>">
+                                                                                <?= $userData[$itemCode] ?>
+                                                                           </span>
                                                                       </td>
                                                                  </tr>
-                                                                 <tr>
-                                                                      <td>
-                                                                           3.
-                                                                      </td>
-                                                                      <td>
-                                                                           Peci
-                                                                      </td>
-                                                                      <td>
-                                                                           <input type="text"
-                                                                                class="badge bg-label-primary me-1"
-                                                                                name="peci"
-                                                                                value="<?= $userData['peci'] ?>"
-                                                                                readonly>
-                                                                           <span class="badge bg-label-primary me-1"
-                                                                                name="peci"
-                                                                                value="<?= $userData['peci'] ?>"><?= $userData['peci'] ?></span>
-                                                                      </td>
-                                                                 </tr>
-                                                                 <tr>
-                                                                      <td>
-                                                                           4.
-                                                                      </td>
-                                                                      <td>
-                                                                           Sepatu Pantofel
-                                                                      </td>
-                                                                      <td>
-                                                                           <input type="text"
-                                                                                class="badge bg-label-primary me-1"
-                                                                                name="pantofel"
-                                                                                value="<?= $userData['pantofel'] ?>"
-                                                                                readonly>
-                                                                           <span class="badge bg-label-primary me-1"
-                                                                                name="pantofel"
-                                                                                value="<?= $userData['pantofel'] ?>"><?= $userData['pantofel'] ?></span>
-                                                                      </td>
-                                                                 </tr>
-                                                                 <tr>
-                                                                      <td>
-                                                                           5.
-                                                                      </td>
-                                                                      <td>
-                                                                           Seragam Sesuai Hari Kerja
-                                                                      </td>
-                                                                      <td>
-                                                                           <input type="text"
-                                                                                class="badge bg-label-primary me-1"
-                                                                                name="seragam_kerja"
-                                                                                value="<?= $userData['seragam_kerja'] ?>"
-                                                                                readonly>
-                                                                           <span class="badge bg-label-primary me-1"
-                                                                                name="seragam_kerja"
-                                                                                value="<?= $userData['seragam_kerja'] ?>"><?= $userData['seragam_kerja'] ?></span>
-                                                                      </td>
-                                                                 </tr>
-                                                                 <tr>
-                                                                      <td>
-                                                                           6.
-                                                                      </td>
-                                                                      <td>
-                                                                           ID Card
-                                                                      </td>
-                                                                      <td>
-                                                                           <input type="text"
-                                                                                class="badge bg-label-primary me-1"
-                                                                                name="id_card"
-                                                                                value="<?= $userData['id_card'] ?>"
-                                                                                readonly>
-                                                                           <span class="badge bg-label-primary me-1"
-                                                                                name="id_card"
-                                                                                value="<?= $userData['id_card'] ?>"><?= $userData['id_card'] ?></span>
-                                                                      </td>
-                                                                 </tr>
-                                                                 <tr>
-                                                                      <td>
-                                                                           7.
-                                                                      </td>
-                                                                      <td>
-                                                                           KIP (Kartu Identitas Pramudi)
-                                                                      </td>
-                                                                      <td>
-                                                                           <input type="text"
-                                                                                class="badge bg-label-primary me-1"
-                                                                                name="kip"
-                                                                                value="<?= $userData['kip'] ?>"
-                                                                                readonly>
-                                                                           <span class="badge bg-label-primary me-1"
-                                                                                name="kip"
-                                                                                value="<?= $userData['kip'] ?>"><?= $userData['kip'] ?></span>
-                                                                      </td>
-                                                                 </tr>
+                                                                 <?php endforeach; ?>
+
                                                             </tbody>
                                                        </table>
+
                                                   </div>
                                              </div>
                                              <div class="tab-pane fade" id="navs-justified-profile" role="tabpanel">
@@ -321,79 +220,43 @@ if (isset($_SESSION['success_update'])) {
                                                                  </tr>
                                                             </thead>
                                                             <tbody class="table-border-bottom-0">
+
+                                                                 <?php
+                                                                      $kelengkapanSurat = [
+                                                                           'sim'     => 'SIM',
+                                                                           'stnk'    => 'STNK',
+                                                                           'kir'     => 'KIR',
+                                                                           'kp'      => 'KP',
+                                                                      ];
+
+                                                                      // Urutkan array berdasarkan kodenya
+                                                                      ksort($kelengkapanSurat);
+
+                                                                      $no = 1; // Inisialisasi variabel $no
+
+                                                                      foreach ($kelengkapanSurat as $itemCode => $itemDescription) :
+                                                                 ?>
                                                                  <tr>
-                                                                      <td>
-                                                                           1.
-                                                                      </td>
-                                                                      <td>
-                                                                           SIM
-                                                                      </td>
+                                                                      <td><?= $no++ ?></td>
+                                                                      <td><?= $itemDescription ?></td>
                                                                       <td>
                                                                            <input type="text"
                                                                                 class="badge bg-label-primary me-1"
-                                                                                name="sim"
-                                                                                value="<?= $userData['sim'] ?>"
+                                                                                name="<?= $itemCode ?>"
+                                                                                value="<?= $userData[$itemCode] ?>"
                                                                                 readonly>
                                                                            <span class="badge bg-label-primary me-1"
-                                                                                name="sim"
-                                                                                value="<?= $userData['sim'] ?>"><?= $userData['sim'] ?></span>
+                                                                                name="<?= $itemCode ?>"
+                                                                                value="<?= $userData[$itemCode] ?>">
+                                                                                <?= $userData[$itemCode] ?>
+                                                                           </span>
                                                                       </td>
                                                                  </tr>
-                                                                 <tr>
-                                                                      <td>
-                                                                           2.
-                                                                      </td>
-                                                                      <td>
-                                                                           STNK
-                                                                      </td>
-                                                                      <td>
-                                                                           <input type="text"
-                                                                                class="badge bg-label-primary me-1"
-                                                                                name="stnk"
-                                                                                value="<?= $userData['stnk'] ?>"
-                                                                                readonly>
-                                                                           <span class="badge bg-label-primary me-1"
-                                                                                name="stnk"
-                                                                                value="<?= $userData['stnk'] ?>"><?= $userData['stnk'] ?></span>
-                                                                      </td>
-                                                                 </tr>
-                                                                 <tr>
-                                                                      <td>
-                                                                           3.
-                                                                      </td>
-                                                                      <td>
-                                                                           KIR
-                                                                      </td>
-                                                                      <td>
-                                                                           <input type="text"
-                                                                                class="badge bg-label-primary me-1"
-                                                                                name="kir"
-                                                                                value="<?= $userData['kir'] ?>"
-                                                                                readonly>
-                                                                           <span class="badge bg-label-primary me-1"
-                                                                                name="kir"
-                                                                                value="<?= $userData['kir'] ?>"><?= $userData['kir'] ?></span>
-                                                                      </td>
-                                                                 </tr>
-                                                                 <tr>
-                                                                      <td>
-                                                                           4.
-                                                                      </td>
-                                                                      <td>
-                                                                           KP
-                                                                      </td>
-                                                                      <td>
-                                                                           <input type="text"
-                                                                                class="badge bg-label-primary me-1"
-                                                                                name="kp" value="<?= $userData['kp'] ?>"
-                                                                                readonly>
-                                                                           <span class="badge bg-label-primary me-1"
-                                                                                name="kp"
-                                                                                value="<?= $userData['kp'] ?>"><?= $userData['kp'] ?></span>
-                                                                      </td>
-                                                                 </tr>
+                                                                 <?php endforeach; ?>
+
                                                             </tbody>
                                                        </table>
+
                                                   </div>
 
                                              </div>
@@ -449,83 +312,43 @@ if (isset($_SESSION['success_update'])) {
                                                                       </tr>
                                                                  </thead>
                                                                  <tbody class="table-border-bottom-0">
-                                                                      <tr>
-                                                                           <td>
-                                                                                1.
-                                                                           </td>
-                                                                           <td>
-                                                                                Kartu Flazz
-                                                                           </td>
-                                                                           <td>
-                                                                                <input type="text"
-                                                                                     class="badge bg-label-primary me-1"
-                                                                                     name="flazz"
-                                                                                     value="<?= $userData['flazz'] ?>"
-                                                                                     readonly>
-                                                                                <span class="badge bg-label-primary me-1"
-                                                                                     name="flazz"
-                                                                                     value="<?= $userData['flazz'] ?>"><?= $userData['flazz'] ?></span>
-                                                                           </td>
-                                                                      </tr>
 
-                                                                      <tr>
-                                                                           <td>
-                                                                                2.
-                                                                           </td>
-                                                                           <td>
-                                                                                P3K
-                                                                           </td>
-                                                                           <td>
-                                                                                <input type="text"
-                                                                                     class="badge bg-label-primary me-1"
-                                                                                     name="p3k"
-                                                                                     value="<?= $userData['p3k'] ?>"
-                                                                                     readonly>
-                                                                                <span class="badge bg-label-primary me-1"
-                                                                                     name="p3k"
-                                                                                     value="<?= $userData['p3k'] ?>"><?= $userData['p3k'] ?></span>
-                                                                           </td>
-                                                                      </tr>
+                                                                      <?php
+                                                                      $kelengkapanOperasi = [
+                                                                           'flazz' => 'Kartu Flazz',
+                                                                           'p3k' => 'P3K',
+                                                                           'handsanitizer' => 'Handsanitizer',
+                                                                           'senter' => 'Senter',
+                                                                      ];
 
-                                                                      <tr>
-                                                                           <td>
-                                                                                3.
-                                                                           </td>
-                                                                           <td>
-                                                                                Handsanitizer
-                                                                           </td>
-                                                                           <td>
-                                                                                <input type="text"
-                                                                                     class="badge bg-label-primary me-1"
-                                                                                     name="handsanitizer"
-                                                                                     value="<?= $userData['handsanitizer'] ?>"
-                                                                                     readonly>
-                                                                                <span class="badge bg-label-primary me-1"
-                                                                                     name="handsanitizer"
-                                                                                     value="<?= $userData['handsanitizer'] ?>"><?= $userData['handsanitizer'] ?></span>
-                                                                           </td>
-                                                                      </tr>
+                                                                      // Urutkan array berdasarkan kodenya
+                                                                      ksort($kelengkapanOperasi);
 
+                                                                      $no = 1; // Inisialisasi variabel $no
+
+                                                                      foreach ($kelengkapanOperasi as $itemCode => $itemDescription) :
+                                                                      ?>
                                                                       <tr>
-                                                                           <td>
-                                                                                4.
-                                                                           </td>
-                                                                           <td>
-                                                                                Senter
-                                                                           </td>
+                                                                           <td><?= $no++ ?></td>
+                                                                           <td><?= $itemDescription ?></td>
                                                                            <td>
                                                                                 <input type="text"
                                                                                      class="badge bg-label-primary me-1"
-                                                                                     name="senter"
-                                                                                     value="<?= $userData['senter'] ?>"
+                                                                                     name="<?= $itemCode ?>"
+                                                                                     value="<?= $userData[$itemCode] ?>"
                                                                                      readonly>
                                                                                 <span class="badge bg-label-primary me-1"
-                                                                                     name="senter"
-                                                                                     value="<?= $userData['senter'] ?>"><?= $userData['senter'] ?></span>
+                                                                                     name="<?= $itemCode ?>"
+                                                                                     value="<?= $userData[$itemCode] ?>">
+                                                                                     <?= $userData[$itemCode] ?>
+                                                                                </span>
                                                                            </td>
                                                                       </tr>
+                                                                      <?php endforeach; ?>
+
                                                                  </tbody>
                                                             </table>
+
                                                        </div>
                                                   </div>
 
@@ -544,45 +367,41 @@ if (isset($_SESSION['success_update'])) {
                                                                       </tr>
                                                                  </thead>
                                                                  <tbody class="table-border-bottom-0">
-                                                                      <tr>
-                                                                           <td>
-                                                                                1.
-                                                                           </td>
-                                                                           <td>
-                                                                                Tekanan Darah
-                                                                           </td>
-                                                                           <td>
-                                                                                <input type="text"
-                                                                                     class="badge bg-label-primary me-1"
-                                                                                     name="tekanan_darah"
-                                                                                     value="<?= $userData['tekanan_darah'] ?>"
-                                                                                     readonly>
-                                                                                <span class="badge bg-label-primary me-1"
-                                                                                     name="tekanan_darah"
-                                                                                     value="<?= $userData['tekanan_darah'] ?>"><?= $userData['tekanan_darah'] ?></span>
-                                                                           </td>
-                                                                      </tr>
 
+                                                                      <?php
+                                                                      $dataKesehatan = [
+                                                                           'tekanan_darah' => 'Tekanan Darah',
+                                                                           'suhu_badan' => 'Suhu Badan',
+                                                                      ];
+
+                                                                      // Urutkan array berdasarkan kodenya
+                                                                      ksort($dataKesehatan);
+
+                                                                      $no = 1; // Inisialisasi variabel $no
+
+                                                                      foreach ($dataKesehatan as $itemCode => $itemDescription) :
+                                                                      ?>
                                                                       <tr>
-                                                                           <td>
-                                                                                2.
-                                                                           </td>
-                                                                           <td>
-                                                                                Suhu Badan
-                                                                           </td>
+                                                                           <td><?= $no++ ?></td>
+                                                                           <td><?= $itemDescription ?></td>
                                                                            <td>
                                                                                 <input type="text"
                                                                                      class="badge bg-label-primary me-1"
-                                                                                     name="suhu_badan"
-                                                                                     value="<?= $userData['suhu_badan'] ?>"
+                                                                                     name="<?= $itemCode ?>"
+                                                                                     value="<?= $userData[$itemCode] ?>"
                                                                                      readonly>
                                                                                 <span class="badge bg-label-primary me-1"
-                                                                                     name="suhu_badan"
-                                                                                     value="<?= $userData['suhu_badan'] ?>"><?= $userData['suhu_badan'] ?></span>
+                                                                                     name="<?= $itemCode ?>"
+                                                                                     value="<?= $userData[$itemCode] ?>">
+                                                                                     <?= $userData[$itemCode] ?>
+                                                                                </span>
                                                                            </td>
                                                                       </tr>
+                                                                      <?php endforeach; ?>
+
                                                                  </tbody>
                                                             </table>
+
                                                        </div>
                                                   </div>
                                              </div>

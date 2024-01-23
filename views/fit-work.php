@@ -57,7 +57,7 @@ if (isset($_SESSION['success_add_user'])) {
                                                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                                   style="background-color: #31374C;color: white;">
                                                   <i class="tf-icons bx bx-printer" title="Print"
-                                                       style="margin-right: 10px;"></i> Print
+                                                       style="margin-right: 10px;"></i> Print Full
                                              </button>
                                              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                                   <a class="dropdown-item" href="javascript:void(0);">
@@ -124,7 +124,7 @@ if (isset($_SESSION['success_add_user'])) {
                                                        <div class="col-md-6 col-lg-4">
                                                             <div>
                                                                  <a
-                                                                      href="../views/fit-work-detail.php?id=<?= $userData['id'] ?>&&pramudi=<?= $userData['pramudi'] ?>">
+                                                                      href="../views/fit-work-detail.php?id=<?= $userData['id'] ?>">
                                                                       <button type="button"
                                                                            class="btn btn-icon btn-primary"
                                                                            style="height: 30px;">
@@ -133,7 +133,7 @@ if (isset($_SESSION['success_add_user'])) {
                                                                       </button>
                                                                  </a>
                                                                  <a
-                                                                      href="../views/fit-work-print.php?id=<?= $userData['id'] ?>&&pramudi=<?= $userData['pramudi'] ?>">
+                                                                      href="../views/fit-work-print.php?id=<?= $userData['id'] ?>">
                                                                       <button type="button"
                                                                            class="btn btn-icon btn-success"
                                                                            style="height: 30px;">
@@ -144,7 +144,7 @@ if (isset($_SESSION['success_add_user'])) {
                                                             </div>
                                                             <div style="margin-top: 10px;">
                                                                  <a
-                                                                      href="../views/fit-work-detail.php?id=<?= $userData['id'] ?>&&pramudi=<?= $userData['pramudi'] ?>">
+                                                                      href="../views/fit-work-detail.php?id=<?= $userData['id'] ?>">
                                                                       <button type="button"
                                                                            class="btn btn-icon btn-warning"
                                                                            style="height: 30px;">
@@ -306,134 +306,43 @@ if (isset($_SESSION['success_add_user'])) {
                                              </tr>
                                         </thead>
                                         <tbody class="table-border-bottom-0">
-                                             <tr>
-                                                  <td>
-                                                       1.
-                                                  </td>
-                                                  <td>
-                                                       Jas
-                                                  </td>
-                                                  <td>
-                                                       <input class="form-check-input" type="radio" name="jas"
-                                                            value="Ya" id="defaultCheck1"
-                                                            style="border-color: #000000;">
-                                                  </td>
 
-                                                  <td>
-                                                       <input class="form-check-input" type="radio" name="jas"
-                                                            value="Tidak" id="defaultCheck1"
-                                                            style="border-color: #000000;">
-                                                  </td>
-                                             </tr>
-                                             <tr>
-                                                  <td>
-                                                       2.
-                                                  </td>
-                                                  <td>
-                                                       Dasi
-                                                  </td>
-                                                  <td>
-                                                       <input class="form-check-input" type="radio" name="dasi"
-                                                            value="Ya" id="defaultCheck1"
-                                                            style="border-color: #000000;">
-                                                  </td>
-                                                  <td>
-                                                       <input class="form-check-input" type="radio" name="dasi"
-                                                            value="Tidak" id="defaultCheck1"
-                                                            style="border-color: #000000;">
-                                                  </td>
-                                             </tr>
-                                             <tr>
-                                                  <td>
-                                                       3.
-                                                  </td>
-                                                  <td>
-                                                       Peci
-                                                  </td>
-                                                  <td>
-                                                       <input class="form-check-input" type="radio" name="peci"
-                                                            value="Ya" id="defaultCheck1"
-                                                            style="border-color: #000000;">
-                                                  </td>
-                                                  <td>
-                                                       <input class="form-check-input" type="radio" name="peci"
-                                                            value="Tidak" id="defaultCheck1"
-                                                            style="border-color: #000000;">
-                                                  </td>
-                                             </tr>
-                                             <tr>
-                                                  <td>
-                                                       4.
-                                                  </td>
-                                                  <td>
-                                                       Sepatu Pantofel
-                                                  </td>
-                                                  <td>
-                                                       <input class="form-check-input" type="radio" name="pantofel"
-                                                            value="Ya" id="defaultCheck1"
-                                                            style="border-color: #000000;">
-                                                  </td>
-                                                  <td>
-                                                       <input class="form-check-input" type="radio" name="pantofel"
-                                                            value="Tidak" id="defaultCheck1"
-                                                            style="border-color: #000000;">
-                                                  </td>
-                                             </tr>
-                                             <tr>
-                                                  <td>
-                                                       5.
-                                                  </td>
-                                                  <td>
-                                                       Seragam Sesuai Hari Kerja
-                                                  </td>
-                                                  <td>
-                                                       <input class="form-check-input" type="radio" name="seragam_kerja"
-                                                            value="Ya" id="defaultCheck1"
-                                                            style="border-color: #000000;">
-                                                  </td>
+                                             <?php
+                                             $kelengkapanSeragam = [
+                                                  'Jas',
+                                                  'Dasi',
+                                                  'Peci',
+                                                  'Sepatu Pantofel',
+                                                  'Seragam Sesuai Hari Kerja',
+                                                  'ID Card',
+                                                  'KIP (Kartu Identitas Pramudi)',
+                                             ];
 
-                                                  <td>
-                                                       <input class="form-check-input" type="radio" name="seragam_kerja"
-                                                            value="Tidak" id="defaultCheck1"
-                                                            style="border-color: #000000;">
-                                                  </td>
-                                             </tr>
+                                             // Urutkan array berdasarkan nomor urut
+                                             sort($kelengkapanSeragam);
+
+                                             $no = 1; // Inisialisasi variabel $no
+
+                                             foreach ($kelengkapanSeragam as $itemDescription) :
+                                             ?>
                                              <tr>
+                                                  <td><?= $no++ ?></td>
+                                                  <td><?= $itemDescription ?></td>
                                                   <td>
-                                                       6.
-                                                  </td>
-                                                  <td>
-                                                       ID Card
-                                                  </td>
-                                                  <td>
-                                                       <input class="form-check-input" type="radio" name="id_card"
+                                                       <input class="form-check-input" type="radio"
+                                                            name="<?= strtolower(str_replace(' ', '_', $itemDescription)) ?>"
                                                             value="Ya" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="radio" name="id_card"
+                                                       <input class="form-check-input" type="radio"
+                                                            name="<?= strtolower(str_replace(' ', '_', $itemDescription)) ?>"
                                                             value="Tidak" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
                                              </tr>
-                                             <tr>
-                                                  <td>
-                                                       7.
-                                                  </td>
-                                                  <td>
-                                                       KIP (Kartu Identitas Pramudi)
-                                                  </td>
-                                                  <td>
-                                                       <input class="form-check-input" type="radio" name="kip"
-                                                            value="Ya" id="defaultCheck1"
-                                                            style="border-color: #000000;">
-                                                  </td>
-                                                  <td>
-                                                       <input class="form-check-input" type="radio" name="kip"
-                                                            value="Tidak" id="defaultCheck1"
-                                                            style="border-color: #000000;">
-                                                  </td>
-                                             </tr>
+                                             <?php endforeach; ?>
+
                                         </tbody>
                                    </table>
                               </div>
@@ -451,79 +360,43 @@ if (isset($_SESSION['success_add_user'])) {
                                              </tr>
                                         </thead>
                                         <tbody class="table-border-bottom-0">
+
+                                             <?php
+                                             $kelengkapanSurat = [
+                                                  'SIM',
+                                                  'STNK',
+                                                  'KIR',
+                                                  'KP',
+                                             ];
+
+                                             // Urutkan array berdasarkan nomor urut
+                                             sort($kelengkapanSurat);
+
+                                             $no = 1; // Inisialisasi variabel $no
+
+                                             foreach ($kelengkapanSurat as $itemDescription) :
+                                             ?>
                                              <tr>
+                                                  <td><?= $no++ ?></td>
+                                                  <td><?= $itemDescription ?></td>
                                                   <td>
-                                                       1.
-                                                  </td>
-                                                  <td>
-                                                       SIM
-                                                  </td>
-                                                  <td>
-                                                       <input class="form-check-input" type="radio" name="sim"
+                                                       <input class="form-check-input" type="radio"
+                                                            name="<?= strtolower(str_replace(' ', '_', $itemDescription)) ?>"
                                                             value="Ya" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="radio" name="sim"
+                                                       <input class="form-check-input" type="radio"
+                                                            name="<?= strtolower(str_replace(' ', '_', $itemDescription)) ?>"
                                                             value="Tidak" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
                                              </tr>
-                                             <tr>
-                                                  <td>
-                                                       2.
-                                                  </td>
-                                                  <td>
-                                                       STNK
-                                                  </td>
-                                                  <td>
-                                                       <input class="form-check-input" type="radio" name="stnk"
-                                                            value="Ya" id="defaultCheck1"
-                                                            style="border-color: #000000;">
-                                                  </td>
-                                                  <td>
-                                                       <input class="form-check-input" type="radio" name="stnk"
-                                                            value="Tidak" id="defaultCheck1"
-                                                            style="border-color: #000000;">
-                                                  </td>
-                                             </tr>
-                                             <tr>
-                                                  <td>
-                                                       3.
-                                                  </td>
-                                                  <td>
-                                                       KIR
-                                                  </td>
-                                                  <td>
-                                                       <input class="form-check-input" type="radio" name="kir"
-                                                            value="Ya" id="defaultCheck1"
-                                                            style="border-color: #000000;">
-                                                  </td>
-                                                  <td>
-                                                       <input class="form-check-input" type="radio" name="kir"
-                                                            value="Tidak" id="defaultCheck1"
-                                                            style="border-color: #000000;">
-                                                  </td>
-                                             </tr>
-                                             <tr>
-                                                  <td>
-                                                       4.
-                                                  </td>
-                                                  <td>
-                                                       KP
-                                                  </td>
-                                                  <td>
-                                                       <input class="form-check-input" type="radio" name="kp" value="Ya"
-                                                            id="defaultCheck1" style="border-color: #000000;">
-                                                  </td>
-                                                  <td>
-                                                       <input class="form-check-input" type="radio" name="kp"
-                                                            value="Tidak" id="defaultCheck1"
-                                                            style="border-color: #000000;">
-                                                  </td>
-                                             </tr>
+                                             <?php endforeach; ?>
+
                                         </tbody>
                                    </table>
+
                               </div>
 
                               <!-- KELENGKAPAN OPERASI -->
@@ -539,83 +412,43 @@ if (isset($_SESSION['success_add_user'])) {
                                              </tr>
                                         </thead>
                                         <tbody class="table-border-bottom-0">
-                                             <tr>
-                                                  <td>
-                                                       1.
-                                                  </td>
-                                                  <td>
-                                                       Kartu Flazz
-                                                  </td>
-                                                  <td>
-                                                       <input class="form-check-input" type="radio" name="flazz"
-                                                            value="Ya" id="defaultCheck1"
-                                                            style="border-color: #000000;">
-                                                  </td>
-                                                  <td>
-                                                       <input class="form-check-input" type="radio" name="flazz"
-                                                            value="Tidak" id="defaultCheck1"
-                                                            style="border-color: #000000;">
-                                                  </td>
-                                             </tr>
 
-                                             <tr>
-                                                  <td>
-                                                       2.
-                                                  </td>
-                                                  <td>
-                                                       P3K
-                                                  </td>
-                                                  <td>
-                                                       <input class="form-check-input" type="radio" name="p3k"
-                                                            value="Ya" id="defaultCheck1"
-                                                            style="border-color: #000000;">
-                                                  </td>
-                                                  <td>
-                                                       <input class="form-check-input" type="radio" name="p3k"
-                                                            value="Tidak" id="defaultCheck1"
-                                                            style="border-color: #000000;">
-                                                  </td>
-                                             </tr>
+                                             <?php
+                                             $kelengkapanOperasi = [
+                                                  'Kartu Flazz',
+                                                  'P3K',
+                                                  'Handsanitizer',
+                                                  'Senter',
+                                             ];
 
-                                             <tr>
-                                                  <td>
-                                                       3.
-                                                  </td>
-                                                  <td>
-                                                       Handsanitizer
-                                                  </td>
-                                                  <td>
-                                                       <input class="form-check-input" type="radio" name="handsanitizer"
-                                                            value="Ya" id="defaultCheck1"
-                                                            style="border-color: #000000;">
-                                                  </td>
-                                                  <td>
-                                                       <input class="form-check-input" type="radio" name="handsanitizer"
-                                                            value="Tidak" id="defaultCheck1"
-                                                            style="border-color: #000000;">
-                                                  </td>
-                                             </tr>
+                                             // Urutkan array berdasarkan nomor urut
+                                             sort($kelengkapanOperasi);
 
+                                             $no = 1; // Inisialisasi variabel $no
+
+                                             foreach ($kelengkapanOperasi as $itemDescription) :
+                                             ?>
                                              <tr>
+                                                  <td><?= $no++ ?></td>
+                                                  <td><?= $itemDescription ?></td>
                                                   <td>
-                                                       4.
-                                                  </td>
-                                                  <td>
-                                                       Senter
-                                                  </td>
-                                                  <td>
-                                                       <input class="form-check-input" type="radio" name="senter"
+                                                       <input class="form-check-input" type="radio"
+                                                            name="<?= strtolower(str_replace(' ', '_', $itemDescription)) ?>"
                                                             value="Ya" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
                                                   <td>
-                                                       <input class="form-check-input" type="radio" name="senter"
+                                                       <input class="form-check-input" type="radio"
+                                                            name="<?= strtolower(str_replace(' ', '_', $itemDescription)) ?>"
                                                             value="Tidak" id="defaultCheck1"
                                                             style="border-color: #000000;">
                                                   </td>
                                              </tr>
+                                             <?php endforeach; ?>
+
                                         </tbody>
                                    </table>
+
                               </div>
 
                               <!-- DATA KESEHATAN -->
@@ -630,33 +463,34 @@ if (isset($_SESSION['success_add_user'])) {
                                              </tr>
                                         </thead>
                                         <tbody class="table-border-bottom-0">
-                                             <tr>
-                                                  <td>
-                                                       1.
-                                                  </td>
-                                                  <td>
-                                                       Tekanan Darah
-                                                  </td>
-                                                  <td>
-                                                       <input style="width: 150px;" type="text" class="form-control"
-                                                            name="tekanan_darah" placeholder="Tekanan Darah" required />
-                                                  </td>
-                                             </tr>
 
+                                             <?php
+                                             $dataKesehatan = [
+                                                  'Tekanan Darah',
+                                                  'Suhu Badan',
+                                             ];
+
+                                             // Urutkan array berdasarkan nomor urut
+                                             sort($dataKesehatan);
+
+                                             $no = 1; // Inisialisasi variabel $no
+
+                                             foreach ($dataKesehatan as $itemDescription) :
+                                             ?>
                                              <tr>
-                                                  <td>
-                                                       2.
-                                                  </td>
-                                                  <td>
-                                                       Suhu Badan
-                                                  </td>
+                                                  <td><?= $no++ ?></td>
+                                                  <td><?= $itemDescription ?></td>
                                                   <td>
                                                        <input style="width: 150px;" type="text" class="form-control"
-                                                            name="suhu_badan" placeholder="Suhu Badan" required />
+                                                            name="<?= strtolower(str_replace(' ', '_', $itemDescription)) ?>"
+                                                            placeholder="<?= $itemDescription ?>" required />
                                                   </td>
                                              </tr>
+                                             <?php endforeach; ?>
+
                                         </tbody>
                                    </table>
+
                               </div>
 
                          </div>

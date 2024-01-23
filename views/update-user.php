@@ -74,11 +74,20 @@ if (isset($_SESSION['success_add_user'])) {
                                              <div class="col-sm-10">
                                                   <div class="input-group input-group-merge">
                                                        <span class="input-group-text"><i class="bx bx-check"></i></span>
-                                                       <input type="text" class="form-control" name="status"
-                                                            value="Active" readonly />
+                                                       <!-- Replace the text input with a select element -->
+                                                       <select class="form-select" name="status">
+                                                            <option value="Active"
+                                                                 <?php if ($userData['status'] == 'Active') echo 'selected'; ?>>
+                                                                 Active</option>
+                                                            <option value="Nonaktif"
+                                                                 <?php if ($userData['status'] == 'Nonaktif') echo 'selected'; ?>>
+                                                                 Nonaktif</option>
+                                                       </select>
                                                   </div>
                                              </div>
                                         </div>
+
+
 
                                    </div>
                               </div>
