@@ -1,0 +1,86 @@
+<?php
+
+                         $connection = new Database();
+
+                         if ($connection->getConnection()->connect_error) {
+                         die("Connection failed: " . $connection->getConnection()->connect_error);
+                         }
+
+                         if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+                         $id = $_GET['id'];
+
+                         $mysqli = $connection->getConnection();
+
+                         $stmt = $mysqli->prepare("SELECT rampcheck2.*, fit_work.hari, fit_work.tanggal, fit_work.no_body, fit_work.pramudi,
+                          rampcheck2.item, rampcheck2.gambar, rampcheck2.keterangan
+                         FROM rampcheck2
+                         INNER JOIN fit_work ON rampcheck2.id_fit = fit_work.id
+                         WHERE rampcheck2.id_fit = ?");
+
+                         if (!$stmt) {
+                              die("Error in prepare: " . $mysqli->error);
+                         }
+
+                         $stmt->bind_param("i", $id);
+
+                         if ($stmt->execute()) {
+                              $result = $stmt->get_result();
+
+                              if ($result->num_rows > 0) {
+                                   $userData = $result->fetch_assoc();
+                                   $no = 1;
+                         ?>
+
+
+
+<div class="col-md-12" style="margin-top: 20px;">
+     <div class="card">
+          <div class="mb-2" style="margin-left: 20px;margin-top: 20px;padding-bottom: 20px;">
+
+               <div class="mb-3">
+                    <label class="form-label" for="basic-default-company">No Bodi</label>
+                    <input type="text" class="form-control" name="no_body" value="<?= $userData['no_body'] ?>"
+                         readonly />
+               </div>
+
+               <div class="mb-3">
+                    <label class="form-label" for="basic-default-company">Nama
+                         Pramudi</label>
+                    <input type="text" class="form-control" name="pramudi" value="<?= $userData['pramudi'] ?>"
+                         readonly />
+               </div>
+
+               <div class="mb-3">
+                    <label class="form-label" for="basic-default-company">Tanggal
+                         Pengecekan</label>
+                    <input type="text" class="form-control" name="tanggal" value="<?php
+                                             setlocale(LC_TIME, 'id_ID');
+                                             $tanggalPengguna = $userData['tanggal'];
+                                             $tanggalTerformat = strftime('%A, %e %B %Y', strtotime($tanggalPengguna));
+                                             echo $tanggalTerformat;
+                                             ?>
+                                             " readonly />
+               </div>
+
+          </div>
+     </div>
+</div>
+
+<?php
+                              } else {
+                                   echo "<div class='col-md-12'>",
+                                        "<div class='card' style='margin-top: 20px;'>",
+                                        "  <div class='card-body'>",
+                                        "    <h5 class='card-title'>Informasi Rampcheck</h5>",
+                                        "    <p class='card-text'>Belum ada data Rampcheck!</p>",
+                                        "  </div>",
+                                        "</div>",
+                                        "</div>";
+                              }
+                         } else {
+                              echo die("Error: " . $connection->getError());
+                         }
+                    } else {
+                         echo "ID tidak diterima.";
+                    }
+               ?>

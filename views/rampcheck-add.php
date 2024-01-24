@@ -1,7 +1,6 @@
 <?php
-include('../views/layout/header.php');
 
-include '../database/Database.php';
+include('../views/layout/header.php');
 
 if (isset($_SESSION['success_add'])) {
      echo '<script>alert("' . $_SESSION['success_add'] . '");</script>';
@@ -31,14 +30,19 @@ if (isset($_SESSION['success_add'])) {
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                              data-bs-target="#TambahRampcheckEksterior">
                                              <i class="tf-icons bx bx-plus" title="Input Data"
-                                                  style="margin-right: 10px;"></i> Eksterior
+                                                  style="margin-right: 10px;"></i> Add Rampcheck
                                         </button>
-
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        <a href="../views/rampcheck-print.php?id=<?= $_GET['id']; ?>">
+                                             <button type="button" class="btn btn-success">
+                                                  <i class="tf-icons bx bx-printer" title="Input Data"
+                                                       style="margin-right: 10px;"></i> Print
+                                             </button>
+                                        </a>
+                                        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                              data-bs-target="#TambahRampcheckInterior">
                                              <i class="tf-icons bx bx-plus" title="Input Data"
                                                   style="margin-right: 10px;"></i> Interior
-                                        </button>
+                                        </button> -->
                                         <!-- <button type="button" class="btn btn-warning">
                                              <i class="tf-icons bx bx-pencil" title="Edit Data"
                                                   style="margin-right: 10px;"></i> Edit
@@ -48,44 +52,33 @@ if (isset($_SESSION['success_add'])) {
                               </div>
                          </div>
 
+
                          <?php
+                              include '../database/Database.php';
 
-                         $connection = new Database();
+                              $connection = new Database();
 
-                         if ($connection->getConnection()->connect_error) {
-                         die("Connection failed: " . $connection->getConnection()->connect_error);
-                         }
+                              if (isset($_GET['id'])) {
+                              $id = $_GET['id'];
+                              $result = $connection->query("SELECT * FROM fit_work WHERE id=$id");
 
-                         if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-                         $id = $_GET['id'];
-
-                         $mysqli = $connection->getConnection();
-
-                         $stmt = $mysqli->prepare("SELECT rampcheck2.*, fit_work.hari, fit_work.tanggal, fit_work.no_body, fit_work.pramudi,
-                         rampcheck2.item, rampcheck2.gambar, rampcheck2.keterangan
-                         FROM rampcheck2
-                         INNER JOIN fit_work ON rampcheck2.id_fit = fit_work.id
-                         WHERE rampcheck2.id_fit = ?");
-
-
-                         if (!$stmt) {
-                              die("Error in prepare: " . $mysqli->error);
-                         }
-
-                         $stmt->bind_param("i", $id);
-                         
-                         if ($stmt->execute()) {
-                              $result = $stmt->get_result();
-
-                              if ($result->num_rows > 0) {
-                                   $userData = $result->fetch_assoc();
-                                   $no = 1;
+                              if ($result) {
+                                   if ($result->num_rows > 0) {
+                                   $userData = $result->fetch_assoc(); 
                          ?>
+
+
 
                          <div class="col-md-12" style="margin-top: 20px;">
                               <div class="card">
-                                   <div class="mb-2" style="margin-left: 20px;margin-top: 20px;padding-bottom: 20px;">
+                                   <div class="mb-2"
+                                        style="margin-left: 20px;margin-top: 20px;padding-bottom: 20px;padding-right: 20px;">
 
+                                        <div class="mb-3">
+                                             <label class="form-label" for="basic-default-company" hidden>ID</label>
+                                             <input type="text" class="form-control" name="id"
+                                                  value="<?= $userData['id'] ?>" hidden />
+                                        </div>
                                         <div class="mb-3">
                                              <label class="form-label" for="basic-default-company">No Bodi</label>
                                              <input type="text" class="form-control" name="no_body"
@@ -114,7 +107,17 @@ if (isset($_SESSION['success_add'])) {
                                    </div>
                               </div>
                          </div>
-
+                         <?php
+                                   } else {
+                                        echo "Data tidak ditemukan.";
+                                   }
+                              } else {
+                                   echo die("Error: " . $connection->getError());
+                              }
+                         } else {
+                              echo "ID tidak diterima.";
+                         }
+                         ?>
                          <div class="col-md-12" style="margin-top: 20px;">
                               <div class="nav-align-top mb-4">
                                    <ul class="nav nav-tabs nav-fill" role="tablist">
@@ -142,9 +145,18 @@ if (isset($_SESSION['success_add'])) {
                                         </li>
                                    </ul>
                                    <div class="tab-content">
+                                        <!-- EKSTERIOR -->
                                         <div class="tab-pane fade show active" id="navs-justified-home" role="tabpanel">
 
+                                             <?php
+                                                  include '../controllers/Rampcheck.php';
+                                                            
+                                                  $connection = new Rampcheck();
+                                                  $hasil = $connection->getRampcheckEksterior();
 
+                                                  $no = 1;
+
+                                             ?>
                                              <div class="table-responsive text-nowrap">
                                                   <table class="table" id="eksterior">
                                                        <thead>
@@ -154,71 +166,161 @@ if (isset($_SESSION['success_add'])) {
                                                                  <th width="5px;">Kondisi</th>
                                                                  <th width="5px;">Gambar</th>
                                                                  <th width="5px;">Keterangan</th>
+                                                                 <th width="5px;">Action</th>
                                                             </tr>
                                                        </thead>
                                                        <tbody class="table-border-bottom-0">
-
+                                                            <?php foreach ($hasil as $userData) { ?>
                                                             <tr>
                                                                  <td><?= $no++ ?></td>
                                                                  <td>
-                                                                      <?= is_array($userData['item']) ? implode(', ', $userData['item']) : $userData['item'] ?>
+                                                                      <?= $userData['item'] ?>
                                                                  </td>
                                                                  <td>
                                                                       <span
-                                                                           class="badge bg-label-primary me-1"><?= is_array($userData['kondisi']) ? implode(', ', $userData['kondisi']) : $userData['kondisi'] ?></span>
+                                                                           class="badge bg-label-primary me-1"><?= $userData['kondisi'] ?></span>
 
                                                                  </td>
                                                                  <td>
-                                                                      <?= is_array($userData['gambar']) ? implode(', ', $userData['gambar']) : $userData['gambar'] ?>
+                                                                      <?php if (!empty($userData['gambar'])): ?>
+                                                                      <img src="../uploads/<?= $userData['kategori'] ?>/<?= $userData['gambar'] ?>"
+                                                                           alt="Gambar Rampcheck" width="100">
+                                                                      <?php else: ?>
+
+                                                                      None
+                                                                      <?php endif; ?>
+                                                                 </td>
+
+                                                                 <td>
+                                                                      <?= $userData['keterangan'] ?>
                                                                  </td>
                                                                  <td>
-                                                                      <?= is_array($userData['keterangan']) ? implode(', ', $userData['keterangan']) : $userData['keterangan'] ?>
+                                                                      <div style="margin-top: 10px;">
+                                                                           <!-- <a href="#">
+                                                                                <button type="button"
+                                                                                     class="btn btn-icon btn-warning"
+                                                                                     style="height: 30px;">
+                                                                                     <span class="tf-icons bx bx-pencil"
+                                                                                          title="Edit"></span>
+                                                                                </button>
+                                                                           </a> -->
+                                                                           <!-- <button type="button"
+                                                                                class="btn btn-icon btn-primary"
+                                                                                style="height: 30px;"
+                                                                                data-bs-toggle="modal"
+                                                                                data-bs-target="#lihatGambarModal<?= $userData['id'] ?>"
+                                                                                data-gambar="../uploads/<?= $userData['kategori'] ?>/<?= $userData['gambar'] ?>">
+                                                                                <span class="tf-icons bx bx-show"
+                                                                                     title="Lihat Gambar"></span>
+                                                                           </button> -->
+                                                                           <button type="button"
+                                                                                class="btn btn-icon btn-danger"
+                                                                                style="height: 30px;"
+                                                                                onclick="if (confirm('Yakin ingin hapus data?')) window.location.href='../controllers/RampcheckDelete.php?id=<?= $userData['id_fit'] ?>&&id_ramp=<?= $userData['id_ramp'] ?>';">
+                                                                                <span class="tf-icons bx bx-trash"
+                                                                                     title="Hapus"></span>
+                                                                           </button>
+                                                                      </div>
                                                                  </td>
                                                             </tr>
-
+                                                            <?php } ?>
                                                        </tbody>
                                                   </table>
                                              </div>
                                         </div>
+                                        <!-- INTERIOR -->
                                         <div class="tab-pane fade" id="navs-justified-profile" role="tabpanel">
-
-
                                              <div class="table-responsive text-nowrap">
+                                                  <?php
+                                                            
+                                                  $connection = new Rampcheck();
+                                                  $hasil = $connection->getRampcheckInterior();
 
+                                                  $no = 1;
+
+                                             ?>
+                                                  <div class="table-responsive text-nowrap">
+                                                       <table class="table" id="interior">
+                                                            <thead>
+                                                                 <tr>
+                                                                      <th width="5px;">No</th>
+                                                                      <th>Item Pengecekan</th>
+                                                                      <th width="5px;">Kondisi</th>
+                                                                      <th width="5px;">Gambar</th>
+                                                                      <th width="5px;">Keterangan</th>
+                                                                      <th width="5px;">Action</th>
+                                                                 </tr>
+                                                            </thead>
+                                                            <tbody class="table-border-bottom-0">
+                                                                 <?php foreach ($hasil as $userData) { ?>
+                                                                 <tr>
+                                                                      <td><?= $no++ ?></td>
+                                                                      <td>
+                                                                           <?= $userData['item'] ?>
+                                                                      </td>
+                                                                      <td>
+                                                                           <span
+                                                                                class="badge bg-label-primary me-1"><?= $userData['kondisi'] ?></span>
+
+                                                                      </td>
+                                                                      <td>
+                                                                           <?php if (!empty($userData['gambar'])): ?>
+                                                                           <img src="../uploads/<?= $userData['kategori'] ?>/<?= $userData['gambar'] ?>"
+                                                                                alt="Gambar Rampcheck" width="100">
+                                                                           <?php else: ?>
+
+                                                                           None
+                                                                           <?php endif; ?>
+                                                                      </td>
+                                                                      <td>
+                                                                           <?= $userData['keterangan'] ?>
+                                                                      </td>
+                                                                      <td>
+                                                                           <div style="margin-top: 10px;">
+                                                                                <!-- <a href="#">
+                                                                                <button type="button"
+                                                                                     class="btn btn-icon btn-warning"
+                                                                                     style="height: 30px;">
+                                                                                     <span class="tf-icons bx bx-pencil"
+                                                                                          title="Edit"></span>
+                                                                                </button>
+                                                                           </a> -->
+                                                                                <!-- <button type="button"
+                                                                                     class="btn btn-icon btn-primary"
+                                                                                     style="height: 30px;"
+                                                                                     data-bs-toggle="modal"
+                                                                                     data-bs-target="#lihatGambarModal"
+                                                                                     data-gambar="../uploads/<?= $userData['kategori'] ?>/<?= $userData['gambar'] ?>">
+                                                                                     <span class="tf-icons bx bx-show"
+                                                                                          title="Lihat Gambar"></span>
+                                                                                </button> -->
+                                                                                <button type="button"
+                                                                                     class="btn btn-icon btn-danger"
+                                                                                     style="height: 30px;"
+                                                                                     onclick="if (confirm('Yakin ingin hapus data?')) window.location.href='../controllers/RampcheckDelete.php?id=<?= $userData['id_fit'] ?>&&id_ramp=<?= $userData['id_ramp'] ?>';">
+                                                                                     <span class="tf-icons bx bx-trash"
+                                                                                          title="Hapus"></span>
+                                                                                </button>
+                                                                           </div>
+                                                                      </td>
+                                                                 </tr>
+                                                                 <?php } ?>
+                                                            </tbody>
+                                                       </table>
+                                                  </div>
                                              </div>
-
                                         </div>
-
                                    </div>
                               </div>
                          </div>
                     </div>
-
-
-                    <?php
-                              } else {
-                                   echo "<div class='col-md-12'>",
-                                        "<div class='card' style='margin-top: 20px;'>",
-                                        "  <div class='card-body'>",
-                                        "    <h5 class='card-title'>Informasi Rampcheck</h5>",
-                                        "    <p class='card-text'>Belum ada data Rampcheck!</p>",
-                                        "  </div>",
-                                        "</div>",
-                                        "</div>";
-                              }
-                         } else {
-                              echo die("Error: " . $connection->getError());
-                         }
-                    } else {
-                         echo "ID tidak diterima.";
-                    }
-               ?>
                </div>
           </div>
      </div>
 </div>
 
 
+<!-- TAMBAH DATA -->
 <div class="modal fade" id="TambahRampcheckEksterior" tabindex="-1" aria-labelledby="TambahRampcheckLabel"
      aria-hidden="true">
      <div class="modal-dialog">
@@ -227,7 +329,8 @@ if (isset($_SESSION['success_add'])) {
                     <h1 class="modal-title fs-5" id="TambahRampcheckLabel">Input Eksterior</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                </div>
-               <form action="../controllers/RampcheckAdd.php" method="POST">
+               <form action="../controllers/RampcheckAdd.php?id=<?= $_GET['id'] ?>" method="POST"
+                    enctype="multipart/form-data">
                     <input type="text" class="form-control" name="id_fit" value="<?= $_GET['id'] ?>" hidden />
                     <div class="modal-body">
                          <div class="card-body">
@@ -237,22 +340,28 @@ if (isset($_SESSION['success_add'])) {
                                         <div class="input-group input-group-merge">
                                              <span class="input-group-text"><i class="bx bx-book"></i></span>
                                              <input type="text" class="form-control" name="item"
-                                                  placeholder="Masukan Item" required />
+                                                  placeholder="Masukan Item Pengecekan" required />
                                         </div>
                                    </div>
                               </div>
 
                               <div class="row mb-3">
-                                   <label class="col-sm-2 col-form-label"
-                                        for="basic-icon-default-company">Kategori</label>
+                                   <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Bagian</label>
                                    <div class="col-sm-10">
                                         <div class="input-group input-group-merge">
-                                             <span class="input-group-text"><i class="bx bx-book"></i></span>
-                                             <input type="text" class="form-control" name="Kategori" value="Eksterior"
-                                                  readonly />
+                                             <span class="input-group-text"><i class="bx bx-car"></i></span>
+                                             <select class="form-select" name="kategori">
+                                                  <option>Pilih Eksterior
+                                                       / Interior</option>
+                                                  <option value="Eksterior">
+                                                       Eksterior</option>
+                                                  <option value="Interior">
+                                                       Interior</option>
+                                             </select>
                                         </div>
                                    </div>
                               </div>
+
 
                               <div class="row mb-3">
                                    <label class="col-sm-2 col-form-label"
@@ -271,27 +380,26 @@ if (isset($_SESSION['success_add'])) {
                                    </div>
                               </div>
 
-
                               <div class="row mb-3">
-                                   <label class="col-sm-2 col-form-label"
-                                        for="basic-icon-default-company">Gambar</label>
+                                   <label class="col-sm-2 col-form-label" for="gambar">Gambar</label>
                                    <div class="col-sm-10">
                                         <div class="input-group input-group-merge">
                                              <span class="input-group-text"><i class="bx bx-image"></i></span>
-                                             <input type="text" class="form-control" name="gambar"
-                                                  placeholder="Masukan Gambar" required />
+                                             <input type="file" class="form-control" name="gambar[]" accept="image/*"
+                                                  multiple />
                                         </div>
                                    </div>
                               </div>
+
 
                               <div class="row mb-3">
                                    <label class="col-sm-2 col-form-label"
                                         for="basic-icon-default-company">Keterangan</label>
                                    <div class="col-sm-10">
                                         <div class="input-group input-group-merge">
-                                             <span class="input-group-text"><i class="bx bx-book"></i></span>
-                                             <input type="text" class="form-control" name="keterangan"
-                                                  placeholder="Masukan Keterangan" required />
+                                             <span class="input-group-text"></span>
+                                             <textarea style="height: 100px;" type="text" class="form-control"
+                                                  name="keterangan" required> </textarea>
                                         </div>
                                    </div>
                               </div>
@@ -305,6 +413,35 @@ if (isset($_SESSION['success_add'])) {
           </div>
      </div>
 </div>
+
+<!-- LIHAT GAMBAR -->
+<div class="modal fade" id="lihatGambarModal" tabindex="-1" aria-labelledby="lihatGambarModalLabel" aria-hidden="true">
+     <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <h5 class="modal-title" id="lihatGambarModalLabel">Lihat Gambar</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               </div>
+               <div class="modal-body">
+                    <!-- <img id="gambarModal" src="" alt="Gambar Rampcheck" class="img-fluid"> -->
+                    <?php if (!empty($userData['gambar'])): ?>
+                    <center>
+                         <img src="../uploads/<?= $userData['kategori'] ?>/<?= $userData['gambar'] ?>"
+                              alt="Gambar Rampcheck" width="400px">
+                    </center>
+                    <?php else: ?>
+
+                    None
+                    <?php endif; ?>
+               </div>
+               <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+               </div>
+          </div>
+     </div>
+</div>
+
+
 
 
 <script>

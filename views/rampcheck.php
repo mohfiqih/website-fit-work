@@ -101,6 +101,16 @@ if (isset($_SESSION['success_add_user'])) {
                                                                            Detail
                                                                       </button>
                                                                  </a>
+
+                                                                 <a
+                                                                      href="../views/rampcheck-print.php?id=<?= $userData['id'] ?>">
+                                                                      <button type="button"
+                                                                           class="btn btn-icon btn-success"
+                                                                           style="height: 30px;">
+                                                                           <span class="tf-icons bx bx-printer"
+                                                                                title="Print"></span>
+                                                                      </button>
+                                                                 </a>
                                                             </div>
                                                        </div>
                                                   </div>

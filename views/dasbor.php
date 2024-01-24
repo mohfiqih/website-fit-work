@@ -40,8 +40,7 @@ include('../views/layout/header.php');
           </div>
 
 
-          <div class="row">
-               <!-- Order Statistics -->
+          <!-- <div class="row">
                <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
                     <div class="card h-100">
                          <div class="card-header d-flex align-items-center justify-content-between pb-0">
@@ -138,9 +137,6 @@ include('../views/layout/header.php');
                          </div>
                     </div>
                </div>
-               <!--/ Order Statistics -->
-
-               <!-- Expense Overview -->
                <div class="col-md-6 col-lg-4 order-1 mb-4">
                     <div class="card h-100">
                          <div class="card-header">
@@ -194,9 +190,6 @@ include('../views/layout/header.php');
                          </div>
                     </div>
                </div>
-               <!--/ Expense Overview -->
-
-               <!-- Transactions -->
                <div class="col-md-6 col-lg-4 order-2 mb-4">
                     <div class="card h-100">
                          <div class="card-header d-flex align-items-center justify-content-between">
@@ -321,10 +314,9 @@ include('../views/layout/header.php');
                          </div>
                     </div>
                </div>
-               <!--/ Transactions -->
-          </div>
+          </div> -->
      </div>
-     <!-- Footer -->
-     <?php
+</div>
+<?php
 include('../views/layout/footer.php');
 ?>

@@ -105,7 +105,7 @@ if (isset($_SESSION['success_update'])) {
                                                             <label class="form-label" for="basic-default-company">Jam
                                                                  Keluar</label>
                                                             <input type="time" class="form-control" name="jam_keluar"
-                                                                 value="<?= $userData['jam_keluar'] ?>" required />
+                                                                 value="<?= $userData['jam_keluar'] ?>" readonly />
                                                        </div>
 
 
