@@ -10,8 +10,6 @@ if (isset($_SESSION['success_add_user'])) {
 
 
 <div class="content-wrapper">
-
-
      <div class="row">
           <div class="content-wrapper">
                <div class="container-xxl flex-grow-1 container-p-y">
@@ -119,11 +117,11 @@ if (isset($_SESSION['success_add_user'])) {
                                                                       <span class="tf-icons bx bx-pencil"></span>
                                                                  </button>
                                                             </a>
-                                                            <!-- <button type="submit" class="btn btn-icon btn-danger"
+                                                            <button type="submit" class="btn btn-icon btn-danger"
                                                                  style="height: 30px;"
                                                                  onclick="if (confirm('Yakin ingin hapus data?')) window.location.href='../controllers/UserDelete.php?id=<?= $userData['id'] ?>';">
                                                                  <span class="tf-icons bx bx-trash"></span>
-                                                            </button> -->
+                                                            </button>
                                                        </div>
                                                   </div>
                                              </td>

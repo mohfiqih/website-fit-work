@@ -60,7 +60,7 @@ if (isset($_SESSION['success_add_user'])) {
                                                        style="margin-right: 10px;"></i> Print Full
                                              </button>
                                              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                  <a class="dropdown-item" href="javascript:void(0);">
+                                                  <a class="dropdown-item" href="../views/print-full-fitwork.php">
                                                        <i class="tf-icons bx bx-book" title="Print"
                                                             style="margin-right: 10px;"></i>Print to PDF</a>
                                              </div>
@@ -124,7 +124,7 @@ if (isset($_SESSION['success_add_user'])) {
                                                        <div class="col-md-6 col-lg-4">
                                                             <div>
                                                                  <a
-                                                                      href="../views/fit-work-detail.php?id=<?= $userData['id'] ?>">
+                                                                      href="../views/rampcheck-add.php?id=<?= $userData['id'] ?>">
                                                                       <button type="button"
                                                                            class="btn btn-icon btn-primary"
                                                                            style="height: 30px;">

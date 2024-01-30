@@ -10,10 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $item       = $_POST['item'];
     $kondisi    = $_POST['kondisi'];
     $keterangan = $_POST['keterangan'];
-
     $gambar_files = $_FILES['gambar'];
     
-    // Loop through each uploaded file
     for ($i = 0; $i < count($gambar_files['name']); $i++) {
         $gambar = $gambar_files['name'][$i];
         $gambar_temp = $gambar_files['tmp_name'][$i];
@@ -26,16 +24,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         move_uploaded_file($gambar_temp, $gambar_path);
 
-        if ($i == 0) { // Hanya untuk gambar pertama, sisipkan record ke dalam database
-            $sql = "INSERT INTO rampcheck2 (id_fit, kategori, item, kondisi, gambar, keterangan) 
+        
+        $sql = "INSERT INTO rampcheck2 (id_fit, kategori, item, kondisi, gambar, keterangan) 
                     VALUES (?, ?, ?, ?, ?, ?)";
 
-            $stmt = $connection->getConnection()->prepare($sql);
-            $stmt->bind_param("ssssss", $id_fit, $kategori, $item, $kondisi, $gambar, $keterangan);
-            $stmt->execute();
-
-            $stmt->close();
-        }
+        $stmt = $connection->getConnection()->prepare($sql);
+        $stmt->bind_param("ssssss", $id_fit, $kategori, $item, $kondisi, $gambar, $keterangan);
+        $stmt->execute();
+        $stmt->close();
     }
 
     $_SESSION['success_add'] = "Data Rampcheck berhasil ditambahkan!";

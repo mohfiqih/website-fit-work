@@ -6,6 +6,11 @@ if (isset($_SESSION['success_add'])) {
      echo '<script>alert("' . $_SESSION['success_add'] . '");</script>';
      unset($_SESSION['success_add']);
 }
+
+if (isset($_SESSION['error_message'])) {
+     echo '<script>alert("' . $_SESSION['error_message'] . '");</script>';
+     unset($_SESSION['error_message']);
+}
 ?>
 
 
@@ -153,6 +158,7 @@ if (isset($_SESSION['success_add'])) {
                                                             
                                                   $connection = new Rampcheck();
                                                   $hasil = $connection->getRampcheckEksterior();
+                                                  // $id_ramp = 
 
                                                   $no = 1;
 
@@ -196,14 +202,15 @@ if (isset($_SESSION['success_add'])) {
                                                                  </td>
                                                                  <td>
                                                                       <div style="margin-top: 10px;">
-                                                                           <!-- <a href="#">
+                                                                           <a
+                                                                                href="../views/rampcheck-edit.php?id=<?= $userData['id_fit'] ?>&&id_ramp=<?= $userData['id_ramp'] ?>">
                                                                                 <button type="button"
                                                                                      class="btn btn-icon btn-warning"
                                                                                      style="height: 30px;">
                                                                                      <span class="tf-icons bx bx-pencil"
                                                                                           title="Edit"></span>
                                                                                 </button>
-                                                                           </a> -->
+                                                                           </a>
                                                                            <!-- <button type="button"
                                                                                 class="btn btn-icon btn-primary"
                                                                                 style="height: 30px;"
@@ -235,6 +242,7 @@ if (isset($_SESSION['success_add'])) {
                                                             
                                                   $connection = new Rampcheck();
                                                   $hasil = $connection->getRampcheckInterior();
+                                                  $id= $_GET['id'];
 
                                                   $no = 1;
 
@@ -277,14 +285,15 @@ if (isset($_SESSION['success_add'])) {
                                                                       </td>
                                                                       <td>
                                                                            <div style="margin-top: 10px;">
-                                                                                <!-- <a href="#">
-                                                                                <button type="button"
-                                                                                     class="btn btn-icon btn-warning"
-                                                                                     style="height: 30px;">
-                                                                                     <span class="tf-icons bx bx-pencil"
-                                                                                          title="Edit"></span>
-                                                                                </button>
-                                                                           </a> -->
+                                                                                <a
+                                                                                     href="../views/rampcheck-edit.php?id=<?= $userData['id_fit'] ?>&&id_ramp=<?= $userData['id_ramp'] ?>">
+                                                                                     <button type="button"
+                                                                                          class="btn btn-icon btn-warning"
+                                                                                          style="height: 30px;">
+                                                                                          <span class="tf-icons bx bx-pencil"
+                                                                                               title="Edit"></span>
+                                                                                     </button>
+                                                                                </a>
                                                                                 <!-- <button type="button"
                                                                                      class="btn btn-icon btn-primary"
                                                                                      style="height: 30px;"
