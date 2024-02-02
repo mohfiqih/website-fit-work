@@ -57,12 +57,15 @@ if (isset($_SESSION['success_add_user'])) {
                                                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                                   style="background-color: #31374C;color: white;">
                                                   <i class="tf-icons bx bx-printer" title="Print"
-                                                       style="margin-right: 10px;"></i> Print Full
+                                                       style="margin-right: 10px;"></i> Export Full
                                              </button>
                                              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                                   <a class="dropdown-item" href="../views/print-full-fitwork.php">
                                                        <i class="tf-icons bx bx-book" title="Print"
-                                                            style="margin-right: 10px;"></i>Print to PDF</a>
+                                                            style="margin-right: 10px;"></i> PDF</a>
+                                                  <a class="dropdown-item" href="../views/excel-fitwork.php">
+                                                       <i class="tf-icons bx bx-printer" title="Print"
+                                                            style="margin-right: 10px;"></i> Excel</a>
                                              </div>
                                         </div>
                                    </div>
@@ -123,7 +126,7 @@ if (isset($_SESSION['success_add_user'])) {
                                                   <div class="dropdown">
                                                        <div class="col-md-6 col-lg-4">
                                                             <div>
-                                                                 <a
+                                                                 <!-- <a
                                                                       href="../views/rampcheck-add.php?id=<?= $userData['id'] ?>">
                                                                       <button type="button"
                                                                            class="btn btn-icon btn-primary"
@@ -131,18 +134,7 @@ if (isset($_SESSION['success_add_user'])) {
                                                                            <span class="tf-icons bx bx-zoom-in"
                                                                                 title="Detail"></span>
                                                                       </button>
-                                                                 </a>
-                                                                 <a
-                                                                      href="../views/fit-work-print.php?id=<?= $userData['id'] ?>">
-                                                                      <button type="button"
-                                                                           class="btn btn-icon btn-success"
-                                                                           style="height: 30px;">
-                                                                           <span class="tf-icons bx bx-printer"
-                                                                                title="Print"></span>
-                                                                      </button>
-                                                                 </a>
-                                                            </div>
-                                                            <div style="margin-top: 10px;">
+                                                                 </a> -->
                                                                  <a
                                                                       href="../views/fit-work-detail.php?id=<?= $userData['id'] ?>">
                                                                       <button type="button"
@@ -158,6 +150,45 @@ if (isset($_SESSION['success_add_user'])) {
                                                                       <span class="tf-icons bx bx-trash"
                                                                            title="Hapus"></span>
                                                                  </button>
+                                                                 <!-- <a
+                                                                      href="../views/fit-work-print.php?id=<?= $userData['id'] ?>">
+                                                                      <button type="button"
+                                                                           class="btn btn-icon btn-success"
+                                                                           style="height: 30px;">
+                                                                           <span class="tf-icons bx bx-printer"
+                                                                                title="Print"></span>
+                                                                      </button>
+                                                                 </a> -->
+
+
+                                                            </div>
+                                                            <div style="margin-top: 10px;">
+                                                                 <div class="btn-group" role="group">
+                                                                      <button id="btnGroupDrop1" type="button"
+                                                                           class="btn dropdown-toggle"
+                                                                           data-bs-toggle="dropdown"
+                                                                           aria-haspopup="true" aria-expanded="false"
+                                                                           style="background-color: #31374C;color: white;">
+                                                                           <i class="tf-icons bx bx-printer"
+                                                                                title="Print"
+                                                                                style="margin-right: 10px;"></i>
+                                                                      </button>
+                                                                      <div class="dropdown-menu"
+                                                                           aria-labelledby="btnGroupDrop1">
+                                                                           <a class="dropdown-item"
+                                                                                href="../views/fit-work-print.php?id=<?= $userData['id'] ?>">
+                                                                                <i class="tf-icons bx bx-book"
+                                                                                     title="Print"
+                                                                                     style="margin-right: 10px;"></i>
+                                                                                PDF</a>
+                                                                           <a class="dropdown-item"
+                                                                                href="../views/excel-fit-rampcheck.php?id=<?= $userData['id'] ?>">
+                                                                                <i class="tf-icons bx bx-printer"
+                                                                                     title="Print"
+                                                                                     style="margin-right: 10px;"></i>
+                                                                                Excel</a>
+                                                                      </div>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -190,8 +221,7 @@ if (isset($_SESSION['success_add_user'])) {
                                    <div class="col-sm-10">
                                         <div class="input-group input-group-merge">
                                              <span class="input-group-text"><i class="bx bx-calendar"></i></span>
-                                             <!-- <input type="text" class="form-control" name="hari"
-                                                  placeholder="Masukan Hari" required /> -->
+
                                              <select class="form-select" id="exampleFormControlSelect1"
                                                   aria-label="Default select example" name="hari">
                                                   <option selected>Pilih Hari</option>
@@ -204,17 +234,6 @@ if (isset($_SESSION['success_add_user'])) {
                                                   <option value="Minggu">Minggu</option>
                                              </select>
                                         </div>
-                                        <!-- <div class="mb-3">
-                                             <label for="exampleFormControlSelect1" class="form-label">Example
-                                                  select</label>
-                                             <select class="form-select" id="exampleFormControlSelect1"
-                                                  aria-label="Default select example">
-                                                  <option selected>Open this select menu</option>
-                                                  <option value="1">One</option>
-                                                  <option value="2">Two</option>
-                                                  <option value="3">Three</option>
-                                             </select>
-                                        </div> -->
                                    </div>
                               </div>
 
@@ -514,6 +533,35 @@ $(document).ready(function() {
 });
 </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+<script>
+function exportToExcel() {
+     const table = document.getElementById('data-table');
+     const ws = XLSX.utils.table_to_sheet(table);
+     const wb = XLSX.utils.book_new();
+     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+     const wbout = XLSX.write(wb, {
+          bookType: 'xlsx',
+          type: 'blob',
+          mimeType: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+     });
+
+     const fileName = 'export-fitwork.xlsx';
+     saveAs(new Blob([wbout], {
+          type: 'application/octet-stream'
+     }), fileName);
+}
+
+function saveAs(blob, fileName) {
+     const link = document.createElement('a');
+     link.href = URL.createObjectURL(blob);
+     link.download = fileName;
+     document.body.appendChild(link);
+     link.click();
+     document.body.removeChild(link);
+}
+</script>
 
 <?php
 include('../views/layout/footer.php');

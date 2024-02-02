@@ -102,7 +102,7 @@ if (isset($_SESSION['success_add_user'])) {
                                                                       </button>
                                                                  </a>
 
-                                                                 <a
+                                                                 <!-- <a
                                                                       href="../views/rampcheck-print.php?id=<?= $userData['id'] ?>">
                                                                       <button type="button"
                                                                            class="btn btn-icon btn-success"
@@ -110,7 +110,7 @@ if (isset($_SESSION['success_add_user'])) {
                                                                            <span class="tf-icons bx bx-printer"
                                                                                 title="Print"></span>
                                                                       </button>
-                                                                 </a>
+                                                                 </a> -->
                                                             </div>
                                                        </div>
                                                   </div>

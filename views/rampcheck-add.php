@@ -37,21 +37,24 @@ if (isset($_SESSION['error_message'])) {
                                              <i class="tf-icons bx bx-plus" title="Input Data"
                                                   style="margin-right: 10px;"></i> Add Rampcheck
                                         </button>
-                                        <a href="../views/rampcheck-print.php?id=<?= $_GET['id']; ?>">
-                                             <button type="button" class="btn btn-success">
-                                                  <i class="tf-icons bx bx-printer" title="Input Data"
-                                                       style="margin-right: 10px;"></i> Print
+                                        <div class="btn-group" role="group">
+                                             <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle"
+                                                  data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                  style="background-color: #31374C;color: white;">
+                                                  <i class="tf-icons bx bx-printer" title="Print"
+                                                       style="margin-right: 10px;"></i> Export
                                              </button>
-                                        </a>
-                                        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                             data-bs-target="#TambahRampcheckInterior">
-                                             <i class="tf-icons bx bx-plus" title="Input Data"
-                                                  style="margin-right: 10px;"></i> Interior
-                                        </button> -->
-                                        <!-- <button type="button" class="btn btn-warning">
-                                             <i class="tf-icons bx bx-pencil" title="Edit Data"
-                                                  style="margin-right: 10px;"></i> Edit
-                                        </button> -->
+                                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                  <a class="dropdown-item"
+                                                       href="../views/rampcheck-print.php?id=<?= $_GET['id']; ?>">
+                                                       <i class="tf-icons bx bx-book" title="Print"
+                                                            style="margin-right: 10px;"></i> PDF</a>
+                                                  <a class="dropdown-item"
+                                                       href="../views/excel-fit-rampcheck.php?id=<?= $_GET['id']; ?>">
+                                                       <i class="tf-icons bx bx-printer" title="Print"
+                                                            style="margin-right: 10px;"></i> Excel</a>
+                                             </div>
+                                        </div>
 
                                    </div>
                               </div>
