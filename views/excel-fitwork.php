@@ -14,6 +14,7 @@ header("Content-Disposition: attachment; filename=Data Fitwork.xls");
                          <th>Tanggal</th>
                          <th>No Body</th>
                          <th>Pramudi</th>
+                         <th>Depo</th>
                          <th>No Induk</th>
                          <th>Masuk</th>
                          <th>Keluar</th>
@@ -45,6 +46,9 @@ header("Content-Disposition: attachment; filename=Data Fitwork.xls");
                          </td>
                          <td>
                               <?= $userData['pramudi'] ?>
+                         </td>
+                         <td>
+                              <?= $userData['depo'] ?>
                          </td>
                          <td>
                               <?= $userData['no_induk'] ?>

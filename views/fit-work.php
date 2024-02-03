@@ -276,6 +276,24 @@ if (isset($_SESSION['success_add_user'])) {
                               </div>
 
                               <div class="row mb-3">
+                                   <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Depo</label>
+                                   <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                             <span class="input-group-text"><i class="bx bx-building"></i></span>
+                                             <select class="form-select" id="exampleFormControlSelect1"
+                                                  aria-label="Default select example" name="depo">
+                                                  <option selected>Pilih Depo</option>
+                                                  <option value="Depo Cijantung">Depo Cijantung</option>
+                                                  <option value="Depo Cibubur (Bus Listrik) ">Depo Cibubur
+                                                       (Bus Listrik)</option>
+                                                  <option value="Depo Klender (Bus Gandeng)">Depo
+                                                       Klender (Bus Gandeng)</option>
+                                             </select>
+                                        </div>
+                                   </div>
+                              </div>
+
+                              <div class="row mb-3">
                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-company">No
                                         Induk</label>
                                    <div class="col-sm-10">

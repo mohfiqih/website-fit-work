@@ -116,6 +116,11 @@
                     <td><?= $userData['pramudi'] ?></td>
                </tr>
                <tr>
+                    <th width="150px;">DEPO</th>
+                    <td width="5px">:</td>
+                    <td><?= $userData['depo'] ?></td>
+               </tr>
+               <tr>
                     <th width="150px;">NO INDUK</th>
                     <td width="5px">:</td>
                     <td><?= $userData['no_induk'] ?></td>

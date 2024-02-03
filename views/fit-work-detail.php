@@ -86,6 +86,12 @@ if (isset($_SESSION['success_update'])) {
                                                                  value="<?= $userData['pramudi']; ?>" readonly />
                                                        </div>
                                                        <div class="mb-3">
+                                                            <label class="form-label"
+                                                                 for="basic-default-fullname">Depo</label>
+                                                            <input type="text" class="form-control" name="Depo"
+                                                                 value="<?= $userData['depo']; ?>" readonly />
+                                                       </div>
+                                                       <div class="mb-3">
                                                             <label class="form-label" for="basic-default-company">No.
                                                                  Induk</label>
                                                             <input type="text" class="form-control" name="no_induk"
@@ -495,6 +501,29 @@ if (isset($_SESSION['success_update'])) {
                                                        class="bx bx-user"></i></span>
                                              <input type="text" class="form-control" name="pramudi"
                                                   value="<?= $userData['pramudi'] ?>" required />
+                                        </div>
+                                   </div>
+                              </div>
+
+                              <div class="row mb-3">
+                                   <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Depo</label>
+                                   <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                             <span class="input-group-text"><i class="bx bx-building"></i></span>
+                                             <select class="form-select" id="exampleFormControlSelect1"
+                                                  aria-label="Default select example" name="depo">
+                                                  <option
+                                                       <?php echo ($userData['depo'] == 'Depo Cijantung') ? 'selected' : ''; ?>
+                                                       value="Depo Cijantung">Depo Cijantung</option>
+                                                  <option
+                                                       <?php echo ($userData['depo'] == 'Depo Cibubur (Bus Listrik)') ? 'selected' : ''; ?>
+                                                       value="Depo Cibubur (Bus Listrik)">Depo Cibubur (Bus Listrik)
+                                                  </option>
+                                                  <option
+                                                       <?php echo ($userData['depo'] == 'Depo Klender (Bus Gandeng)') ? 'selected' : ''; ?>
+                                                       value="Depo Klender (Bus Gandeng)">Depo
+                                                       Klender (Bus Gandeng)</option>
+                                             </select>
                                         </div>
                                    </div>
                               </div>

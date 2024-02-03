@@ -24,7 +24,6 @@
           text-align: center;
           font-family: Arial, sans-serif;
           margin: 0;
-          /* Tambahkan ini untuk menghilangkan margin body */
      }
 
      h1 {
@@ -112,6 +111,11 @@
                     <th width="150px;">PRAMUDI</th>
                     <td width="5px">:</td>
                     <td><?= $userData['pramudi'] ?></td>
+               </tr>
+               <tr>
+                    <th width="150px;">DEPO</th>
+                    <td width="5px">:</td>
+                    <td><?= $userData['depo'] ?></td>
                </tr>
                <tr>
                     <th width="150px;">NO INDUK</th>

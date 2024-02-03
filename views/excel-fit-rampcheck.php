@@ -122,6 +122,11 @@ header("Content-Disposition: attachment; filename=Data Fitwork-Rampcheck-$id.xls
                     <td><?= $userData['pramudi'] ?></td>
                </tr>
                <tr>
+                    <th width="150px;">DEPO</th>
+                    <td width="5px">:</td>
+                    <td><?= $userData['depo'] ?></td>
+               </tr>
+               <tr>
                     <th width="150px;">NO INDUK</th>
                     <td width="5px">:</td>
                     <td><?= $userData['no_induk'] ?></td>
@@ -327,7 +332,6 @@ header("Content-Disposition: attachment; filename=Data Fitwork-Rampcheck-$id.xls
                          <th scope="col">NO</th>
                          <th scope="col">HAL YANG DIPERIKSA (ITEM)</th>
                          <th scope="col">KONDISI</th>
-                         <!-- <th scope="col" style="text-align: center;">GAMBAR</th> -->
                          <th scope="col">KETERANGAN</th>
                     </tr>
                </thead>
@@ -342,16 +346,7 @@ header("Content-Disposition: attachment; filename=Data Fitwork-Rampcheck-$id.xls
                          <td><?= $no++ ?></td>
                          <td><?= $userData['item'] ?></td>
                          <td><?= $userData['kondisi'] ?></td>
-                         <!-- <td>
-                              <center>
-                                   <?php if (!empty($userData['gambar'])): ?>
-                                   <img src="../uploads/<?= $userData['kategori'] ?>/<?= $userData['gambar'] ?>"
-                                        alt="Gambar Rampcheck" width="100">
-                                   <?php else: ?>
-                                   None
-                                   <?php endif; ?>
-                              </center>
-                         </td> -->
+
                          <td><?= $userData['keterangan'] ?></td>
                     </tr>
                     <?php endforeach; ?>
@@ -375,7 +370,6 @@ header("Content-Disposition: attachment; filename=Data Fitwork-Rampcheck-$id.xls
                          <th scope="col">NO</th>
                          <th scope="col">HAL YANG DIPERIKSA (ITEM)</th>
                          <th scope="col">KONDISI</th>
-                         <th scope="col" style="text-align: center;">GAMBAR</th>
                          <th scope="col">KETERANGAN</th>
                     </tr>
                </thead>
@@ -390,16 +384,7 @@ header("Content-Disposition: attachment; filename=Data Fitwork-Rampcheck-$id.xls
                          <td><?= $no++ ?></td>
                          <td><?= $userData['item'] ?></td>
                          <td><?= $userData['kondisi'] ?></td>
-                         <td>
-                              <center>
-                                   <?php if (!empty($userData['gambar'])): ?>
-                                   <img src="../uploads/<?= $userData['kategori'] ?>/<?= $userData['gambar'] ?>"
-                                        alt="Gambar Rampcheck" width="70">
-                                   <?php else: ?>
-                                   None
-                                   <?php endif; ?>
-                              </center>
-                         </td>
+
                          <td><?= $userData['keterangan'] ?></td>
                     </tr>
                     <?php endforeach; ?>

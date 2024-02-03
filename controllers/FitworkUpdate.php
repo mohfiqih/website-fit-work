@@ -10,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'tanggal'        => $_POST['tanggal'],
         'no_body'        => $_POST['no_body'],
         'pramudi'        => $_POST['pramudi'],
+        'depo'           => $_POST['depo'],
         'no_induk'       => $_POST['no_induk'],
         'jam_masuk'      => $_POST['jam_masuk'],
         'jam_keluar'     => $_POST['jam_keluar'],
