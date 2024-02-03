@@ -2,10 +2,6 @@
 
 include('../views/layout/header.php');
 
-// if (isset($_SESSION['success_update'])) {
-//      echo '<script>alert("' . $_SESSION['success_update'] . '");</script>';
-//      unset($_SESSION['success_update']);
-// }
 ?>
 
 <div class="content-wrapper">
@@ -32,7 +28,7 @@ include('../views/layout/header.php');
                     ?>
 
                     <form action="../controllers/RampcheckUpdate.php?id=<?= $userData['id_fit'] ?>&&id_ramp=<?= $userData['id_ramp'] ?>"
-                         method="POST">
+                         method="POST" enctype="multipart/form-data">
                          <div class="card">
                               <div class="card-body">
                                    <input type="text" class="form-control" name="id_ramp"
@@ -94,16 +90,26 @@ include('../views/layout/header.php');
                                         </div>
                                    </div>
 
+                                   <input type="hidden" name="existing_gambar" value="<?= $userData['gambar']; ?>" />
+
                                    <div class="row mb-3">
                                         <label class="col-sm-2 col-form-label" for="gambar">Gambar</label>
                                         <div class="col-sm-10">
-                                             <input type="text" class="form-control" name="gambar[]"
-                                                  value="<?php echo $userData['gambar']; ?>" accept="image/*" multiple
-                                                  readonly />
-                                             <div class="input-group input-group-merge" style="margin-top: 10px;">
+                                             <?php if (!empty($userData['gambar'])): ?>
+                                             <img src="../uploads/<?= $userData['kategori'] ?>/<?= $userData['gambar'] ?>"
+                                                  alt="Gambar Rampcheck" width="300px">
+                                             <?php else: ?>
+                                             <center>
+                                                  <div class="card"
+                                                       style="border-radius: 5px;border-color: black;height: 50px;">
+                                                       <p style="margin-top: 10px;">Tidak Ada Gambar</p>
+                                                  </div>
+                                             </center>
+                                             <?php endif; ?>
+                                             <div class="input-group input-group-merge">
                                                   <span class="input-group-text"><i class="bx bx-image"></i></span>
-                                                  <input type="file" class="form-control" name="gambar[]"
-                                                       accept="image/*" multiple
+
+                                                  <input type="file" class="form-control" name="gambar" accept="image/*"
                                                        value="<?php echo $userData['gambar']; ?>" />
                                              </div>
                                         </div>

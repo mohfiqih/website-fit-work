@@ -52,7 +52,7 @@ class User {
 
     // ---------------- GET data users (akses untuk menampilkan data user) ----------------- //
     public function getUserData() {
-        $query = "SELECT id, full_name, username, email, password, timestamp, status FROM users";
+        $query = "SELECT id, full_name, username, email, password, timestamp, status, gambar FROM users";
         $result = $this->connection->getConnection()->query($query);
         
         if (!$result) {
@@ -66,7 +66,7 @@ class User {
     public function getProfil($username) {
         $escapedUsername = $this->connection->escapeString($username);
         
-        $query = "SELECT id, full_name, username, email, password, timestamp FROM users WHERE username = '$escapedUsername'";
+        $query = "SELECT id, full_name, username, email, password, gambar, timestamp FROM users WHERE username = '$escapedUsername'";
         $result = $this->connection->getConnection()->query($query);
     
         if (!$result) {

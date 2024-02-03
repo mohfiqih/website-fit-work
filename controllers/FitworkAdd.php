@@ -39,6 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // D. Data Kesehatan
         'tekanan_darah'  => $_POST['tekanan_darah'],
         'suhu_badan'     => $_POST['suhu_badan'],
+        'alkohol'        => $_POST['alkohol'],
     );
 
     $columns = implode(", ", array_keys($data));

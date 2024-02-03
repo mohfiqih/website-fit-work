@@ -41,6 +41,15 @@ if (isset($_SESSION['success_add_user'])) {
                               </div>
                          </div>
                     </div>
+                    <?php
+                                                  include '../controllers/User.php';
+                                                  
+                                                  $connection = new User();
+                                                  $hasil = $connection->getUserData();
+
+                                                  $no = 1;
+
+                                   ?>
                     <div class="card">
                          <div class="col-xl-6" style="margin-left: 20px;">
                               <div class="mt-3">
@@ -55,12 +64,15 @@ if (isset($_SESSION['success_add_user'])) {
                                                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                                   style="background-color: #31374C;color: white;">
                                                   <i class="tf-icons bx bx-printer" title="Print"
-                                                       style="margin-right: 10px;"></i> Print
+                                                       style="margin-right: 10px;"></i> Export
                                              </button>
                                              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                  <a class="dropdown-item" href="javascript:void(0);">
+                                                  <a class="dropdown-item" href="../views/PDF-user.php">
                                                        <i class="tf-icons bx bx-book" title="Print"
-                                                            style="margin-right: 10px;"></i>Print to PDF</a>
+                                                            style="margin-right: 10px;"></i>PDF</a>
+                                                  <a class="dropdown-item" href="../views/EXCEL-user.php">
+                                                       <i class="tf-icons bx bx-printer" title="Print"
+                                                            style="margin-right: 10px;"></i>Excel</a>
                                              </div>
                                         </div>
                                    </div>
@@ -78,15 +90,7 @@ if (isset($_SESSION['success_add_user'])) {
                                              <th>Actions</th>
                                         </tr>
                                    </thead>
-                                   <?php
-                                                  include '../controllers/User.php';
-                                                  
-                                                  $connection = new User();
-                                                  $hasil = $connection->getUserData();
 
-                                                  $no = 1;
-
-                                                  ?>
                                    <tbody class="table-border-bottom-0">
                                         <?php foreach ($hasil as $userData) { ?>
                                         <tr>
@@ -117,11 +121,23 @@ if (isset($_SESSION['success_add_user'])) {
                                                                       <span class="tf-icons bx bx-pencil"></span>
                                                                  </button>
                                                             </a>
+                                                            <?php
+                                                                 $status = $userData['status'];
+                                                                 if ($status == 'Active') {
+                                                                      echo '';
+                                                                 } elseif ($status == 'Nonaktif') {
+                                                            ?>
                                                             <button type="submit" class="btn btn-icon btn-danger"
                                                                  style="height: 30px;"
                                                                  onclick="if (confirm('Yakin ingin hapus data?')) window.location.href='../controllers/UserDelete.php?id=<?= $userData['id'] ?>';">
                                                                  <span class="tf-icons bx bx-trash"></span>
                                                             </button>
+                                                            <?php
+                                                            } else {
+                                                                 echo '';
+                                                            }
+                                                            ?>
+
                                                        </div>
                                                   </div>
                                              </td>

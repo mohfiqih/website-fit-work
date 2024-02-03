@@ -50,73 +50,76 @@ if ($userData) {
                          </div>
                          <div class="card-body">
                               <form>
-                                   <div class="row mb-3">
-                                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Nama
-                                             Lengkap</label>
-                                        <div class="col-sm-10">
-                                             <div class="input-group input-group-merge">
-                                                  <span id="basic-icon-default-fullname2" class="input-group-text"><i
-                                                            class="bx bx-user"></i></span>
-                                                  <input type="text" class="form-control"
-                                                       value="<?= $userData['full_name'] ?>" readonly />
+                                   <div class="row">
+                                        <div class="col-md-3">
+                                             <div class="row mb-3" style="width: 200px;">
+                                                  <?php if (!empty($userData['gambar'])): ?>
+                                                  <img src="../uploads/profil/<?= $userData['gambar'] ?>"
+                                                       alt="Foto Profil" width="50px">
+                                                  <?php else: ?>
+                                                  <center>
+                                                       <div class="card"
+                                                            style="border-radius: 5px;border-color: black;height: 220px;">
+                                                            <p style="margin-top: 100px;">Tidak Ada Foto</p>
+                                                       </div>
+                                                  </center>
+                                                  <?php endif; ?>
+                                             </div>
+                                        </div>
+                                        <div class="col-md-9">
+                                             <div class="row mb-3">
+                                                  <label class="col-sm-2 col-form-label"
+                                                       for="basic-icon-default-fullname">Nama
+                                                       Lengkap</label>
+                                                  <div class="col-sm-10">
+                                                       <div class="input-group input-group-merge">
+                                                            <span id="basic-icon-default-fullname2"
+                                                                 class="input-group-text"><i
+                                                                      class="bx bx-user"></i></span>
+                                                            <input type="text" class="form-control"
+                                                                 value="<?= $userData['full_name'] ?>" readonly />
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                             <div class="row mb-3">
+                                                  <label class="col-sm-2 col-form-label"
+                                                       for="basic-icon-default-company">Username</label>
+                                                  <div class="col-sm-10">
+                                                       <div class="input-group input-group-merge">
+                                                            <span id="basic-icon-default-company2"
+                                                                 class="input-group-text"><i
+                                                                      class="bx bx-buildings"></i></span>
+                                                            <input type="text" class="form-control"
+                                                                 value="<?= $userData['username'] ?>" readonly />
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                             <div class="row mb-3">
+                                                  <label class="col-sm-2 col-form-label"
+                                                       for="basic-icon-default-email">Email</label>
+                                                  <div class="col-sm-10">
+                                                       <div class="input-group input-group-merge">
+                                                            <span class="input-group-text"><i
+                                                                      class="bx bx-envelope"></i></span>
+                                                            <input type="text" class="form-control"
+                                                                 value="<?= $userData['email'] ?>" readonly />
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                             <div class="row mb-3">
+                                                  <label class="col-sm-2 col-form-label"
+                                                       for="basic-icon-default-email">Timestamp</label>
+                                                  <div class="col-sm-10">
+                                                       <div class="input-group input-group-merge">
+                                                            <span class="input-group-text"><i
+                                                                      class="bx bx-calendar"></i></span>
+                                                            <input type="text" class="form-control"
+                                                                 value="<?= $userData['timestamp'] ?>" readonly />
+                                                       </div>
+                                                  </div>
                                              </div>
                                         </div>
                                    </div>
-                                   <div class="row mb-3">
-                                        <label class="col-sm-2 col-form-label"
-                                             for="basic-icon-default-company">Username</label>
-                                        <div class="col-sm-10">
-                                             <div class="input-group input-group-merge">
-                                                  <span id="basic-icon-default-company2" class="input-group-text"><i
-                                                            class="bx bx-buildings"></i></span>
-                                                  <input type="text" class="form-control"
-                                                       value="<?= $userData['username'] ?>" readonly />
-                                             </div>
-                                        </div>
-                                   </div>
-                                   <div class="row mb-3">
-                                        <label class="col-sm-2 col-form-label"
-                                             for="basic-icon-default-email">Email</label>
-                                        <div class="col-sm-10">
-                                             <div class="input-group input-group-merge">
-                                                  <span class="input-group-text"><i class="bx bx-envelope"></i></span>
-                                                  <input type="text" class="form-control"
-                                                       value="<?= $userData['email'] ?>" readonly />
-                                             </div>
-                                        </div>
-                                   </div>
-                                   <!-- <div class="row mb-3">
-                                        <label class="col-sm-2 col-form-label"
-                                             for="basic-icon-default-email">Password</label>
-                                        <div class="col-sm-10">
-                                             <div class="input-group input-group-merge">
-                                                  <span class="input-group-text"><i class="bx bx-key"></i></span>
-                                                  <input type="password" class="form-control"
-                                                       value="<?= $userData['password'] ?>" readonly />
-
-
-                                             </div>
-                                        </div>
-                                   </div> -->
-                                   <div class="row mb-3">
-                                        <label class="col-sm-2 col-form-label"
-                                             for="basic-icon-default-email">Timestamp</label>
-                                        <div class="col-sm-10">
-                                             <div class="input-group input-group-merge">
-                                                  <span class="input-group-text"><i class="bx bx-calendar"></i></span>
-                                                  <input type="text" class="form-control"
-                                                       value="<?= $userData['timestamp'] ?>" readonly />
-                                             </div>
-                                        </div>
-                                   </div>
-                                   <!-- <div class="row justify-content-end">
-                                        <div class="col-sm-10">
-                                             <button type="button" class="btn" data-bs-toggle="modal"
-                                                  data-bs-target="#editProfil"
-                                                  style="background-color: #31374C;color: white;height: 40px;border-radius: 50px;">Edit
-                                                  Profile</button>
-                                        </div>
-                                   </div> -->
                               </form>
                          </div>
                     </div>

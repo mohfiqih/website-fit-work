@@ -90,8 +90,9 @@ include('../views/layout/header.php');
                                                             class="bx bx-key"></i></span>
                                                   <input type="password" class="form-control" name="password"
                                                        placeholder="Masukan Password Baru" id="password" required />
-                                                  <span id="basic-icon-default-company2" class="input-group-text">Lihat
-                                                       Password
+                                                  <span id="basic-icon-default-company2" class="input-group-text"><small
+                                                            class="text-muted float-end">Lihat
+                                                            Password</small>
                                                        <input style="margin-left: 10px;" type="checkbox"
                                                             id="showPassword" />
                                                   </span>

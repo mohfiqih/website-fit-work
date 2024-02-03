@@ -56,50 +56,90 @@ include('../views/layout/header.php');
                                    
                                    if ($userData) {
                               ?>
-                              <form action="../controllers/UpdateProfil.php?id=<?= $userData['id']; ?>" method="POST">
-                                   <input type="hidden" name="id" value="<?= $userData['id']; ?>">
 
-                                   <div class="row mb-3">
-                                        <label class="col-sm-2 col-form-label"
-                                             for="basic-icon-default-company">Username</label>
-                                        <div class="col-sm-10">
-                                             <div class="input-group input-group-merge">
-                                                  <span id="basic-icon-default-company2" class="input-group-text"><i
-                                                            class="bx bx-buildings"></i></span>
-                                                  <input type="text" class="form-control" name="username"
-                                                       value="<?= $userData['username'] ?>" readonly />
+                              <form action="../controllers/UpdateProfil.php?id=<?= $userData['id']; ?>" method="POST"
+                                   enctype="multipart/form-data">
+                                   <div class="row">
+                                        <div class="col-md-3">
+                                             <div class="row mb-3" style="width: 200px;">
+                                                  <?php if (!empty($userData['gambar'])): ?>
+                                                  <img src="../uploads/profil/<?= $userData['gambar'] ?>"
+                                                       alt="Foto Profil" width="50px">
+                                                  <?php else: ?>
+                                                  <center>
+                                                       <div class="card"
+                                                            style="border-radius: 5px;border-color: black;height: 220px;">
+                                                            <p style="margin-top: 100px;">Tidak Ada Foto</p>
+                                                       </div>
+                                                  </center>
+                                                  <?php endif; ?>
                                              </div>
                                         </div>
-                                   </div>
-                                   <div class="row mb-3">
-                                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Nama
-                                             Lengkap</label>
-                                        <div class="col-sm-10">
-                                             <div class="input-group input-group-merge">
-                                                  <span id="basic-icon-default-fullname2" class="input-group-text"><i
-                                                            class="bx bx-user"></i></span>
-                                                  <input type="text" class="form-control" name="full_name"
-                                                       value="<?= $userData['full_name'] ?>" />
+                                        <div class="col-md-9">
+                                             <input type="hidden" name="id" value="<?= $userData['id']; ?>">
+
+                                             <div class="row mb-3">
+                                                  <label class="col-sm-2 col-form-label"
+                                                       for="basic-icon-default-company">Username</label>
+                                                  <div class="col-sm-10">
+                                                       <div class="input-group input-group-merge">
+                                                            <span id="basic-icon-default-company2"
+                                                                 class="input-group-text"><i
+                                                                      class="bx bx-buildings"></i></span>
+                                                            <input type="text" class="form-control" name="username"
+                                                                 value="<?= $userData['username'] ?>" readonly />
+                                                       </div>
+                                                  </div>
                                              </div>
-                                        </div>
-                                   </div>
-                                   <div class="row mb-3">
-                                        <label class="col-sm-2 col-form-label"
-                                             for="basic-icon-default-email">Email</label>
-                                        <div class="col-sm-10">
-                                             <div class="input-group input-group-merge">
-                                                  <span class="input-group-text"><i class="bx bx-envelope"></i></span>
-                                                  <!-- Tambahkan atribut name untuk email -->
-                                                  <input type="text" class="form-control" name="email"
-                                                       value="<?= $userData['email'] ?>" />
+                                             <div class="row mb-3">
+                                                  <label class="col-sm-2 col-form-label"
+                                                       for="basic-icon-default-fullname">Nama
+                                                       Lengkap</label>
+                                                  <div class="col-sm-10">
+                                                       <div class="input-group input-group-merge">
+                                                            <span id="basic-icon-default-fullname2"
+                                                                 class="input-group-text"><i
+                                                                      class="bx bx-user"></i></span>
+                                                            <input type="text" class="form-control" name="full_name"
+                                                                 value="<?= $userData['full_name'] ?>" />
+                                                       </div>
+                                                  </div>
                                              </div>
-                                        </div>
-                                   </div>
-                                   <div class="row justify-content-end">
-                                        <div class="col-sm-10">
-                                             <button type="submit" class="btn btn-primary"
-                                                  style="color: white;height: 40px;border-radius: 50px;">Update
-                                                  Profile</button>
+                                             <div class="row mb-3">
+                                                  <label class="col-sm-2 col-form-label"
+                                                       for="basic-icon-default-email">Email</label>
+                                                  <div class="col-sm-10">
+                                                       <div class="input-group input-group-merge">
+                                                            <span class="input-group-text"><i
+                                                                      class="bx bx-envelope"></i></span>
+
+                                                            <input type="text" class="form-control" name="email"
+                                                                 value="<?= $userData['email'] ?>" />
+                                                       </div>
+                                                  </div>
+                                             </div>
+
+                                             <div class="row mb-3">
+                                                  <label class="col-sm-2 col-form-label"
+                                                       for="basic-icon-default-email">Foto
+                                                       Profil</label>
+
+                                                  <div class="col-sm-10">
+                                                       <div class="input-group input-group-merge">
+                                                            <span class="input-group-text"><i
+                                                                      class="bx bx-image"></i></span>
+                                                            <input type="file" class="form-control" name="gambar"
+                                                                 accept="image/*" />
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                             <div class="row justify-content-end">
+                                                  <div class="col-sm-10">
+                                                       <button type="submit" class="btn btn-primary"
+                                                            style="color: white;height: 40px;border-radius: 50px;">Update
+                                                            Profile</button>
+                                                  </div>
+                                             </div>
                                         </div>
                                    </div>
                               </form>

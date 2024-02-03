@@ -58,15 +58,8 @@ if (isset($_POST['logout'])) {
      <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
      <script src="https://cdn.datatables.net/1.13.7/js/dataTables.semanticui.min.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.2/semantic.min.js"></script>
-
-     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable@11.4.0/dist/handsontable.full.min.css">
-     <script src="https://cdn.jsdelivr.net/npm/handsontable@11.4.0/dist/handsontable.full.min.js"></script>
-     <script src="https://cdn.jsdelivr.net/npm/handsontable@11.4.0/dist/languages/all.min.js"></script> -->
-
-
 </head>
 <style>
-/* Add margin to the right of the DataTable */
 #example_wrapper {
      margin-right: 20px;
      margin-left: 20px;
@@ -106,37 +99,41 @@ if (isset($_POST['logout'])) {
                          <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
 
                               <ul class="navbar-nav flex-row align-items-center ms-auto">
-                                   <span class="fw-medium d-block" style="margin-right: 5px;"> <i
+                                   <!-- <span class="fw-medium d-block" style="margin-right: 5px;"> <i
                                              class="menu-icon tf-icons bx bx-bell"></i></span>
                                    <span class="fw-medium d-block" style="margin-right: 10px;"><i
-                                             class="bx bx-search fs-4 lh-0"></i></span>
+                                             class="bx bx-search fs-4 lh-0"></i></span> -->
 
-                                   <span class="fw-medium d-block">
-                                        <button class="btn btn-sm "
-                                             style="border-radius: 50px;height: 35px;background-color: #31374C;color: white;margin-right: 5px;"><?php echo $_SESSION['username']; ?></button></span>
-
+                                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
+                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="fw-medium d-block">
+                                             <button class="btn btn-sm avatar avatar-online"
+                                                  style="border-radius: 50px;height: 35px;min-width: 100px;background-color: #31374C;color: white;">
+                                                  <?php echo $_SESSION['username']; ?> <i class="tf-icons bx bx-user"
+                                                       title="Username" style="margin-left: 10px;"></i>
+                                             </button></span>
+                                   </a>
                                    <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                                        <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
-                                             data-bs-toggle="dropdown">
-                                             <div class="avatar avatar-online">
-                                                  <img src="../assets/dasbor/assets/img/avatars/1.png" alt
-                                                       class="w-px-40 h-auto rounded-circle" />
-                                             </div>
-                                        </a>
-                                        <ul class="dropdown-menu dropdown-menu-end">
+
+                                        <ul class="dropdown-menu dropdown-menu-end" style="margin-top: 30px;">
                                              <li>
                                                   <a class="dropdown-item" href="#">
                                                        <div class="d-flex">
                                                             <div class="flex-shrink-0 me-3">
                                                                  <div class="avatar avatar-online">
-                                                                      <img src="../assets/dasbor/assets/img/avatars/1.png"
-                                                                           alt class="w-px-40 h-auto rounded-circle" />
+                                                                      <div class="row mb-3">
+                                                                           <button class="btn btn-sm"
+                                                                                style="border-radius: 50px;height: 40px;width: 40px;margin-left: 10px;background-color: #31374C;color: white;">
+                                                                                <i class="tf-icons bx bx-user"></i>
+                                                                           </button>
+                                                                      </div>
                                                                  </div>
                                                             </div>
                                                             <div class="flex-grow-1">
+
                                                                  <span
                                                                       class="fw-medium d-block"><?php echo $_SESSION['username']; ?></span>
-                                                                 <small class="text-muted">Admin</small>
+                                                                 <small class="text-muted">Admin | Active</small>
                                                             </div>
                                                        </div>
                                                   </a>
@@ -175,6 +172,7 @@ if (isset($_POST['logout'])) {
                                              </li>
                                         </ul>
                                    </li>
+
                               </ul>
                          </div>
                     </nav>

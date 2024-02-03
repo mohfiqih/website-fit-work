@@ -296,7 +296,7 @@ if (isset($_SESSION['success_update'])) {
                                                             <i class="tf-icons bx bx-shield-plus me-1"></i><span
                                                                  class="d-none d-sm-block"> Kesehatan</span>
                                                             <span
-                                                                 class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger ms-1">2
+                                                                 class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger ms-1">3
                                                             </span>
                                                        </button>
                                                   </li>
@@ -378,6 +378,7 @@ if (isset($_SESSION['success_update'])) {
                                                                       $dataKesehatan = [
                                                                            'tekanan_darah' => 'Tekanan Darah',
                                                                            'suhu_badan' => 'Suhu Badan',
+                                                                           'alkohol'      => 'Alkohol'
                                                                       ];
 
                                                                       // Urutkan array berdasarkan kodenya
@@ -956,6 +957,20 @@ if (isset($_SESSION['success_update'])) {
                                                   <td>
                                                        <input style="width: 150px;" type="text" class="form-control"
                                                             name="suhu_badan" value="<?= $userData['suhu_badan'] ?>"
+                                                            required />
+                                                  </td>
+                                             </tr>
+
+                                             <tr>
+                                                  <td>
+                                                       3.
+                                                  </td>
+                                                  <td>
+                                                       Alkohol
+                                                  </td>
+                                                  <td>
+                                                       <input style="width: 150px;" type="text" class="form-control"
+                                                            name="alkohol" value="<?= $userData['alkohol'] ?>"
                                                             required />
                                                   </td>
                                              </tr>

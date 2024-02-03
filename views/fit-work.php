@@ -60,10 +60,10 @@ if (isset($_SESSION['success_add_user'])) {
                                                        style="margin-right: 10px;"></i> Export Full
                                              </button>
                                              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                  <a class="dropdown-item" href="../views/print-full-fitwork.php">
+                                                  <a class="dropdown-item" href="../views/PDF-full-fitwork.php">
                                                        <i class="tf-icons bx bx-book" title="Print"
                                                             style="margin-right: 10px;"></i> PDF</a>
-                                                  <a class="dropdown-item" href="../views/excel-fitwork.php">
+                                                  <a class="dropdown-item" href="../views/EXCEL-fitwork.php">
                                                        <i class="tf-icons bx bx-printer" title="Print"
                                                             style="margin-right: 10px;"></i> Excel</a>
                                              </div>
@@ -176,13 +176,13 @@ if (isset($_SESSION['success_add_user'])) {
                                                                       <div class="dropdown-menu"
                                                                            aria-labelledby="btnGroupDrop1">
                                                                            <a class="dropdown-item"
-                                                                                href="../views/fit-work-print.php?id=<?= $userData['id'] ?>">
+                                                                                href="../views/PDF-fit-work.php?id=<?= $userData['id'] ?>">
                                                                                 <i class="tf-icons bx bx-book"
                                                                                      title="Print"
                                                                                      style="margin-right: 10px;"></i>
                                                                                 PDF</a>
                                                                            <a class="dropdown-item"
-                                                                                href="../views/excel-fit-rampcheck.php?id=<?= $userData['id'] ?>">
+                                                                                href="../views/EXCEL-fit-rampcheck.php?id=<?= $userData['id'] ?>">
                                                                                 <i class="tf-icons bx bx-printer"
                                                                                      title="Print"
                                                                                      style="margin-right: 10px;"></i>
@@ -505,12 +505,12 @@ if (isset($_SESSION['success_add_user'])) {
                                              $dataKesehatan = [
                                                   'Tekanan Darah',
                                                   'Suhu Badan',
+                                                  'Alkohol'
                                              ];
 
-                                             // Urutkan array berdasarkan nomor urut
                                              sort($dataKesehatan);
 
-                                             $no = 1; // Inisialisasi variabel $no
+                                             $no = 1;
 
                                              foreach ($dataKesehatan as $itemDescription) :
                                              ?>

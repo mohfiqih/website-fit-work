@@ -46,11 +46,11 @@ if (isset($_SESSION['error_message'])) {
                                              </button>
                                              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                                   <a class="dropdown-item"
-                                                       href="../views/rampcheck-print.php?id=<?= $_GET['id']; ?>">
+                                                       href="../views/PDF-rampcheck.php?id=<?= $_GET['id']; ?>">
                                                        <i class="tf-icons bx bx-book" title="Print"
                                                             style="margin-right: 10px;"></i> PDF</a>
                                                   <a class="dropdown-item"
-                                                       href="../views/excel-fit-rampcheck.php?id=<?= $_GET['id']; ?>">
+                                                       href="../views/EXCEL-fit-rampcheck.php?id=<?= $_GET['id']; ?>">
                                                        <i class="tf-icons bx bx-printer" title="Print"
                                                             style="margin-right: 10px;"></i> Excel</a>
                                              </div>
@@ -75,8 +75,6 @@ if (isset($_SESSION['error_message'])) {
                                    $userData = $result->fetch_assoc(); 
                          ?>
 
-
-
                          <div class="col-md-12" style="margin-top: 20px;">
                               <div class="card">
                                    <div class="mb-2"
@@ -98,6 +96,12 @@ if (isset($_SESSION['error_message'])) {
                                                   Pramudi</label>
                                              <input type="text" class="form-control" name="pramudi"
                                                   value="<?= $userData['pramudi'] ?>" readonly />
+                                        </div>
+
+                                        <div class="mb-3">
+                                             <label class="form-label" for="basic-default-company">Depo</label>
+                                             <input type="text" class="form-control" name="depo"
+                                                  value="<?= $userData['depo'] ?>" readonly />
                                         </div>
 
                                         <div class="mb-3">
@@ -133,11 +137,9 @@ if (isset($_SESSION['error_message'])) {
                                              <button type="button" class="nav-link active" role="tab"
                                                   data-bs-toggle="tab" data-bs-target="#navs-justified-home"
                                                   aria-controls="navs-justified-home" aria-selected="true">
-                                                  <i class="tf-icons bx bx-user me-1"></i><span
+                                                  <i class="tf-icons bx bx-book me-1"></i><span
                                                        class="d-none d-sm-block"> EKSTERIOR</span>
-                                                  <span
-                                                       class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger ms-1">20
-                                                  </span>
+
                                              </button>
                                         </li>
                                         <li class="nav-item">
@@ -146,9 +148,7 @@ if (isset($_SESSION['error_message'])) {
                                                   aria-controls="navs-justified-profile" aria-selected="false">
                                                   <i class="tf-icons bx bx-book me-1"></i><span
                                                        class="d-none d-sm-block"> INTERIOR</span>
-                                                  <span
-                                                       class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger ms-1">22
-                                                  </span>
+
                                              </button>
                                         </li>
                                    </ul>
@@ -338,89 +338,169 @@ if (isset($_SESSION['error_message'])) {
      <div class="modal-dialog">
           <div class="modal-content">
                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="TambahRampcheckLabel">Input Eksterior</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                </div>
                <form action="../controllers/RampcheckAdd.php?id=<?= $_GET['id'] ?>" method="POST"
                     enctype="multipart/form-data">
-                    <input type="text" class="form-control" name="id_fit" value="<?= $_GET['id'] ?>" hidden />
-                    <div class="modal-body">
-                         <div class="card-body">
-                              <div class="row mb-3">
-                                   <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Item</label>
-                                   <div class="col-sm-10">
-                                        <div class="input-group input-group-merge">
-                                             <span class="input-group-text"><i class="bx bx-book"></i></span>
-                                             <input type="text" class="form-control" name="item"
-                                                  placeholder="Masukan Item Pengecekan" required />
+
+                    <ul class="nav nav-tabs nav-fill" role="tablist">
+                         <li class="nav-item">
+                              <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab"
+                                   data-bs-target="#input-eksterior" aria-controls="input-eksterior"
+                                   aria-selected="true">
+                                   <i class="tf-icons bx bx-book me-1"></i><span class="d-none d-sm-block">
+                                        Input Eksterior</span>
+
+                              </button>
+                         </li>
+                         <li class="nav-item">
+                              <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
+                                   data-bs-target="#input-interior" aria-controls="input-interior"
+                                   aria-selected="false">
+                                   <i class="tf-icons bx bx-book me-1"></i><span class="d-none d-sm-block">
+                                        Input Interior</span>
+
+                              </button>
+                         </li>
+                    </ul>
+                    <!-- INPUT EKSTERIOR -->
+                    <div class="tab-pane fade show active" id="input-eksterior" role="tabpanel">
+                         <input type="text" class="form-control" name="id_fit" value="<?= $_GET['id'] ?>" hidden />
+                         <div class="modal-body">
+                              <div class="card-body">
+                                   <div class="row mb-3">
+                                        <label class="col-sm-2 col-form-label"
+                                             for="basic-icon-default-company">Item</label>
+                                        <div class="col-sm-10">
+                                             <div class="input-group input-group-merge">
+                                                  <span class="input-group-text"><i class="bx bx-calendar"></i></span>
+
+                                                  <select class="form-select" id="exampleFormControlSelect1"
+                                                       aria-label="Default select example" name="item">
+                                                       <option selected>Pilih Item Pengecekan
+                                                       </option>
+                                                       <option style="font-weight: bold;">Bagian Luar
+                                                       </option>
+                                                       <option value="Jumlah Display Berfungsi">1. Jumlah Display
+                                                            Berfungsi
+                                                       </option>
+                                                       <option value="Jumlah Body">2.
+                                                            Jumlah Body
+                                                       </option>
+                                                       <option value="No Darurat">3. No Darurat</option>
+                                                       <option value="Buku, Stiker, dan Plat Uji">4. Buku, Stiker, dan
+                                                            Plat
+                                                            Uji</option>
+                                                       <option value="Lampu Depan">5. Lampu Depan</option>
+                                                       <option value="Lampu Sign">6. Lampu Sign</option>
+                                                       <option value="Lampu Hazard">7. Lampu Hazard</option>
+                                                       <option value="Spion">8. Spion</option>
+                                                       <option value="Kaca Depan">9. Kaca Depan</option>
+                                                       <option value="Wiper">10. Wiper</option>
+                                                       <option value="Kebersihan Body">11. Kebersihan Body</option>
+                                                       <option value="Body Depan">12. Body Depan</option>
+
+                                                       <option style="font-weight: bold;">Bagian Kanan
+                                                       </option>
+                                                       <option value="LED DIsplay">13. LED DIsplay</option>
+                                                       <option value="Kaca Kanan">14. Kaca Kanan</option>
+                                                       <option value="Body Kanan">15. Body Kanan</option>
+                                                       <option value="Ban">16. Ban</option>
+                                                       <option value="Roda/Velg">17. Roda/Velg</option>
+                                                  </select>
+                                             </div>
                                         </div>
                                    </div>
-                              </div>
 
-                              <div class="row mb-3">
-                                   <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Bagian</label>
-                                   <div class="col-sm-10">
-                                        <div class="input-group input-group-merge">
-                                             <span class="input-group-text"><i class="bx bx-car"></i></span>
-                                             <select class="form-select" name="kategori">
-                                                  <option>Pilih Eksterior
-                                                       / Interior</option>
-                                                  <option value="Eksterior">
-                                                       Eksterior</option>
-                                                  <option value="Interior">
-                                                       Interior</option>
-                                             </select>
+                                   <div class="row mb-3">
+                                        <label class="col-sm-2 col-form-label"
+                                             for="basic-icon-default-company">Bagian</label>
+                                        <div class="col-sm-10">
+                                             <div class="form-check form-check-inline">
+                                                  <input class="form-check-input" type="radio" name="bagian"
+                                                       value="Depan" id="Depan" required>
+                                                  <label class="form-check-label" for="Depan">Depan</label>
+                                             </div>
+                                             <div class="form-check form-check-inline">
+                                                  <input class="form-check-input" id="Belakang" type="radio"
+                                                       name="bagian" value="Belakang">
+                                                  <label class="form-check-label" for="Belakang">Belakang</label>
+                                             </div>
+                                             <div class="form-check form-check-inline">
+                                                  <input class="form-check-input" type="radio" name="bagian"
+                                                       value="Kanan" id="Kanan">
+                                                  <label class="form-check-label" for="Kanan">Kanan</label>
+                                             </div>
+                                             <div class="form-check form-check-inline">
+                                                  <input class="form-check-input" type="radio" name="bagian"
+                                                       value="Kiri" id="Kiri">
+                                                  <label class="form-check-label" for="Kiri">Kiri</label>
+                                             </div>
                                         </div>
                                    </div>
-                              </div>
 
-
-                              <div class="row mb-3">
-                                   <label class="col-sm-2 col-form-label"
-                                        for="basic-icon-default-company">Kondisi</label>
-                                   <div class="col-sm-10">
-                                        <div class="form-check form-check-inline">
-                                             <input class="form-check-input" type="radio" name="kondisi" id="sesuai"
-                                                  value="Sesuai" required>
-                                             <label class="form-check-label" for="sesuai">Sesuai</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                             <input class="form-check-input" type="radio" name="kondisi"
-                                                  id="tidak_sesuai" value="Tidak Sesuai">
-                                             <label class="form-check-label" for="tidak_sesuai">Tidak Sesuai</label>
+                                   <div class="row mb-3">
+                                        <label class="col-sm-2 col-form-label"
+                                             for="basic-icon-default-email">Kategori</label>
+                                        <div class="col-sm-10">
+                                             <div class="input-group input-group-merge">
+                                                  <span class="input-group-text"><i class="bx bx-car"></i></span>
+                                                  <input type="text" class="form-control" name="kategori"
+                                                       value="Eksterior" readonly />
+                                             </div>
                                         </div>
                                    </div>
-                              </div>
 
-                              <div class="row mb-3">
-                                   <label class="col-sm-2 col-form-label" for="gambar">Gambar</label>
-                                   <div class="col-sm-10">
-                                        <div class="input-group input-group-merge">
-                                             <span class="input-group-text"><i class="bx bx-image"></i></span>
-                                             <input type="file" class="form-control" name="gambar[]" accept="image/*"
-                                                  multiple />
+
+                                   <div class="row mb-3">
+                                        <label class="col-sm-2 col-form-label"
+                                             for="basic-icon-default-company">Kondisi</label>
+                                        <div class="col-sm-10">
+                                             <div class="form-check form-check-inline">
+                                                  <input class="form-check-input" type="radio" name="kondisi"
+                                                       id="sesuai" value="Sesuai" required>
+                                                  <label class="form-check-label" for="sesuai">Sesuai</label>
+                                             </div>
+                                             <div class="form-check form-check-inline">
+                                                  <input class="form-check-input" type="radio" name="kondisi"
+                                                       id="tidak_sesuai" value="Tidak Sesuai">
+                                                  <label class="form-check-label" for="tidak_sesuai">Tidak
+                                                       Sesuai</label>
+                                             </div>
                                         </div>
                                    </div>
-                              </div>
+
+                                   <div class="row mb-3">
+                                        <label class="col-sm-2 col-form-label" for="gambar">Gambar</label>
+                                        <div class="col-sm-10">
+                                             <div class="input-group input-group-merge">
+                                                  <span class="input-group-text"><i class="bx bx-image"></i></span>
+                                                  <input type="file" class="form-control" name="gambar[]"
+                                                       accept="image/*" multiple />
+                                             </div>
+                                        </div>
+                                   </div>
 
 
-                              <div class="row mb-3">
-                                   <label class="col-sm-2 col-form-label"
-                                        for="basic-icon-default-company">Keterangan</label>
-                                   <div class="col-sm-10">
-                                        <div class="input-group input-group-merge">
-                                             <span class="input-group-text"></span>
-                                             <textarea style="height: 100px;" type="text" class="form-control"
-                                                  name="keterangan" required> </textarea>
+                                   <div class="row mb-3">
+                                        <label class="col-sm-2 col-form-label"
+                                             for="basic-icon-default-company">Keterangan</label>
+                                        <div class="col-sm-10">
+                                             <div class="input-group input-group-merge">
+                                                  <span class="input-group-text"></span>
+                                                  <textarea style="height: 100px;" type="text" class="form-control"
+                                                       name="keterangan"> </textarea>
+                                             </div>
                                         </div>
                                    </div>
                               </div>
                          </div>
+                         <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-primary">Save</button>
+                         </div>
                     </div>
-                    <div class="modal-footer">
-                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                         <button type="submit" class="btn btn-primary">Save</button>
-                    </div>
+
                </form>
           </div>
      </div>
