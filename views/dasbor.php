@@ -4,6 +4,7 @@ include('../views/layout/header.php');
 ?>
 
 
+
 <div class="content-wrapper">
      <div class="container-xxl flex-grow-1 container-p-y">
           <h5 class="py-2 mb-2"><span class="text-muted fw-light">App /</span> Dashboard</h5>
@@ -36,10 +37,97 @@ include('../views/layout/header.php');
                          </div>
                     </div>
                </div>
+               <?php 
+                    include '../database/Database.php';
 
+                    $conn = new Database();
+
+                    // Users
+                    $sql = "SELECT COUNT(*) as total FROM users";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    $totalUsers = $row["total"];
+                    
+                    } else {
+                    echo "<p>Tidak ada data!</p>";
+                    }
+               ?>
+
+               <div class="col-lg-4 mb-4 order-0">
+                    <div class="card">
+                         <div class="d-flex align-items-end row">
+                              <div class="col-sm-12">
+                                   <div class="card-body">
+                                        <center>
+                                             <h5 class="card-title" style="color: #31374C;">Jumlah User</h5><br />
+                                             <h5 class="card-title" style="color: #31374C;"><?php echo $totalUsers; ?>
+                                             </h5>
+                                             <p>
+                                                  Data Users
+                                             </p>
+                                        </center>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+
+
+               <?php 
+                    $conn = new Database();
+
+                    // Fitwork
+                    $datafitwork = "SELECT COUNT(*) as total_fitwork FROM fit_work";
+                    $result_fitwork = $conn->query($datafitwork);
+                    if ($result_fitwork->num_rows > 0) {
+                    $row_fit = $result_fitwork->fetch_assoc();
+     
+                    $totalFitwork = $row_fit["total_fitwork"];
+                    } else {
+                         echo "<p>Tidak ada data!</p>";
+                    }
+               ?>
+               <div class="col-lg-4 mb-4 order-0">
+                    <div class="card">
+                         <div class="d-flex align-items-end row">
+                              <div class="col-sm-12">
+                                   <div class="card-body">
+                                        <center>
+                                             <h5 class="card-title" style="color: #31374C;">Jumlah Fitwork</h5><br />
+
+                                             <h5 class="card-title" style="color: #31374C;"><?php echo $totalFitwork; ?>
+                                             </h5>
+                                             <p>
+                                                  Data Fitwork
+                                             </p>
+                                        </center>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+
+               <div class="col-lg-4 mb-4 order-0">
+                    <div class="card">
+                         <div class="d-flex align-items-end row">
+                              <div class="col-sm-12">
+                                   <div class="card-body">
+                                        <center>
+                                             <h5 class="card-title" style="color: #31374C;">Jumlah Rampcheck</h5><br />
+
+                                             <h5 class="card-title" style="color: #31374C;"><?php echo $totalFitwork; ?>
+                                             </h5>
+                                             <p>
+                                                  Data Rampcheck
+                                             </p>
+                                        </center>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
           </div>
-
-
           <!-- <div class="row">
                <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
                     <div class="card h-100">
