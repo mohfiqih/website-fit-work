@@ -28,15 +28,34 @@ if (isset($_SESSION['error_message'])) {
                                         <a href="../views/rampcheck.php">
                                              <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                                   data-bs-target="#editFit">
-                                                  <i class="tf-icons bx bx-arrow-back" title="Back to Data"
-                                                       style="margin-right: 10px;"></i>
+                                                  <i class="tf-icons bx bx-arrow-back" title="Back to Data"></i>
                                              </button>
                                         </a>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                              data-bs-target="#TambahRampcheckEksterior">
                                              <i class="tf-icons bx bx-plus" title="Input Data"
                                                   style="margin-right: 10px;"></i> Add Rampcheck
-                                        </button>
+                                        </button> -->
+
+                                        <div class="btn-group" role="group">
+                                             <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle"
+                                                  data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                  style="background-color: #31374C;color: white;">
+                                                  <i class="tf-icons bx bx-car" title="Print"
+                                                       style="margin-right: 10px;"></i> Add Rampcheck
+                                             </button>
+                                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                  <a class="dropdown-item" data-bs-toggle="modal"
+                                                       data-bs-target="#TambahRampcheckEksterior">
+                                                       <i class="tf-icons bx bx-layer-plus" title="Exterior"
+                                                            style="margin-right: 10px;"></i> Exterior</a>
+                                                  <a class="dropdown-item" data-bs-toggle="modal"
+                                                       data-bs-target="#TambahRampcheckInterior">
+                                                       <i class="tf-icons bx bx-list-plus" title="Interior"
+                                                            style="margin-right: 10px;"></i> Interior</a>
+                                             </div>
+                                        </div>
+
                                         <div class="btn-group" role="group">
                                              <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle"
                                                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -154,6 +173,18 @@ if (isset($_SESSION['error_message'])) {
                                    </ul>
                                    <div class="tab-content">
                                         <!-- EKSTERIOR -->
+                                        <!-- <button type="button" class="btn btn-danger" onclick="deleteAllData()">Delete
+                                             All</button>
+
+                                        <script>
+                                        function deleteAllData() {
+                                             if (confirm('Yakin ingin hapus semua data?')) {
+                                                  window.location.href =
+                                                       '../controllers/RampcheckDelete.php?id=<?= $userData['id_fit'] ?>&&id_ramp=<?= $userData['id_ramp'] ?>';
+                                             }
+                                        }
+                                        </script> -->
+
                                         <div class="tab-pane fade show active" id="navs-justified-home" role="tabpanel">
 
                                              <?php
@@ -167,11 +198,12 @@ if (isset($_SESSION['error_message'])) {
 
                                              ?>
                                              <div class="table-responsive text-nowrap">
-                                                  <table class="table" id="eksterior">
+                                                  <table class="table" id="myTableEksterior">
                                                        <thead>
                                                             <tr>
                                                                  <th width="5px;">No</th>
                                                                  <th>Item Pengecekan</th>
+                                                                 <th width="5px;">Bagian</th>
                                                                  <th width="5px;">Kondisi</th>
                                                                  <th width="5px;">Gambar</th>
                                                                  <th width="5px;">Keterangan</th>
@@ -181,9 +213,13 @@ if (isset($_SESSION['error_message'])) {
                                                        <tbody class="table-border-bottom-0">
                                                             <?php foreach ($hasil as $userData) { ?>
                                                             <tr>
+
                                                                  <td><?= $no++ ?></td>
                                                                  <td>
                                                                       <?= $userData['item'] ?>
+                                                                 </td>
+                                                                 <td>
+                                                                      <?= $userData['bagian'] ?>
                                                                  </td>
                                                                  <td>
                                                                       <span
@@ -251,11 +287,12 @@ if (isset($_SESSION['error_message'])) {
 
                                              ?>
                                                   <div class="table-responsive text-nowrap">
-                                                       <table class="table" id="interior">
+                                                       <table class="table" id="myTableInterior">
                                                             <thead>
                                                                  <tr>
                                                                       <th width="5px;">No</th>
                                                                       <th>Item Pengecekan</th>
+                                                                      <th width="5px;">Bagian</th>
                                                                       <th width="5px;">Kondisi</th>
                                                                       <th width="5px;">Gambar</th>
                                                                       <th width="5px;">Keterangan</th>
@@ -268,6 +305,9 @@ if (isset($_SESSION['error_message'])) {
                                                                       <td><?= $no++ ?></td>
                                                                       <td>
                                                                            <?= $userData['item'] ?>
+                                                                      </td>
+                                                                      <td>
+                                                                           <?= $userData['bagian'] ?>
                                                                       </td>
                                                                       <td>
                                                                            <span
@@ -332,90 +372,203 @@ if (isset($_SESSION['error_message'])) {
 </div>
 
 
-<!-- TAMBAH DATA -->
+<!-- TAMBAH DATA EKSTERIOR -->
 <div class="modal fade" id="TambahRampcheckEksterior" tabindex="-1" aria-labelledby="TambahRampcheckLabel"
      aria-hidden="true">
      <div class="modal-dialog">
-          <div class="modal-content">
+          <div class="modal-content" style="width: 100%;">
                <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                </div>
+
                <form action="../controllers/RampcheckAdd.php?id=<?= $_GET['id'] ?>" method="POST"
                     enctype="multipart/form-data">
-
                     <ul class="nav nav-tabs nav-fill" role="tablist">
                          <li class="nav-item">
                               <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab"
                                    data-bs-target="#input-eksterior" aria-controls="input-eksterior"
                                    aria-selected="true">
-                                   <i class="tf-icons bx bx-book me-1"></i><span class="d-none d-sm-block">
+                                   <i class="tf-icons bx bx-layer-plus me-1"></i><span class="d-none d-sm-block">
                                         Input Eksterior</span>
-
                               </button>
                          </li>
-                         <li class="nav-item">
-                              <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
-                                   data-bs-target="#input-interior" aria-controls="input-interior"
-                                   aria-selected="false">
-                                   <i class="tf-icons bx bx-book me-1"></i><span class="d-none d-sm-block">
-                                        Input Interior</span>
 
-                              </button>
-                         </li>
                     </ul>
+
                     <!-- INPUT EKSTERIOR -->
                     <div class="tab-pane fade show active" id="input-eksterior" role="tabpanel">
                          <input type="text" class="form-control" name="id_fit" value="<?= $_GET['id'] ?>" hidden />
                          <div class="modal-body">
                               <div class="card-body">
-                                   <div class="row mb-3">
-                                        <label class="col-sm-2 col-form-label"
-                                             for="basic-icon-default-company">Item</label>
-                                        <div class="col-sm-10">
-                                             <div class="input-group input-group-merge">
-                                                  <span class="input-group-text"><i class="bx bx-calendar"></i></span>
+                                   <div class="row">
+                                        <div class="col-md-6">
+                                             <div class="row mb-3">
+                                                  <div class="form-check" style="margin-left: 15px;">
+                                                       <label class="col-sm-12 col-form-label">
+                                                            <b>Bagian
+                                                                 Depan</b></label>
+                                                       <!-- <label class="col-sm-12 col-form-label">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                 name="bagian" id="bagian" value="Depan"> <b>Bagian
+                                                                 Depan</b></label> -->
+                                                  </div>
 
-                                                  <select class="form-select" id="exampleFormControlSelect1"
-                                                       aria-label="Default select example" name="item">
-                                                       <option selected>Pilih Item Pengecekan
-                                                       </option>
-                                                       <option style="font-weight: bold;">Bagian Luar
-                                                       </option>
-                                                       <option value="Jumlah Display Berfungsi">1. Jumlah Display
-                                                            Berfungsi
-                                                       </option>
-                                                       <option value="Jumlah Body">2.
-                                                            Jumlah Body
-                                                       </option>
-                                                       <option value="No Darurat">3. No Darurat</option>
-                                                       <option value="Buku, Stiker, dan Plat Uji">4. Buku, Stiker, dan
-                                                            Plat
-                                                            Uji</option>
-                                                       <option value="Lampu Depan">5. Lampu Depan</option>
-                                                       <option value="Lampu Sign">6. Lampu Sign</option>
-                                                       <option value="Lampu Hazard">7. Lampu Hazard</option>
-                                                       <option value="Spion">8. Spion</option>
-                                                       <option value="Kaca Depan">9. Kaca Depan</option>
-                                                       <option value="Wiper">10. Wiper</option>
-                                                       <option value="Kebersihan Body">11. Kebersihan Body</option>
-                                                       <option value="Body Depan">12. Body Depan</option>
+                                                  <div class="col-sm-10">
+                                                       <div class="form-check form-check-inline">
+                                                            <?php
+                                                            $items = array(
+                                                            "Bumper Depan",
+                                                            "Kaca Spion",
+                                                            "Kebersihan Body",
+                                                            "Wiper Berfungsi",
+                                                            "Lampu Depan",
+                                                            "Lampu Sign",
+                                                            "Lampu Hazard",
+                                                            "Buku, Stiker, dan Plat Uji",
+                                                            "Nomor Body Kendaraan",
+                                                            "Body Depan",
+                                                            "Jumlah Lampu"
+                                                            );
+                                                       ?>
 
-                                                       <option style="font-weight: bold;">Bagian Kanan
-                                                       </option>
-                                                       <option value="LED DIsplay">13. LED DIsplay</option>
-                                                       <option value="Kaca Kanan">14. Kaca Kanan</option>
-                                                       <option value="Body Kanan">15. Body Kanan</option>
-                                                       <option value="Ban">16. Ban</option>
-                                                       <option value="Roda/Velg">17. Roda/Velg</option>
-                                                  </select>
+                                                            <?php foreach ($items as $item) : ?>
+                                                            <div class="form-check">
+                                                                 <input class="form-check-input" type="checkbox"
+                                                                      name="item[]"
+                                                                      id="item<?= str_replace(' ', '', $item) ?>"
+                                                                      value="<?= $item ?>">
+                                                                 <label class="form-check-label"
+                                                                      for="item<?= str_replace(' ', '', $item) ?>"><?= $item ?></label>
+                                                            </div>
+                                                            <?php endforeach; ?>
+                                                       </div>
+
+                                                  </div>
                                              </div>
                                         </div>
+                                        <div class="col-md-6">
+                                             <div class="row mb-2">
+                                                  <div class="form-check" style="margin-left: 15px;">
+                                                       <label class="col-sm-12 col-form-label">
+                                                            <b>Bagian
+                                                                 Belakang</b></label>
+                                                       <!-- <label class="col-sm-12 col-form-label">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                 name="bagian" id="bagian" value="Belakang"> <b>Bagian
+                                                                 Belakang</b></label> -->
+                                                  </div>
+                                                  <div class="col-sm-10">
+                                                       <div class="form-check form-check-inline">
+                                                            <?php
+                                                            $items = array(
+                                                            "Lampu Belakang",
+                                                            "Lampu Rem",
+                                                            "Lampu Mundur",
+                                                            "Lampu Sign",
+                                                            "Lampu Hazard",
+                                                            "Body Belakang",
+                                                            "Kaca Belakang",
+                                                            );
+                                                       ?>
+
+                                                            <?php foreach ($items as $item) : ?>
+                                                            <div class="form-check">
+                                                                 <input class="form-check-input" type="checkbox"
+                                                                      name="item[]"
+                                                                      id="item<?= str_replace(' ', '', $item) ?>"
+                                                                      value="<?= $item ?>">
+                                                                 <label class="form-check-label"><?= $item ?></label>
+                                                            </div>
+                                                            <?php endforeach; ?>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                        </div>
+
+                                   </div>
+                                   <hr>
+                                   <div class="row">
+                                        <div class="col-md-6">
+                                             <div class="row mb-12">
+                                                  <div class="form-check" style="margin-left: 15px;">
+                                                       <label class="col-sm-12 col-form-label">
+                                                            <b>Bagian
+                                                                 Kanan</b></label>
+                                                       <!-- <label class="col-sm-12 col-form-label">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                 name="bagian" id="bagian" value="Kanan"> <b>Bagian
+                                                                 Kanan</b></label> -->
+                                                  </div>
+                                                  <div class="col-sm-10">
+                                                       <div class="form-check form-check-inline">
+                                                            <?php
+                                                            $items = array(
+                                                            "Ban",
+                                                            "Roda/Velg",
+                                                            "Body Kanan",
+                                                            "LED Display",
+                                                            "Kaca Kanan",
+                                                            );
+                                                       ?>
+
+                                                            <?php foreach ($items as $item) : ?>
+                                                            <div class="form-check">
+                                                                 <input class="form-check-input" type="checkbox"
+                                                                      name="item[]"
+                                                                      id="item<?= str_replace(' ', '', $item) ?>"
+                                                                      value="<?= $item ?>">
+                                                                 <label class="form-check-label"><?= $item ?></label>
+                                                            </div>
+                                                            <?php endforeach; ?>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                             <div class="row mb-2">
+                                                  <div class="form-check" style="margin-left: 15px;">
+                                                       <label class="col-sm-12 col-form-label">
+                                                            <b>Bagian
+                                                                 Kiri</b></label>
+                                                       <!-- <label class="col-sm-12 col-form-label">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                 name="bagian" id="bagian" value="Kiri" readonly>
+                                                            <b>Bagian
+                                                                 Kiri</b></label> -->
+                                                  </div>
+                                                  <div class="col-sm-10">
+                                                       <div class="form-check form-check-inline">
+                                                            <?php
+                                                            $items = array(
+                                                            "Ban",
+                                                            "Roda/Velg",
+                                                            "Body Kiri",
+                                                            "LED Display",
+                                                            "Kaca Kiri",
+                                                            );
+                                                       ?>
+
+                                                            <?php foreach ($items as $item) : ?>
+                                                            <div class="form-check">
+                                                                 <input class="form-check-input" type="checkbox"
+                                                                      name="item[]"
+                                                                      id="item<?= str_replace(' ', '', $item) ?>"
+                                                                      value="<?= $item ?>">
+                                                                 <label class="form-check-label"><?= $item ?></label>
+                                                            </div>
+                                                            <?php endforeach; ?>
+
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                        <hr>
                                    </div>
 
                                    <div class="row mb-3">
                                         <label class="col-sm-2 col-form-label"
                                              for="basic-icon-default-company">Bagian</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-10" style="margin-top: 5px;">
                                              <div class="form-check form-check-inline">
                                                   <input class="form-check-input" type="radio" name="bagian"
                                                        value="Depan" id="Depan" required>
@@ -441,21 +594,8 @@ if (isset($_SESSION['error_message'])) {
 
                                    <div class="row mb-3">
                                         <label class="col-sm-2 col-form-label"
-                                             for="basic-icon-default-email">Kategori</label>
-                                        <div class="col-sm-10">
-                                             <div class="input-group input-group-merge">
-                                                  <span class="input-group-text"><i class="bx bx-car"></i></span>
-                                                  <input type="text" class="form-control" name="kategori"
-                                                       value="Eksterior" readonly />
-                                             </div>
-                                        </div>
-                                   </div>
-
-
-                                   <div class="row mb-3">
-                                        <label class="col-sm-2 col-form-label"
                                              for="basic-icon-default-company">Kondisi</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-10" style="margin-top: 5px;">
                                              <div class="form-check form-check-inline">
                                                   <input class="form-check-input" type="radio" name="kondisi"
                                                        id="sesuai" value="Sesuai" required>
@@ -471,6 +611,18 @@ if (isset($_SESSION['error_message'])) {
                                    </div>
 
                                    <div class="row mb-3">
+                                        <label class="col-sm-2 col-form-label"
+                                             for="basic-icon-default-email">Kategori</label>
+                                        <div class="col-sm-10">
+                                             <div class="input-group input-group-merge">
+                                                  <span class="input-group-text"><i class="bx bx-car"></i></span>
+                                                  <input type="text" class="form-control" name="kategori"
+                                                       value="Eksterior" readonly />
+                                             </div>
+                                        </div>
+                                   </div>
+
+                                   <div class="row mb-3">
                                         <label class="col-sm-2 col-form-label" for="gambar">Gambar</label>
                                         <div class="col-sm-10">
                                              <div class="input-group input-group-merge">
@@ -480,7 +632,6 @@ if (isset($_SESSION['error_message'])) {
                                              </div>
                                         </div>
                                    </div>
-
 
                                    <div class="row mb-3">
                                         <label class="col-sm-2 col-form-label"
@@ -501,13 +652,204 @@ if (isset($_SESSION['error_message'])) {
                          </div>
                     </div>
 
+
+
+               </form>
+          </div>
+     </div>
+</div>
+
+<!-- TAMBAH DATA INTERIOR -->
+<div class="modal fade" id="TambahRampcheckInterior" tabindex="-1" aria-labelledby="TambahRampcheckLabel"
+     aria-hidden="true">
+     <div class="modal-dialog">
+          <div class="modal-content" style="width: 100%;">
+               <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               </div>
+
+               <form action="../controllers/RampcheckAdd.php?id=<?= $_GET['id'] ?>" method="POST"
+                    enctype="multipart/form-data">
+                    <ul class="nav nav-tabs nav-fill" role="tablist">
+                         <li class="nav-item">
+                              <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab"
+                                   data-bs-target="#input-interior" aria-controls="input-interior" aria-selected="true">
+                                   <i class="tf-icons bx bx-list-plus me-1"></i><span class="d-none d-sm-block">
+                                        Input Interior</span>
+                              </button>
+                         </li>
+                    </ul>
+
+                    <!-- INPUT INTERIOR -->
+                    <div class="tab-pane fade show active" id="input-interior" role="tabpanel">
+                         <input type="text" class="form-control" name="id_fit" value="<?= $_GET['id'] ?>" hidden />
+                         <div class="modal-body">
+                              <div class="card-body">
+                                   <div class="row">
+                                        <div class="col-md-6">
+                                             <div class="row mb-3">
+                                                  <div class="form-check" style="margin-left: 15px;">
+                                                       <label class="col-sm-12 col-form-label">
+                                                            <b>Bagian
+                                                                 Dalam</b></label>
+                                                  </div>
+
+                                                  <div class="col-sm-10">
+                                                       <div class="form-check form-check-inline">
+                                                            <?php
+                                                            $items = array(
+                                                            "Tanda Pengenal Pengemudi",
+                                                            "Dokumen Perjalanan (SIM, STNK, KIR, Kartu Pengawasan Pengemudi, Kartu Flazz)",
+                                                            "Indikator Lampu Peringatan",
+                                                            "Rem Kaki",
+                                                            "Rem Tangan",
+                                                            "Indikator RPM Speedometer",
+                                                            "Indikator Odometer",
+                                                            "Kemudi Klakson",
+                                                            "Voice Announcer",
+                                                            "Lampu Darurat Pengemudi",
+                                                            );
+                                                       ?>
+
+                                                            <?php foreach ($items as $item) : ?>
+                                                            <div class="form-check">
+                                                                 <input class="form-check-input" type="checkbox"
+                                                                      name="item[]"
+                                                                      id="item<?= str_replace(' ', '', $item) ?>"
+                                                                      value="<?= $item ?>">
+                                                                 <label class="form-check-label"
+                                                                      for="item<?= str_replace(' ', '', $item) ?>"><?= $item ?></label>
+                                                            </div>
+                                                            <?php endforeach; ?>
+                                                       </div>
+
+                                                  </div>
+                                             </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                             <div class="row mb-2">
+                                                  <div class="form-check" style="margin-left: 15px;">
+                                                       <label class="col-sm-12 col-form-label">
+                                                            <b>Bagian
+                                                                 Dalam</b></label>
+                                                  </div>
+                                                  <div class="col-sm-10">
+                                                       <div class="form-check form-check-inline">
+                                                            <?php
+                                                            $items = array(
+                                                            "CCTV Berfungsi",
+                                                            "Lampu Senter",
+                                                            "GPS",
+                                                            "Air Conditioner (AC)",
+                                                            "Kotak P3K",
+                                                            "APAR",
+                                                            "Lampu Penerangan Dalam",
+                                                            "SOP Pengoprasian Kendaraan",
+                                                            "SOP Penanganan Keadaan Darurat",
+                                                            "Kursi Prioritas",
+                                                            "Palu Pemecah Kaca",
+                                                            "Tombol STOP",
+                                                            );
+                                                       ?>
+
+                                                            <?php foreach ($items as $item) : ?>
+                                                            <div class="form-check">
+                                                                 <input class="form-check-input" type="checkbox"
+                                                                      name="item[]"
+                                                                      id="item<?= str_replace(' ', '', $item) ?>"
+                                                                      value="<?= $item ?>">
+                                                                 <label class="form-check-label"><?= $item ?></label>
+                                                            </div>
+                                                            <?php endforeach; ?>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                        </div>
+
+                                   </div>
+                                   <hr>
+
+                                   <div class="row mb-3">
+                                        <label class="col-sm-2 col-form-label"
+                                             for="basic-icon-default-company">Bagian</label>
+                                        <div class="col-sm-10" style="margin-top: 5px;">
+                                             <div class="form-check form-check-inline">
+                                                  <input class="form-check-input" type="radio" name="bagian"
+                                                       value="Interior" id="Interior" required>
+                                                  <label class="form-check-label" for="Interior">Interior</label>
+                                             </div>
+                                        </div>
+                                   </div>
+
+                                   <div class="row mb-3">
+                                        <label class="col-sm-2 col-form-label"
+                                             for="basic-icon-default-company">Kondisi</label>
+                                        <div class="col-sm-10" style="margin-top: 5px;">
+                                             <div class="form-check form-check-inline">
+                                                  <input class="form-check-input" type="radio" name="kondisi"
+                                                       id="sesuai" value="Sesuai" required>
+                                                  <label class="form-check-label" for="sesuai">Sesuai</label>
+                                             </div>
+                                             <div class="form-check form-check-inline">
+                                                  <input class="form-check-input" type="radio" name="kondisi"
+                                                       id="tidak_sesuai" value="Tidak Sesuai">
+                                                  <label class="form-check-label" for="tidak_sesuai">Tidak
+                                                       Sesuai</label>
+                                             </div>
+                                        </div>
+                                   </div>
+
+                                   <div class="row mb-3">
+                                        <label class="col-sm-2 col-form-label"
+                                             for="basic-icon-default-email">Kategori</label>
+                                        <div class="col-sm-10">
+                                             <div class="input-group input-group-merge">
+                                                  <span class="input-group-text"><i class="bx bx-car"></i></span>
+                                                  <input type="text" class="form-control" name="kategori"
+                                                       value="Interior" readonly />
+                                             </div>
+                                        </div>
+                                   </div>
+
+                                   <div class="row mb-3">
+                                        <label class="col-sm-2 col-form-label" for="gambar">Gambar</label>
+                                        <div class="col-sm-10">
+                                             <div class="input-group input-group-merge">
+                                                  <span class="input-group-text"><i class="bx bx-image"></i></span>
+                                                  <input type="file" class="form-control" name="gambar[]"
+                                                       accept="image/*" multiple />
+                                             </div>
+                                        </div>
+                                   </div>
+
+                                   <div class="row mb-3">
+                                        <label class="col-sm-2 col-form-label"
+                                             for="basic-icon-default-company">Keterangan</label>
+                                        <div class="col-sm-10">
+                                             <div class="input-group input-group-merge">
+                                                  <span class="input-group-text"></span>
+                                                  <textarea style="height: 100px;" type="text" class="form-control"
+                                                       name="keterangan"> </textarea>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                         <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-primary">Save</button>
+                         </div>
+                    </div>
+
+
+
                </form>
           </div>
      </div>
 </div>
 
 <!-- LIHAT GAMBAR -->
-<div class="modal fade" id="lihatGambarModal" tabindex="-1" aria-labelledby="lihatGambarModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="lihatGambarModal" tabindex="-1" aria-labelledby="lihatGambarModalLabel" aria-hidden="true">
      <div class="modal-dialog modal-lg">
           <div class="modal-content">
                <div class="modal-header">
@@ -515,7 +857,7 @@ if (isset($_SESSION['error_message'])) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                </div>
                <div class="modal-body">
-                    <!-- <img id="gambarModal" src="" alt="Gambar Rampcheck" class="img-fluid"> -->
+                    <img id="gambarModal" src="" alt="Gambar Rampcheck" class="img-fluid">
                     <?php if (!empty($userData['gambar'])): ?>
                     <center>
                          <img src="../uploads/<?= $userData['kategori'] ?>/<?= $userData['gambar'] ?>"
@@ -531,29 +873,56 @@ if (isset($_SESSION['error_message'])) {
                </div>
           </div>
      </div>
-</div>
+</div> -->
 
+<!-- Check All -->
+<!-- <script>
+document.addEventListener('DOMContentLoaded', function() {
+     const selectAllCheckbox = document.getElementById('selectAllItems');
+     const itemCheckboxes = document.querySelectorAll('input[name="item[]"]');
 
+     selectAllCheckbox.addEventListener('change', function() {
+          itemCheckboxes.forEach(function(checkbox) {
+               checkbox.checked = selectAllCheckbox.checked;
+          });
+     });
+
+     itemCheckboxes.forEach(function(checkbox) {
+          checkbox.addEventListener('change', function() {
+               selectAllCheckbox.checked = itemCheckboxes.length === document
+                    .querySelectorAll('input[name="item[]"]:checked').length;
+          });
+     });
+
+     // Modifikasi untuk memeriksa apakah kategori "Depan" dicentang
+     const kategoriDepanCheckbox = document.getElementById('kategoriDepan');
+     kategoriDepanCheckbox.addEventListener('change', function() {
+          if (kategoriDepanCheckbox.checked) {
+               itemCheckboxes.forEach(function(checkbox) {
+                    // Hanya tandai checkbox jika termasuk kategori "Depan"
+                    if (checkbox.value.includes('Depan')) {
+                         checkbox.checked = true;
+                    }
+               });
+          } else {
+               itemCheckboxes.forEach(function(checkbox) {
+                    // Hanya hapus tanda checkbox jika termasuk kategori "Depan"
+                    if (checkbox.value.includes('Depan')) {
+                         checkbox.checked = false;
+                    }
+               });
+          }
+     });
+});
+</script> -->
 
 
 <script>
-$(document).ready(function() {
-     $('#interior').DataTable({
-          info: false,
-          ordering: true,
-          paging: false
-     });
-});
+let table_eksterior = new DataTable('#myTableEksterior');
 </script>
 
 <script>
-$(document).ready(function() {
-     $('#eksterior').DataTable({
-          info: false,
-          ordering: true,
-          paging: false
-     });
-});
+let table_interior = new DataTable('#myTableInterior');
 </script>
 
 

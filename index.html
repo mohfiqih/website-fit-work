@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pagination Example</title>
+    <!-- Sertakan jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- Sertakan CSS jika diperlukan -->
+    <style>
+      .pagination {
+        display: flex;
+        list-style: none;
+        padding: 0;
+      }
+      .pagination li {
+        margin: 0 5px;
+        cursor: pointer;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        background-color: #f2f2f2;
+      }
+      .pagination li.active {
+        background-color: #4caf50;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Tempatkan kontenmu di sini -->
+    <div id="content">
+      <!-- Konten pagination akan muncul di sini -->
+    </div>
+
+    <!-- Pagination container -->
+    <ul class="pagination" id="pagination"></ul>
+
+    <!-- Sertakan skrip jQuery untuk pagination -->
+    <script>
+      // Data contoh (gantilah ini dengan data sesungguhnya)
+      var totalItems = 100; // Jumlah total item
+      var itemsPerPage = 10; // Jumlah item per halaman
+      var currentPage = 1; // Halaman saat ini
+
+      // Fungsi untuk membuat tautan pagination
+      function generatePagination() {
+        var totalPages = Math.ceil(totalItems / itemsPerPage);
+        var paginationHtml = "";
+
+        for (var i = 1; i <= totalPages; i++) {
+          paginationHtml +=
+            '<li class="' +
+            (i === currentPage ? "active" : "") +
+            '" data-page="' +
+            i +
+            '"><a>' +
+            i +
+            "</a></li>";
+        }
+
+        $("#pagination").html(paginationHtml);
+      }
+
+      // Fungsi untuk menampilkan data pada halaman tertentu
+      function showData(page) {
+        // Gantilah ini dengan logika pengambilan data sesungguhnya
+        var start = (page - 1) * itemsPerPage;
+        var end = start + itemsPerPage;
+        var dataToShow =
+          "Data halaman " + page + ": " + start + " to " + (end - 1);
+
+        // Tampilkan data di dalam elemen dengan ID 'content'
+        $("#content").html(dataToShow);
+      }
+
+      // Tampilkan halaman pertama saat halaman dimuat
+      showData(currentPage);
+      generatePagination();
+
+      // Tampilkan data ketika tautan pagination diklik
+      $(document).on("click", "#pagination li", function () {
+        currentPage = parseInt($(this).data("page"));
+        showData(currentPage);
+        generatePagination();
+      });
+    </script>
+  </body>
+</html>

@@ -43,7 +43,7 @@ include('../views/layout/header.php');
                                              <div class="input-group input-group-merge">
                                                   <span class="input-group-text"><i class="bx bx-book"></i></span>
                                                   <input type="text" class="form-control" name="item"
-                                                       value="<?= $userData['item'] ?>" />
+                                                       value="<?= $userData['item'] ?>" readonly />
                                              </div>
                                         </div>
                                    </div>

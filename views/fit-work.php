@@ -44,7 +44,7 @@ if (isset($_SESSION['success_add_user'])) {
                               </div>
                          </div>
                     </div>
-                    <div class="card">
+                    <div class="card" style="padding: 20px;">
                          <div class="col-xl-6" style="margin-left: 20px;">
                               <div class="mt-3">
                                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
@@ -71,22 +71,23 @@ if (isset($_SESSION['success_add_user'])) {
                                    </div>
                               </div>
                          </div>
-                         <div class="table-responsive text-nowrap">
-                              <table class="table" id="example" style="padding: 20px;">
-                                   <thead>
-                                        <tr>
-                                             <th>No</th>
-                                             <th>Hari</th>
-                                             <th>Tanggal</th>
-                                             <th>No Body</th>
-                                             <th>Pramudi</th>
-                                             <th>No Induk</th>
-                                             <th>Masuk</th>
-                                             <th>Keluar</th>
-                                             <th>Actions</th>
-                                        </tr>
-                                   </thead>
-                                   <?php
+                         <div class="card">
+                              <div class="table-responsive text-nowrap">
+                                   <table class="table" id="TableFitwork">
+                                        <thead>
+                                             <tr>
+                                                  <th>No</th>
+                                                  <th>Hari</th>
+                                                  <th>Tanggal</th>
+                                                  <th>No Body</th>
+                                                  <th>Pramudi</th>
+                                                  <th>No Induk</th>
+                                                  <th>Masuk</th>
+                                                  <th>Keluar</th>
+                                                  <th>Actions</th>
+                                             </tr>
+                                        </thead>
+                                        <?php
                                         include '../controllers/Fitwork.php';
                                                   
                                         $connection = new User();
@@ -95,38 +96,38 @@ if (isset($_SESSION['success_add_user'])) {
                                         $no = 1;
 
                                    ?>
-                                   <tbody class="table-border-bottom-0">
-                                        <?php foreach ($hasil as $userData) { ?>
-                                        <tr>
-                                             <td>
-                                                  <?php echo $no++; ?>
-                                             </td>
-                                             <td>
-                                                  <?= $userData['hari'] ?>
-                                             </td>
-                                             <td>
-                                                  <?= $userData['tanggal'] ?>
-                                             </td>
-                                             <td>
-                                                  <?= $userData['no_body'] ?>
-                                             </td>
-                                             <td>
-                                                  <?= $userData['pramudi'] ?>
-                                             </td>
-                                             <td>
-                                                  <?= $userData['no_induk'] ?>
-                                             </td>
-                                             <td>
-                                                  <?= $userData['jam_masuk'] ?>
-                                             </td>
-                                             <td>
-                                                  <?= $userData['jam_keluar'] ?>
-                                             </td>
-                                             <td>
-                                                  <div class="dropdown">
-                                                       <div class="col-md-6 col-lg-4">
-                                                            <div>
-                                                                 <!-- <a
+                                        <tbody class="table-border-bottom-0">
+                                             <?php foreach ($hasil as $userData) { ?>
+                                             <tr>
+                                                  <td>
+                                                       <?php echo $no++; ?>
+                                                  </td>
+                                                  <td>
+                                                       <?= $userData['hari'] ?>
+                                                  </td>
+                                                  <td>
+                                                       <?= $userData['tanggal'] ?>
+                                                  </td>
+                                                  <td>
+                                                       <?= $userData['no_body'] ?>
+                                                  </td>
+                                                  <td>
+                                                       <?= $userData['pramudi'] ?>
+                                                  </td>
+                                                  <td>
+                                                       <?= $userData['no_induk'] ?>
+                                                  </td>
+                                                  <td>
+                                                       <?= $userData['jam_masuk'] ?>
+                                                  </td>
+                                                  <td>
+                                                       <?= $userData['jam_keluar'] ?>
+                                                  </td>
+                                                  <td>
+                                                       <div class="dropdown">
+                                                            <div class="col-md-6 col-lg-4">
+                                                                 <div>
+                                                                      <!-- <a
                                                                       href="../views/rampcheck-add.php?id=<?= $userData['id'] ?>">
                                                                       <button type="button"
                                                                            class="btn btn-icon btn-primary"
@@ -135,22 +136,23 @@ if (isset($_SESSION['success_add_user'])) {
                                                                                 title="Detail"></span>
                                                                       </button>
                                                                  </a> -->
-                                                                 <a
-                                                                      href="../views/fit-work-detail.php?id=<?= $userData['id'] ?>">
+                                                                      <a
+                                                                           href="../views/fit-work-detail.php?id=<?= $userData['id'] ?>">
+                                                                           <button type="button"
+                                                                                class="btn btn-icon btn-warning"
+                                                                                style="height: 30px;">
+                                                                                <span class="tf-icons bx bx-pencil"
+                                                                                     title="Edit"></span>
+                                                                           </button>
+                                                                      </a>
                                                                       <button type="button"
-                                                                           class="btn btn-icon btn-warning"
-                                                                           style="height: 30px;">
-                                                                           <span class="tf-icons bx bx-pencil"
-                                                                                title="Edit"></span>
+                                                                           class="btn btn-icon btn-danger"
+                                                                           style="height: 30px;"
+                                                                           onclick="if (confirm('Yakin ingin hapus data?')) window.location.href='../controllers/FitworkDelete.php?id=<?= $userData['id'] ?>';">
+                                                                           <span class="tf-icons bx bx-trash"
+                                                                                title="Hapus"></span>
                                                                       </button>
-                                                                 </a>
-                                                                 <button type="button" class="btn btn-icon btn-danger"
-                                                                      style="height: 30px;"
-                                                                      onclick="if (confirm('Yakin ingin hapus data?')) window.location.href='../controllers/FitworkDelete.php?id=<?= $userData['id'] ?>';">
-                                                                      <span class="tf-icons bx bx-trash"
-                                                                           title="Hapus"></span>
-                                                                 </button>
-                                                                 <!-- <a
+                                                                      <!-- <a
                                                                       href="../views/fit-work-print.php?id=<?= $userData['id'] ?>">
                                                                       <button type="button"
                                                                            class="btn btn-icon btn-success"
@@ -161,45 +163,46 @@ if (isset($_SESSION['success_add_user'])) {
                                                                  </a> -->
 
 
-                                                            </div>
-                                                            <div style="margin-top: 10px;">
-                                                                 <div class="btn-group" role="group">
-                                                                      <button id="btnGroupDrop1" type="button"
-                                                                           class="btn dropdown-toggle"
-                                                                           data-bs-toggle="dropdown"
-                                                                           aria-haspopup="true" aria-expanded="false"
-                                                                           style="background-color: #31374C;color: white;">
-                                                                           <i class="tf-icons bx bx-printer"
-                                                                                title="Print"
-                                                                                style="margin-right: 10px;"></i>
-                                                                      </button>
-                                                                      <div class="dropdown-menu"
-                                                                           aria-labelledby="btnGroupDrop1">
-                                                                           <a class="dropdown-item"
-                                                                                href="../views/PDF-fit-work.php?id=<?= $userData['id'] ?>">
-                                                                                <i class="tf-icons bx bx-book"
-                                                                                     title="Print"
-                                                                                     style="margin-right: 10px;"></i>
-                                                                                PDF</a>
-                                                                           <a class="dropdown-item"
-                                                                                href="../views/EXCEL-fit-rampcheck.php?id=<?= $userData['id'] ?>">
+                                                                 </div>
+                                                                 <div style="margin-top: 10px;">
+                                                                      <div class="btn-group" role="group">
+                                                                           <button id="btnGroupDrop1" type="button"
+                                                                                class="btn dropdown-toggle"
+                                                                                data-bs-toggle="dropdown"
+                                                                                aria-haspopup="true"
+                                                                                aria-expanded="false"
+                                                                                style="background-color: #31374C;color: white;">
                                                                                 <i class="tf-icons bx bx-printer"
                                                                                      title="Print"
                                                                                      style="margin-right: 10px;"></i>
-                                                                                Excel</a>
+                                                                           </button>
+                                                                           <div class="dropdown-menu"
+                                                                                aria-labelledby="btnGroupDrop1">
+                                                                                <a class="dropdown-item"
+                                                                                     href="../views/PDF-fit-work.php?id=<?= $userData['id'] ?>">
+                                                                                     <i class="tf-icons bx bx-book"
+                                                                                          title="Print"
+                                                                                          style="margin-right: 10px;"></i>
+                                                                                     PDF</a>
+                                                                                <a class="dropdown-item"
+                                                                                     href="../views/EXCEL-fit-rampcheck.php?id=<?= $userData['id'] ?>">
+                                                                                     <i class="tf-icons bx bx-printer"
+                                                                                          title="Print"
+                                                                                          style="margin-right: 10px;"></i>
+                                                                                     Excel</a>
+                                                                           </div>
                                                                       </div>
                                                                  </div>
                                                             </div>
                                                        </div>
-                                                  </div>
-                                             </td>
-                                        </tr>
-                                        <?php } ?>
-                                   </tbody>
-                              </table>
+                                                  </td>
+                                             </tr>
+                                             <?php } ?>
+                                        </tbody>
+                                   </table>
+                              </div>
                          </div>
                     </div>
-
                </div>
           </div>
      </div>
@@ -542,13 +545,7 @@ if (isset($_SESSION['success_add_user'])) {
 </div>
 
 <script>
-$(document).ready(function() {
-     $('#example').DataTable({
-          info: false,
-          ordering: true,
-          paging: false
-     });
-});
+let table_fitwork = new DataTable('#TableFitwork');
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>

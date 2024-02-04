@@ -10,17 +10,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $status = $_POST['status'];
     $password = $_POST['password'];
+
+    if (strlen($username) < 8) {
+        $_SESSION['error_message'] = "Username minimal 8 karakter!";
+        header("Location: ../views/user-data.php");
+        exit();
+    }
+
     $hashedPassword = md5($password);
 
-    
     $sql = "INSERT INTO users (full_name, username, email, status, password, timestamp) 
             VALUES ('$full_name', '$username', '$email', '$status', '$hashedPassword', NOW())";
 
-     if ($connection->getConnection()->query($sql) === TRUE) {
-          $_SESSION['success_add_user'] = "Data user berhasil ditambahkan!";
-          header("Location: ../views/user-data.php");
-     } else {
-          $_SESSION['error_message'] = "Error: " . $sql . "<br>" . $connection->error;
-     }
+    if ($connection->getConnection()->query($sql) === TRUE) {
+        $_SESSION['success_add_user'] = "Data user berhasil ditambahkan!";
+        header("Location: ../views/user-data.php");
+    } else {
+        $_SESSION['error_message'] = "Error: " . $sql . "<br>" . $connection->error;
+        header("Location: ../views/user-data.php");
+    }
 }
 ?>

@@ -12,7 +12,7 @@ class Rampcheck {
 
     public function getRampcheckEksterior() {
         $id_fit = $_GET['id'];
-        $query = "SELECT id_ramp, id_fit, kategori, item, kondisi, gambar, keterangan
+        $query = "SELECT id_ramp, id_fit, kategori, bagian, item, kondisi, gambar, keterangan
                   FROM rampcheck2
                   WHERE id_fit = $id_fit AND kategori = 'Eksterior'";
                
@@ -27,7 +27,7 @@ class Rampcheck {
 
     public function getRampcheckInterior() {
         $id_fit = $_GET['id'];
-        $query = "SELECT id_ramp, id_fit, kategori, item, kondisi, gambar, keterangan
+        $query = "SELECT id_ramp, id_fit, kategori, bagian, item, kondisi, gambar, keterangan
                   FROM rampcheck2
                   WHERE id_fit = $id_fit AND kategori = 'Interior'";
                

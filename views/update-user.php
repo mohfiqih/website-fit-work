@@ -87,8 +87,6 @@ if (isset($_SESSION['success_add_user'])) {
                                              </div>
                                         </div>
 
-
-
                                    </div>
                               </div>
 
@@ -97,9 +95,14 @@ if (isset($_SESSION['success_add_user'])) {
                                         <button type="button" class="btn btn-secondary"
                                              data-bs-dismiss="modal">Back</button>
                                    </a>
+                                   <button style="margin-left: 10px;" type="button" class="btn btn-primary"
+                                        data-bs-toggle="modal" data-bs-target="#staticBackdrop">Update
+                                        Password</button>
                                    <button style="margin-left: 10px;" type="submit"
-                                        class="btn btn-primary">Save</button>
+                                        class="btn btn-primary">Simpan</button>
                               </div>
+
+
                          </form>
                          <?php
                                    } else {
@@ -117,6 +120,110 @@ if (isset($_SESSION['success_add_user'])) {
           </div>
      </div>
 </div>
+
+
+
+<?php
+     $connection = new Database();
+
+     if (isset($_GET['id'])) {
+     $id = $_GET['id'];
+     $result = $connection->query("SELECT * FROM users WHERE id=$id");
+
+     if ($result) {
+          if ($result->num_rows > 0) {
+               $userData = $result->fetch_assoc(); ?>
+
+<!-- Update Password -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+     <div class="modal-dialog">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Update Password</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               </div>
+               <div class="modal-body">
+                    <form action="../controllers/UpdatePasswordUser.php?id=<?= $userData['id']; ?>" method="POST">
+                         <div class="card-body">
+
+                              <input type="hidden" name="id" value="<?= $userData['id']; ?>">
+
+                              <input type="text" class="form-control" name="full_name"
+                                   value="<?= $userData['full_name'] ?>" hidden />
+
+                              <input type="text" class="form-control" name="username"
+                                   value="<?= $userData['username'] ?>" hidden />
+
+                              <input type="text" class="form-control" name="email" value="<?= $userData['email'] ?>"
+                                   hidden />
+
+                              <div class="row mb-3">
+                                   <label class="col-sm-3 col-form-label" for="basic-icon-default-company">Password
+                                        Lama</label>
+                                   <div class="col-sm-9">
+                                        <div class="input-group input-group-merge">
+                                             <span id="basic-icon-default-company2" class="input-group-text"><i
+                                                       class="bx bx-buildings"></i></span>
+                                             <input type="text" class="form-control"
+                                                  value="<?= $userData['password'] ?>" readonly />
+                                        </div>
+                                   </div>
+                              </div>
+                              <div class="row mb-3">
+                                   <label class="col-sm-3 col-form-label" for="basic-icon-default-company">Password
+                                        Baru</label>
+                                   <div class="col-sm-9">
+                                        <div class="input-group input-group-merge">
+                                             <span id="basic-icon-default-company2" class="input-group-text"><i
+                                                       class="bx bx-key"></i></span>
+                                             <input type="password" class="form-control" name="password"
+                                                  placeholder="Masukan Password Baru" id="password" required />
+                                             <span id="basic-icon-default-company2" class="input-group-text"><small
+                                                       class="text-muted float-end">Lihat
+                                                       Password</small>
+                                                  <input style="margin-left: 10px;" type="checkbox" id="showPassword" />
+                                             </span>
+                                        </div>
+                                   </div>
+                              </div>
+
+                         </div>
+                         <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                              <button type="submit" class="btn btn-primary">Update</button>
+                         </div>
+
+                    </form>
+
+               </div>
+          </div>
+     </div>
+</div>
+<?php
+     } else {
+          echo "Data tidak ditemukan.";
+     }
+     } else {
+          echo die("Error: " . $connection->getError());
+     }
+     } else {
+     echo "ID tidak diterima.";
+     }
+?>
+
+
+<script>
+document.getElementById("showPassword").addEventListener("change", function() {
+     var passwordInput = document.getElementById("password");
+     if (this.checked) {
+          passwordInput.type = "text";
+     } else {
+          passwordInput.type = "password";
+     }
+});
+</script>
+
 
 <?php
 include('../views/layout/footer.php');

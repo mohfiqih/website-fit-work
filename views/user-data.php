@@ -4,10 +4,19 @@ include('../views/layout/header.php');
 if (isset($_SESSION['success_add_user'])) {
      echo '<script>alert("' . $_SESSION['success_add_user'] . '");</script>';
      unset($_SESSION['success_add_user']);
+} 
+
+if (isset($_SESSION['error_message'])) {
+     echo '<script>alert("' . $_SESSION['error_message'] . '");</script>';
+     unset($_SESSION['error_message']);
+}
+
+if (isset($_SESSION['success_password'])) {
+     echo '<script>alert("' . $_SESSION['success_password'] . '");</script>';
+     unset($_SESSION['success_password']);
 }
 
 ?>
-
 
 <div class="content-wrapper">
      <div class="row">
@@ -50,7 +59,7 @@ if (isset($_SESSION['success_add_user'])) {
                                                   $no = 1;
 
                                    ?>
-                    <div class="card">
+                    <div class="card" style="padding: 20px;">
                          <div class="col-xl-6" style="margin-left: 20px;">
                               <div class="mt-3">
                                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
@@ -78,8 +87,10 @@ if (isset($_SESSION['success_add_user'])) {
                                    </div>
                               </div>
                          </div>
+
+
                          <div class="table-responsive text-nowrap" style="width:100%">
-                              <table class="table" id="example" style="padding: 20px;">
+                              <table class="table" id="TableUser" style="padding: 20px;">
                                    <thead>
                                         <tr>
                                              <th>No</th>
@@ -234,20 +245,8 @@ if (isset($_SESSION['success_add_user'])) {
      </div>
 </div>
 
-<!-- <script>
-$(document).ready(function() {
-     $('#example').DataTable();
-});
-</script> -->
-
 <script>
-$(document).ready(function() {
-     $('#example').DataTable({
-          info: false,
-          ordering: true,
-          paging: false
-     });
-});
+let table_fitwork = new DataTable('#TableUser');
 </script>
 
 

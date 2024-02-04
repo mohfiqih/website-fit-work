@@ -59,12 +59,62 @@ if (isset($_POST['logout'])) {
      <script src="https://cdn.datatables.net/1.13.7/js/dataTables.semanticui.min.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.2/semantic.min.js"></script>
 </head>
+
 <style>
 #example_wrapper {
      margin-right: 20px;
      margin-left: 20px;
 }
+
+.dataTables_wrapper {
+     padding: 10px;
+}
+
+.dataTables_paginate {
+     float: left;
+     /* Mengubah float menjadi left */
+     margin-top: 10px;
+}
+
+.paginate_button {
+     /* display: inline-block; */
+     padding: 5px 10px;
+     margin: 0 5px;
+     border: 1px solid #ddd;
+     background-color: #ffffff;
+     cursor: pointer;
+     border-radius: 10px;
+     margin-bottom: 20px;
+}
+
+.paginate_button.current {
+     background-color: #4CAF50;
+     color: white;
+     border: 1px solid #4CAF50;
+}
+
+.dataTables_length {
+     margin-top: 10px;
+}
+
+.dataTables_filter input {
+     padding: 5px;
+     width: 150px;
+}
+
+.dataTables_info {
+     margin-top: 10px;
+}
+
+.dataTables_length {
+     display: none;
+}
+
+.dataTables_info {
+     display: none;
+}
 </style>
+
 
 <body>
      <div class="preloader-container">
@@ -99,16 +149,12 @@ if (isset($_POST['logout'])) {
                          <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
 
                               <ul class="navbar-nav flex-row align-items-center ms-auto">
-                                   <!-- <span class="fw-medium d-block" style="margin-right: 5px;"> <i
-                                             class="menu-icon tf-icons bx bx-bell"></i></span>
-                                   <span class="fw-medium d-block" style="margin-right: 10px;"><i
-                                             class="bx bx-search fs-4 lh-0"></i></span> -->
 
                                    <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
                                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span class="fw-medium d-block">
                                              <button class="btn btn-sm avatar avatar-online"
-                                                  style="border-radius: 50px;height: 35px;min-width: 100px;background-color: #31374C;color: white;">
+                                                  style="border-radius: 50px;height: 35px;width: 120px;background-color: #31374C;color: white;">
                                                   <?php echo $_SESSION['username']; ?> <i class="tf-icons bx bx-user"
                                                        title="Username" style="margin-left: 10px;"></i>
                                              </button></span>

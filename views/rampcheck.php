@@ -40,9 +40,9 @@ if (isset($_SESSION['success_add_user'])) {
                               </div>
                          </div>
                     </div>
-                    <div class="card">
+                    <div class="card" style="padding: 20px;">
                          <div class="table-responsive text-nowrap">
-                              <table class="table" id="example" style="padding: 20px;">
+                              <table class="table" id="TableRampcheck" style="padding: 20px;">
                                    <thead>
                                         <tr>
                                              <th>No</th>
@@ -128,13 +128,7 @@ if (isset($_SESSION['success_add_user'])) {
 </div>
 
 <script>
-$(document).ready(function() {
-     $('#example').DataTable({
-          info: false,
-          ordering: true,
-          paging: false
-     });
-});
+let table_fitwork = new DataTable('#TableRampcheck');
 </script>
 
 
