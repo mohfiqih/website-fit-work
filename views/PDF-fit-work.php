@@ -94,7 +94,7 @@
 </head>
 
 <body onload="window.print()">
-     <div class="container" style="padding-top: 10px;">
+     <div class="container" style="padding-top: 50px;">
           <?php
           include '../database/Database.php';
 
@@ -272,7 +272,7 @@
                <div style="margin-top: 50px;margin-left: 30px;">
                     <table>
                          <tr>
-                              <td style="margin-bottom: 50px;"><b>CATATAN:</b></td>
+                              <td style="margin-bottom: 50px;text-decoration: underline;"><b>CATATAN:</b></td>
                          </tr>
                          <tr style="padding-top: 30px;">
                               <td>-</td>

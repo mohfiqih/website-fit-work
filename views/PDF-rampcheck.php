@@ -94,7 +94,7 @@
 </head>
 
 <body onload="window.print()">
-     <div class="container" style="padding-top: 10px;">
+     <div class="container" style="padding-top: 50px;">
           <?php
           include '../database/Database.php';
 
