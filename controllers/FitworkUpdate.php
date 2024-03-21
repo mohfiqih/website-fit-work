@@ -9,6 +9,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'hari'           => $_POST['hari'],
         'tanggal'        => $_POST['tanggal'],
         'no_body'        => $_POST['no_body'],
+
+        'no_polisi'      => $_POST['no_polisi'],
+        'lokasi_start'   => $_POST['lokasi_start'],
+        'koridor'        => $_POST['koridor'],
+        'shift'          => $_POST['shift'],
+
         'pramudi'        => $_POST['pramudi'],
         'depo'           => $_POST['depo'],
         'no_induk'       => $_POST['no_induk'],

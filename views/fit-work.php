@@ -139,7 +139,7 @@ if (isset($_SESSION['success_add_user'])) {
                                                                       <a
                                                                            href="../views/fit-work-detail.php?id=<?= $userData['id'] ?>">
                                                                            <button type="button"
-                                                                                class="btn btn-icon btn-warning"
+                                                                                class="btn btn-icon btn-success"
                                                                                 style="height: 30px;">
                                                                                 <span class="tf-icons bx bx-pencil"
                                                                                      title="Edit"></span>
@@ -260,7 +260,58 @@ if (isset($_SESSION['success_add_user'])) {
                                              <span id="basic-icon-default-company2" class="input-group-text"><i
                                                        class="bx bx-id-card"></i></span>
                                              <input type="text" class="form-control" name="no_body"
-                                                  placeholder="Masukan No Induk" required />
+                                                  placeholder="Masukan No Body" required />
+                                        </div>
+                                   </div>
+                              </div>
+
+                              <div class="row mb-3">
+                                   <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Nomor
+                                        Polisi</label>
+                                   <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                             <span id="basic-icon-default-company2" class="input-group-text"><i
+                                                       class="bx bx-id-card"></i></span>
+                                             <input type="text" class="form-control" name="no_polisi"
+                                                  placeholder="Masukan Nomor Polisi" required />
+                                        </div>
+                                   </div>
+                              </div>
+
+                              <div class="row mb-3">
+                                   <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Lokasi
+                                        Start</label>
+                                   <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                             <span id="basic-icon-default-company2" class="input-group-text"><i
+                                                       class="bx bx-id-card"></i></span>
+                                             <input type="text" class="form-control" name="lokasi_start"
+                                                  placeholder="Masukan Lokasi Start" required />
+                                        </div>
+                                   </div>
+                              </div>
+
+                              <div class="row mb-3">
+                                   <label class="col-sm-2 col-form-label"
+                                        for="basic-icon-default-company">Koridor</label>
+                                   <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                             <span id="basic-icon-default-company2" class="input-group-text"><i
+                                                       class="bx bx-id-card"></i></span>
+                                             <input type="text" class="form-control" name="koridor"
+                                                  placeholder="Masukan Koridor" required />
+                                        </div>
+                                   </div>
+                              </div>
+
+                              <div class="row mb-3">
+                                   <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Shift</label>
+                                   <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                             <span id="basic-icon-default-company2" class="input-group-text"><i
+                                                       class="bx bx-id-card"></i></span>
+                                             <input type="text" class="form-control" name="shift"
+                                                  placeholder="Masukan Shift" required />
                                         </div>
                                    </div>
                               </div>

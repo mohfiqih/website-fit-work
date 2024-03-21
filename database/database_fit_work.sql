@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 04, 2024 at 09:52 AM
+-- Generation Time: Mar 21, 2024 at 11:31 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -32,6 +32,10 @@ CREATE TABLE `fit_work` (
   `hari` varchar(50) NOT NULL,
   `tanggal` varchar(50) NOT NULL,
   `no_body` varchar(50) NOT NULL,
+  `no_polisi` varchar(50) NOT NULL,
+  `lokasi_start` text NOT NULL,
+  `koridor` varchar(100) NOT NULL,
+  `shift` varchar(50) NOT NULL,
   `pramudi` varchar(100) NOT NULL,
   `depo` varchar(100) NOT NULL,
   `no_induk` varchar(50) NOT NULL,
@@ -61,8 +65,8 @@ CREATE TABLE `fit_work` (
 -- Dumping data for table `fit_work`
 --
 
-INSERT INTO `fit_work` (`id`, `hari`, `tanggal`, `no_body`, `pramudi`, `depo`, `no_induk`, `jam_masuk`, `jam_keluar`, `jas`, `dasi`, `peci`, `pantofel`, `seragam_kerja`, `id_card`, `kip`, `sim`, `stnk`, `kir`, `kp`, `flazz`, `p3k`, `handsanitizer`, `senter`, `tekanan_darah`, `suhu_badan`, `alkohol`) VALUES
-(36, 'Senin', '2024-02-04', '1111', 'putt', 'Depo Cijantung', '11112222', '14:28', '', 'Ya', 'Ya', 'Ya', 'Ya', 'Ya', 'Ya', 'Ya', 'Ya', 'Ya', 'Ya', 'Ya', 'Ya', 'Ya', 'Ya', 'Ya', '100/120', '30', '0');
+INSERT INTO `fit_work` (`id`, `hari`, `tanggal`, `no_body`, `no_polisi`, `lokasi_start`, `koridor`, `shift`, `pramudi`, `depo`, `no_induk`, `jam_masuk`, `jam_keluar`, `jas`, `dasi`, `peci`, `pantofel`, `seragam_kerja`, `id_card`, `kip`, `sim`, `stnk`, `kir`, `kp`, `flazz`, `p3k`, `handsanitizer`, `senter`, `tekanan_darah`, `suhu_badan`, `alkohol`) VALUES
+(36, 'Senin', '2024-02-04', '1111', '667', 'Tegal', '1', 'Pagi', 'putt', 'Depo Cijantung', '11112222', '14:28', '', 'Ya', 'Ya', 'Ya', 'Ya', 'Ya', 'Ya', 'Ya', 'Ya', 'Ya', 'Ya', 'Ya', 'Ya', 'Ya', 'Ya', 'Ya', '100/120', '30', '0');
 
 -- --------------------------------------------------------
 
@@ -107,7 +111,8 @@ INSERT INTO `rampcheck2` (`id_ramp`, `id_fit`, `kategori`, `bagian`, `item`, `ko
 (863, 36, 'Interior', 'Interior', 'SOP Penanganan Keadaan Darurat', 'Sesuai', '', ' -'),
 (864, 36, 'Interior', 'Interior', 'Kursi Prioritas', 'Sesuai', '', ' -'),
 (865, 36, 'Interior', 'Interior', 'Palu Pemecah Kaca', 'Sesuai', '', ' -'),
-(866, 36, 'Interior', 'Interior', 'Tombol STOP', 'Sesuai', '', ' -');
+(866, 36, 'Interior', 'Interior', 'Tombol STOP', 'Sesuai', '', ' -'),
+(867, 36, 'Eksterior', 'Depan', 'Bumper Depan', 'Sesuai', '', ' ');
 
 -- --------------------------------------------------------
 
@@ -132,7 +137,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `full_name`, `email`, `password`, `status`, `gambar`, `timestamp`) VALUES
 (42, 'user_admin1', 'Admin PT', 'admin123@gmail.com', '25d55ad283aa400af464c76d713c07ad', 'Active', 'Tips-Memotret-Foto-Portrait.jpg', '2024-02-03 08:09:16'),
-(45, 'user_admin2', 'Admin Dua', 'useradmin2@gmail.com', '25d55ad283aa400af464c76d713c07ad', 'Active', '', '2024-02-04 08:50:43');
+(45, 'user_admin2', 'Admin Dua', 'useradmin2@gmail.com', '25d55ad283aa400af464c76d713c07ad', 'Active', '', '2024-02-04 08:50:43'),
+(46, 'admin', 'admin', 'admin@gmail.com', '25d55ad283aa400af464c76d713c07ad', 'Active', '', '2024-03-21 09:22:08');
 
 --
 -- Indexes for dumped tables
@@ -166,19 +172,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `fit_work`
 --
 ALTER TABLE `fit_work`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `rampcheck2`
 --
 ALTER TABLE `rampcheck2`
-  MODIFY `id_ramp` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=867;
+  MODIFY `id_ramp` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=868;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

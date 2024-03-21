@@ -13,6 +13,10 @@ header("Content-Disposition: attachment; filename=Data Fitwork.xls");
                          <th>Hari</th>
                          <th>Tanggal</th>
                          <th>No Body</th>
+                         <th>No Polisi</th>
+                         <th>Start Lokasi</th>
+                         <th>Koridor</th>
+                         <th>Shift</th>
                          <th>Pramudi</th>
                          <th>Depo</th>
                          <th>No Induk</th>
@@ -43,6 +47,18 @@ header("Content-Disposition: attachment; filename=Data Fitwork.xls");
                          </td>
                          <td>
                               <?= $userData['no_body'] ?>
+                         </td>
+                         <td>
+                              <?= $userData['no_polisi'] ?>
+                         </td>
+                         <td>
+                              <?= $userData['lokasi_start'] ?>
+                         </td>
+                         <td>
+                              <?= $userData['koridor'] ?>
+                         </td>
+                         <td>
+                              <?= $userData['shift'] ?>
                          </td>
                          <td>
                               <?= $userData['pramudi'] ?>

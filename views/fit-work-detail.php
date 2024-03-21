@@ -80,6 +80,36 @@ if (isset($_SESSION['success_update'])) {
                                                                  value="<?= $userData['no_body']; ?>" readonly />
                                                        </div>
                                                        <div class="mb-3">
+                                                            <label class="form-label" for="basic-default-company">No.
+                                                                 Polisi</label>
+                                                            <input type="text" class="form-control" name="no_polisi"
+                                                                 value="<?= $userData['no_polisi']; ?>" readonly />
+                                                       </div>
+                                                       <div class="mb-3">
+                                                            <label class="form-label" for="basic-default-company">Lokasi
+                                                                 Start</label>
+                                                            <input type="text" class="form-control" name="lokasi_start"
+                                                                 value="<?= $userData['lokasi_start']; ?>" readonly />
+                                                       </div>
+                                                       <div class="mb-3">
+                                                            <label class="form-label"
+                                                                 for="basic-default-company">Koridor</label>
+                                                            <input type="text" class="form-control" name="koridor"
+                                                                 value="<?= $userData['koridor']; ?>" readonly />
+                                                       </div>
+                                                       <div class="mb-3">
+                                                            <label class="form-label"
+                                                                 for="basic-default-company">Shift</label>
+                                                            <input type="text" class="form-control" name="shift"
+                                                                 value="<?= $userData['shift']; ?>" readonly />
+                                                       </div>
+                                                       <div class="mb-3">
+                                                            <label class="form-label" for="basic-default-company">No.
+                                                                 Body</label>
+                                                            <input type="text" class="form-control" name="no_body"
+                                                                 value="<?= $userData['no_body']; ?>" readonly />
+                                                       </div>
+                                                       <div class="mb-3">
                                                             <label class="form-label"
                                                                  for="basic-default-company">Pramudi</label>
                                                             <input type="text" class="form-control" name="pramudi"
@@ -489,6 +519,57 @@ if (isset($_SESSION['success_update'])) {
                                                        class="bx bx-id-card"></i></span>
                                              <input type="text" class="form-control" name="no_body"
                                                   value="<?= $userData['no_body'] ?>" required />
+                                        </div>
+                                   </div>
+                              </div>
+
+                              <div class="row mb-3">
+                                   <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Nomor
+                                        Polisi</label>
+                                   <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                             <span id="basic-icon-default-company2" class="input-group-text"><i
+                                                       class="bx bx-id-card"></i></span>
+                                             <input type="text" class="form-control" name="no_polisi"
+                                                  value="<?= $userData['no_polisi'] ?>" required />
+                                        </div>
+                                   </div>
+                              </div>
+
+                              <div class="row mb-3">
+                                   <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Lokasi
+                                        Start</label>
+                                   <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                             <span id="basic-icon-default-company2" class="input-group-text"><i
+                                                       class="bx bx-id-card"></i></span>
+                                             <input type="text" class="form-control" name="lokasi_start"
+                                                  value="<?= $userData['lokasi_start'] ?>" required />
+                                        </div>
+                                   </div>
+                              </div>
+
+                              <div class="row mb-3">
+                                   <label class="col-sm-2 col-form-label"
+                                        for="basic-icon-default-company">Koridor</label>
+                                   <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                             <span id="basic-icon-default-company2" class="input-group-text"><i
+                                                       class="bx bx-id-card"></i></span>
+                                             <input type="text" class="form-control" name="koridor"
+                                                  value="<?= $userData['koridor'] ?>" required />
+                                        </div>
+                                   </div>
+                              </div>
+
+                              <div class="row mb-3">
+                                   <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Shift</label>
+                                   <div class="col-sm-10">
+                                        <div class="input-group input-group-merge">
+                                             <span id="basic-icon-default-company2" class="input-group-text"><i
+                                                       class="bx bx-id-card"></i></span>
+                                             <input type="text" class="form-control" name="shift"
+                                                  value="<?= $userData['shift'] ?>" required />
                                         </div>
                                    </div>
                               </div>

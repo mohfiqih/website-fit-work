@@ -105,16 +105,28 @@ header("Content-Disposition: attachment; filename=Data Fitwork-Rampcheck-$id.xls
                          <th width="150px;">HARI</th>
                          <td width="5px">:</td>
                          <td><?= $userData['hari'] ?></td>
+
+                         <th width="150px;">NO POLISI</th>
+                         <td width="5px">:</td>
+                         <td><?= $userData['no_polisi'] ?></td>
                     </tr>
                     <tr>
                          <th width="150px;">TANGGAL</th>
                          <td width="5px">:</td>
                          <td><?= $userData['tanggal'] ?></td>
+
+                         <th width="150px;">LOKASI</th>
+                         <td width="5px">:</td>
+                         <td><?= $userData['lokasi_start'] ?></td>
                     </tr>
                     <tr>
                          <th width="150px;">NO BODY</th>
                          <td width="5px">:</td>
                          <td><?= $userData['no_body'] ?></td>
+
+                         <th width="150px;">KORIDOR</th>
+                         <td width="5px">:</td>
+                         <td><?= $userData['koridor'] ?></td>
                     </tr>
                     <tr>
                          <th width="150px;">PRAMUDI</th>
